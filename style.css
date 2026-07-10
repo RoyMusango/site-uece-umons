@@ -112,12 +112,19 @@ h4 { font-size: var(--fs-h4); font-weight: 600; }
 .text-gold { color: var(--gold-500); }
 .text-soft { color: var(--muted); }
 
-/* Sections sombres : texte papier, jamais de gris moyen sur marine */
+/* Sections sombres : texte papier, jamais de gris moyen sur marine.
+   Les titres doivent être surchargés explicitement : la règle h1 { color: navy }
+   gagne sinon sur la couleur héritée du conteneur. */
 .section-dark,
 .section-dark p,
 .section-dark li { color: var(--paper); }
-.section-dark h1, .section-dark h2,
-.section-dark h3, .section-dark h4 { color: var(--paper); }
+
+.section-dark h1, .section-dark h2, .section-dark h3, .section-dark h4,
+.hero-section h1, .hero-section h2, .hero-section h3, .hero-section h4,
+.page-header h1, .page-header h2, .page-header h3, .page-header h4,
+.header-gala h1, .header-gala h2, .header-gala h3, .header-gala h4 {
+    color: var(--paper);
+}
 
 /* --------------------------------------------------------------------------
    4. UTILITAIRES SIGNATURE
@@ -225,6 +232,7 @@ h4 { font-size: var(--fs-h4); font-weight: 600; }
     border-bottom: 1px solid var(--line-gold);
     box-shadow: 0 2px 14px rgba(5, 15, 30, .35);
     padding: 10px 0;
+    min-height: 80px;   /* = padding-top du body : aucun jour entre navbar et hero */
 }
 
 .navbar-brand img {
@@ -545,7 +553,7 @@ footer .border-top { border-color: var(--line-gold) !important; }
     transform: translate(-50%, -50%);
     width: 400px;
     height: 400px;
-    background-image: url('images/logo_test.png');
+    background-image: url('images/logo-uece.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
