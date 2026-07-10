@@ -529,6 +529,15 @@ footer .border-top { border-color: var(--line-gold) !important; }
     color: var(--paper);
 }
 
+/* Mobile : colonnes du footer empilées et centrées (le text-end de la
+   colonne Informations n'a de sens qu'en colonnes côte à côte) */
+@media (max-width: 767.98px) {
+    footer .col-md-4,
+    footer .col-md-4.text-end {
+        text-align: center !important;
+    }
+}
+
 /* ==========================================================================
    MODULES SPÉCIFIQUES : GALA
    ========================================================================== */
@@ -713,23 +722,23 @@ footer .border-top { border-color: var(--line-gold) !important; }
     margin-top: 20px;
 }
 
-/* --- Layout responsive gala --- */
+/* --- Layout responsive gala ---
+   Règles scopées à la rangée d'intro du gala (.row-gala-intro) : les
+   anciennes versions ciblaient .col-md-* globalement et cassaient la
+   mise en page des autres pages (légendes d'images sur l'accueil). */
 @media (min-width: 768px) {
-    .row {
-        display: flex;
-        align-items: stretch;
-    }
+    .row-gala-intro { align-items: stretch; }
 
-    .col-md-7, .col-md-5 { display: flex; }
+    .row-gala-intro > [class*="col-"] { display: flex; }
 
-    .soiree-exception-container,
-    .info-box-compact {
+    .row-gala-intro .soiree-exception-container,
+    .row-gala-intro .info-box-compact {
         flex: 1;
         display: flex;
         flex-direction: column;
     }
 
-    .soiree-exception-content { flex: 1; }
+    .row-gala-intro .soiree-exception-content { flex: 1; }
 }
 
 @media (max-width: 768px) {
