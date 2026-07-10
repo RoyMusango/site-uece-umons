@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" stroke="#D4AF37" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-hidden="true">
+  <title>Motif signature UECE : cercle de mains, filaire or</title>
+  <defs>
+    <!-- Une main stylisée, doigts vers le haut (y négatif), poignet en y=0 -->
+    <g id="main">
+      <!-- paume ouverte -->
+      <path d="M -11 -32 C -13 -12 -6 -2 0 -2 C 6 -2 13 -12 11 -32"/>
+      <!-- doigts -->
+      <path d="M -8.5 -33 C -9 -40 -8.5 -46 -7.5 -52"/>
+      <path d="M -3 -35 C -3.2 -43 -3 -51 -2.5 -58"/>
+      <path d="M 3 -35 C 3.2 -43 3 -51 2.5 -58"/>
+      <path d="M 8.5 -33 C 9 -40 8.5 -46 7.5 -52"/>
+      <!-- pouce -->
+      <path d="M -11 -18 C -15 -21 -18.5 -27 -20 -34"/>
+    </g>
+    <!-- Paire de mains en miroir, paumes adjacentes, pouces ouverts vers l'extérieur -->
+    <g id="paire">
+      <use href="#main" transform="translate(-12 0)"/>
+      <use href="#main" transform="translate(12 0) scale(-1 1)"/>
+    </g>
+  </defs>
+
+  <!-- cadre double filet -->
+  <circle cx="200" cy="200" r="187"/>
+  <circle cx="200" cy="200" r="181"/>
+  <!-- filet intérieur -->
+  <circle cx="200" cy="200" r="104"/>
+
+  <!-- couronne de 8 paires de mains -->
+  <use href="#paire" transform="rotate(0 200 200) translate(200 90)"/>
+  <use href="#paire" transform="rotate(45 200 200) translate(200 90)"/>
+  <use href="#paire" transform="rotate(90 200 200) translate(200 90)"/>
+  <use href="#paire" transform="rotate(135 200 200) translate(200 90)"/>
+  <use href="#paire" transform="rotate(180 200 200) translate(200 90)"/>
+  <use href="#paire" transform="rotate(225 200 200) translate(200 90)"/>
+  <use href="#paire" transform="rotate(270 200 200) translate(200 90)"/>
+  <use href="#paire" transform="rotate(315 200 200) translate(200 90)"/>
+</svg>
