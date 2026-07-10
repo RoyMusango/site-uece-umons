@@ -1,121 +1,537 @@
 /* ==========================================================================
-   style.css - Fichier de styles communs UECE UMONS
+   style.css — Design system "Prestige diplomatique" UECE UMONS
+   Source de vérité CSS (CLAUDE.md §4). À charger APRÈS Bootstrap dans le
+   <head> : les surcharges ci-dessous gagnent par la cascade.
    ========================================================================== */
 
-/* --- 1. VARIABLES GLOBALES --- */
+/* --------------------------------------------------------------------------
+   1. TOKENS
+   -------------------------------------------------------------------------- */
 :root {
-    --uece-blue: #002147;
-    --uece-gold: #D4AF37;
-    --uece-gold-hover: #b39020;
+    /* Couleurs de marque */
+    --navy-950: #050F1E;
+    --navy-900: #001730;
+    --navy-800: #002147;
+    --navy-700: #0E3160;
+    --gold-300: #EBD48B;
+    --gold-400: #DFC15F;
+    --gold-500: #D4AF37;
+    --gold-700: #8C6D1F;
+    --paper:    #F7F2E8;
+    --ink:      #131A26;
+    --muted:    #5D6678;
+    --line-gold: rgba(212, 175, 55, .30);
+    --bordeaux:      #800040;
+    --bordeaux-dark: #5A002D;
+
+    /* Alias hérités — d'anciens styles inline utilisent encore ces noms */
+    --uece-blue: var(--navy-800);
+    --uece-gold: var(--gold-500);
+    --uece-gold-hover: var(--gold-700);
+
+    /* Typographie */
+    --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-text: 'Outfit', 'Segoe UI', Tahoma, sans-serif;
+    --fs-h1:   clamp(2.4rem, 6vw, 4.2rem);
+    --fs-h2:   clamp(1.8rem, 4.5vw, 2.8rem);
+    --fs-h3:   clamp(1.4rem, 3vw, 1.9rem);
+    --fs-h4:   clamp(1.15rem, 2.2vw, 1.4rem);
+    --fs-lead: clamp(1.05rem, 2vw, 1.25rem);
+
+    /* Surfaces, ombres, rythme */
+    --surface: #FFFDF8;              /* cartes sur fond papier */
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow-1: 0 2px 12px rgba(5, 15, 30, .06);
+    --shadow-2: 0 12px 32px rgba(5, 15, 30, .14);
+    --transition: .25s ease;
 }
 
-/* --- 2. STYLES DE BASE --- */
-body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    padding-top: 80px; 
-    display: flex; 
-    flex-direction: column; 
+/* --------------------------------------------------------------------------
+   2. RESET LÉGER & BASE
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-text);
+    font-weight: 400;
+    background-color: var(--paper);
+    color: var(--ink);
+    padding-top: 80px;              /* navbar fixe */
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- 3. BARRE DE NAVIGATION --- */
-.navbar { 
-    background-color: #fff; 
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
-    padding: 10px 0; 
+img { max-width: 100%; height: auto; }
+
+::selection {
+    background-color: var(--gold-500);
+    color: var(--navy-900);
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHIE
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, .display-4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.12;
+    color: var(--navy-800);
+}
+
+h1, .display-4 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+h4 { font-size: var(--fs-h4); font-weight: 600; }
+
+.lead {
+    font-size: var(--fs-lead);
+    font-weight: 300;
+    line-height: 1.55;
+}
+
+/* Eyebrow : capitales espacées or, comme sur l'affiche */
+.eyebrow {
+    font-family: var(--font-text);
+    font-size: .8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .18em;
+    color: var(--gold-500);
+    margin-bottom: .75rem;
+}
+
+.text-navy { color: var(--navy-800); }
+.text-gold { color: var(--gold-500); }
+.text-soft { color: var(--muted); }
+
+/* Sections sombres : texte papier, jamais de gris moyen sur marine */
+.section-dark,
+.section-dark p,
+.section-dark li { color: var(--paper); }
+.section-dark h1, .section-dark h2,
+.section-dark h3, .section-dark h4 { color: var(--paper); }
+
+/* --------------------------------------------------------------------------
+   4. UTILITAIRES SIGNATURE
+   -------------------------------------------------------------------------- */
+/* Cadre double filet or (motif de l'affiche) pour les cartes importantes */
+.frame-double {
+    border: 1px solid var(--line-gold);
+    outline: 1px solid var(--line-gold);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+/* Filet séparateur or centré */
+.divider-gold {
+    width: 72px;
+    height: 1px;
+    background-color: var(--gold-500);
+    border: none;
+    opacity: 1;
+    margin: 1.25rem auto;
+}
+
+/* Surcharge douce de l'utilitaire Bootstrap utilisé dans les pages */
+.bg-light { background-color: #FCF8EF !important; }
+
+/* --------------------------------------------------------------------------
+   5. BOUTONS
+   -------------------------------------------------------------------------- */
+.btn {
+    font-family: var(--font-text);
+    font-weight: 500;
+    letter-spacing: .02em;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition), color var(--transition),
+                border-color var(--transition), box-shadow var(--transition),
+                transform var(--transition);
+}
+
+.btn-gold {
+    background-color: var(--gold-500);
+    border: 1px solid var(--gold-500);
+    color: var(--navy-900);
+    font-weight: 600;
+}
+
+.btn-gold:hover,
+.btn-gold:focus {
+    background-color: var(--gold-400);
+    border-color: var(--gold-400);
+    color: var(--navy-950);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, .35);
+}
+
+/* Bouton secondaire : filet or sur fond sombre ou clair */
+.btn-outline-gold {
+    background-color: transparent;
+    border: 1px solid var(--gold-500);
+    color: var(--gold-500);
+}
+
+.btn-outline-gold:hover,
+.btn-outline-gold:focus {
+    background-color: var(--gold-500);
+    color: var(--navy-900);
+}
+
+/* Surcharge du btn-primary Bootstrap (bouton facture, liens retours…) */
+.btn-primary {
+    background-color: var(--navy-800);
+    border-color: var(--navy-800);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--navy-700);
+    border-color: var(--navy-700);
+}
+
+/* Bouton connexion : bordeaux historique, harmonisé */
+.btn-connexion {
+    background-color: var(--bordeaux);
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 8px 20px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color var(--transition), border-color var(--transition);
+}
+
+.btn-connexion:hover,
+.btn-connexion:focus {
+    background-color: var(--bordeaux-dark);
+    border-color: var(--gold-500);
+    color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   6. BARRE DE NAVIGATION
+   -------------------------------------------------------------------------- */
+.navbar {
+    background-color: var(--navy-900);
+    border-bottom: 1px solid var(--line-gold);
+    box-shadow: 0 2px 14px rgba(5, 15, 30, .35);
+    padding: 10px 0;
 }
 
 .navbar-brand img {
-    height: 40px;
+    height: 44px;
     width: auto;
-    transition: transform 0.2s;
+    transition: transform var(--transition);
 }
 
-.navbar-brand img:hover {
-    transform: scale(1.05);
+.navbar-brand img:hover { transform: scale(1.05); }
+
+.nav-link {
+    color: var(--paper) !important;
+    font-weight: 400;
+    margin-right: 15px;
+    padding-bottom: 4px;
+    /* soulignement or animé */
+    background-image: linear-gradient(var(--gold-500), var(--gold-500));
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    background-position: left calc(100% - 2px);
+    transition: color var(--transition), background-size var(--transition);
 }
 
-.nav-link { 
-    color: var(--uece-blue) !important; 
-    font-weight: 500; 
-    margin-right: 15px; 
-    transition: color 0.2s;
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+    color: var(--gold-300) !important;
+    background-size: 100% 1px;
 }
 
-.nav-link:hover {
-    color: var(--uece-gold) !important;
+.navbar-toggler {
+    border: 1px solid var(--line-gold);
+    padding: 6px 10px;
 }
 
-.search-box { 
-    border: 1px solid #ced4da; 
-    border-radius: 20px; 
-    padding: 5px 15px; 
-    margin-right: 15px; 
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23F7F2E8' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-.btn-connexion {
-    background-color: #800040;
-    color: white;
-    border-radius: 5px;
-    padding: 8px 20px;
-    font-weight: bold;
+.dropdown-menu {
+    background-color: var(--surface);
+    border: 1px solid var(--line-gold);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-2);
+    padding: .5rem 0;
+}
+
+.dropdown-item {
+    color: var(--ink);
+    padding: .55rem 1.25rem;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: var(--navy-800);
+    color: var(--paper);
+}
+
+.search-box {
+    background-color: transparent;
+    border: 1px solid var(--line-gold);
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-right: 15px;
+    color: var(--paper);
+    transition: border-color var(--transition), background-color var(--transition);
+}
+
+.search-box::placeholder { color: rgba(247, 242, 232, .55); }
+
+.search-box:focus {
+    background-color: rgba(247, 242, 232, .08);
+    border-color: var(--gold-500);
+    color: var(--paper);
+    box-shadow: none;
+    outline: none;
+}
+
+/* Menu replié (mobile) : respiration et séparation */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        border-top: 1px solid var(--line-gold);
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    .navbar .d-flex { flex-wrap: wrap; gap: 10px; padding-bottom: 6px; }
+}
+
+/* --------------------------------------------------------------------------
+   7. FORMULAIRES
+   -------------------------------------------------------------------------- */
+.form-label { font-weight: 500; color: var(--navy-800); }
+
+.form-control {
+    background-color: #fff;
+    border: 1px solid #D8D2C4;
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--gold-500);
+    box-shadow: 0 0 0 3px var(--line-gold);
+}
+
+.alert-info {
+    background-color: #FCF8EF;
+    border: 1px solid var(--line-gold);
+    color: var(--muted);
+    border-radius: var(--radius-sm);
+}
+
+/* --------------------------------------------------------------------------
+   8. CARTES
+   -------------------------------------------------------------------------- */
+.card {
+    background-color: var(--surface);
+    border: 1px solid var(--line-gold);
+    border-radius: var(--radius);
+}
+
+.card-lift {
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-2);
+}
+
+/* Carte sombre (ex. "Prochain événement" sur l'accueil) */
+.card-dark {
+    background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-800) 100%);
+    border: 1px solid var(--line-gold);
+    color: var(--paper);
+}
+
+.card-dark h4, .card-dark h5 { color: var(--paper); }
+
+.card-dark .card-highlight {
+    background-color: var(--paper);
+    color: var(--navy-800);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line-gold);
+}
+
+.card-dark .card-highlight h5 { color: var(--navy-800); }
+
+/* --------------------------------------------------------------------------
+   9. HERO (ACCUEIL) & EN-TÊTES DE PAGE
+   -------------------------------------------------------------------------- */
+.hero-section {
+    background:
+        radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .18) 0%, transparent 55%),
+        linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
+    color: var(--paper);
+    padding: clamp(64px, 10vw, 110px) 0;
+    text-align: center;
+    border-bottom: 1px solid var(--line-gold);
+}
+
+.hero-section .lead { color: var(--paper); }
+
+.hero-sub {
+    font-family: var(--font-display);
+    font-size: var(--fs-lead);
+    font-style: italic;
+    color: var(--gold-300);
+}
+
+/* En-tête générique des pages intérieures (gala, annonces, standard) */
+.page-header {
+    background:
+        radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .15) 0%, transparent 55%),
+        linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
+    color: var(--paper);
+    padding: clamp(40px, 7vw, 72px) 0;
+    text-align: center;
+    border-bottom: 1px solid var(--line-gold);
+    margin-bottom: 30px;
+}
+
+.page-header .lead { color: rgba(247, 242, 232, .85); }
+
+/* Alias : ancien en-tête gala, même dispositif */
+.header-gala {
+    background:
+        radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .15) 0%, transparent 55%),
+        linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
+    color: var(--paper);
+    padding: clamp(40px, 7vw, 72px) 0;
+    border-bottom: 1px solid var(--line-gold);
+    margin-bottom: 30px;
+}
+
+.header-gala .lead { color: rgba(247, 242, 232, .85); }
+
+/* Images de l'accueil */
+.hero-image {
+    border: 3px solid var(--gold-500);
+    transition: transform var(--transition);
+}
+
+.hero-image:hover { transform: scale(1.02); }
+
+.event-image {
+    border: 2px solid var(--line-gold);
+    transition: border-color var(--transition);
+}
+
+.event-image:hover { border-color: var(--gold-500); }
+
+.img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.image-square-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;               /* carré parfait */
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-1);
+    border: 1px solid var(--line-gold);
+}
+
+.square-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease;
+}
+
+.square-image:hover { transform: scale(1.05); }
+
+@media (max-width: 768px) {
+    .image-square-container {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   10. PIED DE PAGE
+   -------------------------------------------------------------------------- */
+footer {
+    background-color: var(--navy-950);
+    color: var(--paper);
+    margin-top: auto;
+    padding-top: 48px;
+    border-top: 1px solid var(--line-gold);
+}
+
+.footer-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--gold-400) !important;
+    margin-bottom: 1rem;
+}
+
+footer a {
+    color: rgba(247, 242, 232, .82);
     text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
+    transition: color var(--transition);
 }
 
-.btn-connexion:hover {
-    background-color: #5a002d;
-    color: white;
-}
+footer a:hover,
+footer a:focus { color: var(--gold-400); }
 
-/* --- 4. PIED DE PAGE (FOOTER) --- */
-footer { 
-    background-color: var(--uece-blue); 
-    color: white; 
-    margin-top: auto; 
-    padding-top: 40px; 
-}
-
-footer a { 
-    color: #ddd; 
-    text-decoration: none; 
-}
-
-footer a:hover {
-    color: var(--uece-gold);
-}
+footer .border-top { border-color: var(--line-gold) !important; }
 
 .social-icon {
     font-size: 1.5rem;
     margin-right: 15px;
-    color: var(--uece-gold);
-    transition: transform 0.2s;
+    color: var(--gold-500);
+    display: inline-block;
+    transition: transform var(--transition), color var(--transition);
 }
 
 .social-icon:hover {
-    transform: scale(1.1);
-    color: white;
+    transform: scale(1.12);
+    color: var(--paper);
 }
 
 /* ==========================================================================
-   MODULES SPÉCIFIQUES : GALA 2026
+   MODULES SPÉCIFIQUES : GALA
    ========================================================================== */
 
-/* --- Header Gala --- */
-.header-gala {
-    background-color: var(--uece-blue);
-    color: white;
-    padding: 40px 0;
-    border-bottom: 4px solid var(--uece-gold);
-    margin-bottom: 30px;
-}
-
-/* --- Section Image en filigrane --- */
+/* --- Section image en filigrane --- */
 .soiree-exception-container {
     position: relative;
-    padding: 40px;
-    background-color: white;
-    border-radius: 10px;
+    padding: clamp(24px, 4vw, 40px);
+    background-color: var(--surface);
+    border: 1px solid var(--line-gold);
+    border-radius: var(--radius);
     overflow: hidden;
     min-height: auto;
     height: fit-content;
@@ -133,7 +549,7 @@ footer a:hover {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.1;
+    opacity: 0.08;
     z-index: 1;
     pointer-events: none;
 }
@@ -153,7 +569,7 @@ footer a:hover {
     z-index: 3;
 }
 
-/* --- Box "En bref" --- */
+/* --- Box "En bref" : cadre double filet --- */
 .info-box-wrapper {
     display: flex;
     justify-content: flex-start;
@@ -162,8 +578,13 @@ footer a:hover {
 .info-box-compact {
     width: 100%;
     max-width: 310px;
-    padding: 1.0rem !important;
+    padding: 1.25rem !important;
     height: 100%;
+    background-color: var(--surface) !important;
+    border: 1px solid var(--line-gold) !important;
+    outline: 1px solid var(--line-gold);
+    outline-offset: 4px;
+    border-radius: 2px !important;
 }
 
 .info-item {
@@ -179,24 +600,22 @@ footer a:hover {
     margin-right: 15px;
     margin-top: 3px;
     font-size: 1.2rem;
-    color: var(--uece-gold);
+    color: var(--gold-500);
     width: 24px;
     text-align: center;
 }
 
-.info-content {
-    flex-grow: 1;
-}
+.info-content { flex-grow: 1; }
 
 .info-label {
     font-weight: 600;
-    color: var(--uece-blue);
+    color: var(--navy-800);
     font-size: 1rem;
     margin-bottom: 2px;
 }
 
 .info-desc {
-    color: #444;
+    color: var(--ink);
     font-size: 0.95rem;
     line-height: 1.4;
 }
@@ -207,14 +626,14 @@ footer a:hover {
     justify-content: center;
     margin-top: 1.5rem;
     padding-top: 1rem;
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--line-gold);
 }
 
 .info-note {
     display: flex;
     align-items: center;
     font-size: 0.9rem;
-    color: #666;
+    color: var(--muted);
 }
 
 .info-note i {
@@ -222,157 +641,207 @@ footer a:hover {
     font-size: 1rem;
 }
 
-/* --- Sélection des Tickets --- */
+/* --- En-tête de la carte billetterie --- */
+.header-billetterie {
+    background-color: var(--navy-900);
+    color: var(--paper);
+    border-bottom: 1px solid var(--line-gold);
+    border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.header-billetterie h3 {
+    color: var(--paper);
+    font-size: var(--fs-h4);
+}
+
+.header-billetterie i { color: var(--gold-500); }
+
+/* --- Sélection des tickets ---
+   ⚠ Les classes .ticket-card / .active / .ticket-vip sont pilotées par le JS
+   de gala.html (zone gelée) : seul l'habillage change ici. */
 .ticket-card {
-    border: 2px solid #ddd;
-    border-radius: 10px;
+    background-color: var(--surface);
+    border: 1px solid #D8D2C4;
+    border-radius: var(--radius-sm);
     padding: 20px;
     margin-bottom: 15px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: transform var(--transition), box-shadow var(--transition),
+                border-color var(--transition), background-color var(--transition);
 }
 
-.ticket-card:hover { 
-    transform: translateY(-3px); 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+.ticket-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-2);
+    border-color: var(--navy-700);
 }
 
-.ticket-card.active { 
-    border-color: var(--uece-blue); 
-    background-color: #e6f0ff; 
+.ticket-card.active {
+    border-color: var(--navy-800);
+    background-color: #EEF3FA;
+    box-shadow: inset 0 0 0 1px var(--navy-800);
 }
 
-.ticket-vip { 
-    border-color: var(--uece-gold); 
+.ticket-vip { border-color: var(--line-gold); }
+
+.ticket-vip:hover { border-color: var(--gold-500); }
+
+.ticket-vip.active {
+    border-color: var(--gold-500);
+    background-color: #FCF6E3;
+    box-shadow: inset 0 0 0 1px var(--gold-500);
 }
 
-.ticket-vip.active { 
-    border-color: var(--uece-gold); 
-    background-color: #fffdf5; 
+.ticket-price-standard { color: var(--navy-800); }
+.ticket-price-vip { color: var(--gold-700); }
+
+/* ⚠ display:none obligatoire : le JS de gala.html l'affiche après paiement */
+#factureArea {
+    display: none;
+    background-color: #E8F3E8;
+    padding: 20px;
+    border: 1px solid rgba(25, 105, 55, .25);
+    border-radius: var(--radius-sm);
+    margin-top: 20px;
 }
 
-#factureArea { 
-    display: none; 
-    background-color: #d1e7dd; 
-    padding: 20px; 
-    border-radius: 8px; 
-    margin-top: 20px; 
-}
-
-/* --- Responsive Layout --- */
+/* --- Layout responsive gala --- */
 @media (min-width: 768px) {
     .row {
         display: flex;
         align-items: stretch;
     }
-    
-    .col-md-7, .col-md-5 {
-        display: flex;
-    }
-    
+
+    .col-md-7, .col-md-5 { display: flex; }
+
     .soiree-exception-container,
     .info-box-compact {
         flex: 1;
         display: flex;
         flex-direction: column;
     }
-    
-    .soiree-exception-content {
-        flex: 1;
-    }
+
+    .soiree-exception-content { flex: 1; }
 }
 
 @media (max-width: 768px) {
-    .info-box-wrapper {
-        justify-content: center;
-    }
-    .info-box-compact {
-        max-width: 100%;
-    }
+    .info-box-wrapper { justify-content: center; }
+    .info-box-compact { max-width: 100%; }
 }
 
 /* ==========================================================================
-   MODULES SPÉCIFIQUES : PAGE D'ACCUEIL (UECE.html)
+   MODULES SPÉCIFIQUES : ANNONCES (infos importantes HUE / UE)
    ========================================================================== */
-
-/* --- Section Hero (Haut de la page d'accueil) --- */
-.hero-section {
-    background: linear-gradient(135deg, var(--uece-blue) 0%, #004080 100%);
-    color: white;
-    padding: 100px 0;
-    text-align: center;
-    border-bottom: 5px solid var(--uece-gold);
+.annonce-card {
+    background-color: var(--surface);
+    border: 1px solid var(--line-gold);
+    border-left: 4px solid var(--gold-500);
+    border-radius: var(--radius-sm);
+    padding: clamp(18px, 3vw, 28px);
+    margin-bottom: 1.25rem;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
-/* Bouton doré spécifique à l'accueil */
-.btn-gold {
-    background-color: var(--uece-gold);
-    color: var(--uece-blue);
-    font-weight: bold;
-    border: none;
-    transition: background-color 0.3s, color 0.3s;
+.annonce-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2);
 }
 
-.btn-gold:hover {
-    background-color: var(--uece-gold-hover);
-    color: white;
+.annonce-card h3 {
+    font-size: var(--fs-h4);
+    margin-bottom: .35rem;
 }
 
-/* --- Gestion des images de la page d'accueil --- */
-.hero-image {
-    border: 3px solid var(--uece-gold);
-    transition: transform 0.3s;
+.annonce-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem .75rem;
+    margin-bottom: .75rem;
 }
 
-.hero-image:hover {
-    transform: scale(1.02);
+.annonce-deadline {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-weight: 600;
+    font-size: .9rem;
+    color: var(--bordeaux);
 }
 
-.event-image {
-    border: 2px solid #ddd;
-    transition: border-color 0.3s;
+.annonce-source {
+    font-size: .85rem;
+    color: var(--muted);
 }
 
-.event-image:hover {
-    border-color: var(--uece-blue);
+.annonce-source a {
+    color: var(--navy-700);
+    text-decoration: underline;
+    text-decoration-color: var(--line-gold);
+    text-underline-offset: 3px;
 }
 
-.img-container {
+.annonce-source a:hover { text-decoration-color: var(--gold-500); }
+
+/* Badges de public concerné — contrastes AA vérifiés */
+.badge-annonce {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    padding: .3em .7em;
+    border-radius: 99px;
+}
+
+.badge-hue  { background-color: var(--bordeaux); color: #fff; }
+.badge-ue   { background-color: var(--navy-700); color: #fff; }
+.badge-tous { background-color: var(--gold-400); color: var(--navy-900); }
+
+/* ==========================================================================
+   STYLEGUIDE (standard.html)
+   ========================================================================== */
+.styleguide-section {
+    border-top: 1px solid var(--line-gold);
+    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+}
+
+.swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: .75rem;
+}
+
+.swatch {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line-gold);
+    padding: .6rem;
+    font-size: .75rem;
+    height: 84px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 100%;
+    justify-content: flex-end;
 }
 
-/* --- Conteneurs pour images carrées (Ratio 1:1) --- */
-.image-square-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%; /* Créé le carré parfait */
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border: 1px solid #ddd;
+/* ==========================================================================
+   ACCESSIBILITÉ
+   ========================================================================== */
+:focus-visible {
+    outline: 2px solid var(--gold-500);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
-.square-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Assure que l'image remplit le carré sans être déformée */
-    transition: transform 0.3s ease;
-}
+/* Kill-switch global animations/transitions */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
 
-.square-image:hover {
-    transform: scale(1.05);
-}
-
-/* Ajustement des images carrées sur mobile */
-@media (max-width: 768px) {
-    .image-square-container {
-        max-width: 300px;
-        margin: 0 auto;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
