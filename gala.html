@@ -53,7 +53,7 @@
         <div class="row row-gala-intro">
             <!-- Colonne pour le texte -->
             <div class="col-lg-8 col-md-7">
-                <div class="soiree-exception-container shadow-sm">
+                <div class="soiree-exception-container shadow-sm" data-reveal>
                     <div class="soiree-exception-content">
                         <h2 class="mb-4">Une soirée d'exception</h2>
                         <p class="lead">Rejoignez-nous pour une nuit mémorable où les cultures du monde entier se rencontrent dans l'élégance et la convivialité.</p>
@@ -72,7 +72,7 @@
             
             <!-- Colonne pour la box "En bref" -->
             <div class="col-lg-4 col-md-5">
-                <div class="p-4 bg-light rounded shadow-sm border info-box-compact">
+                <div class="p-4 bg-light rounded shadow-sm border info-box-compact" data-reveal="0.15">
                     <h3 class="h4 mb-4 pb-2 border-bottom text-center">En bref</h3>
                     
                     <!-- Date -->
@@ -123,9 +123,12 @@
         </div>
 
         <!-- Récapitulatif clair -->
+        <div class="separator-mains" aria-hidden="true">
+            <img src="images/motif-mains.svg" alt="" width="44" height="44">
+        </div>
         <div class="row mb-5">
             <div class="col-12">
-                <div class="card p-4" style="border-left: 4px solid var(--gold-500);">
+                <div class="card p-4" style="border-left: 4px solid var(--gold-500);" data-reveal>
                     <h3 class="h4">Informations importantes</h3>
                     <div class="row mt-3">
                         <div class="col-md-4 mb-3">
@@ -154,7 +157,11 @@
             </div>
         </div>
 
-        <!-- Section Billetterie -->
+        <!-- Section Billetterie — pas de reveal ici : zone critique PayPal,
+             elle reste visible en toutes circonstances -->
+        <div class="separator-mains" aria-hidden="true">
+            <img src="images/motif-mains.svg" alt="" width="44" height="44">
+        </div>
         <div class="card shadow-lg border-0">
             <div class="card-header header-billetterie py-3">
                 <h3 class="mb-0"><i class="fas fa-shopping-cart me-2"></i>Réservez votre place</h3>

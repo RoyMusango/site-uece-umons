@@ -155,8 +155,43 @@ h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
     margin: 1.25rem auto;
 }
 
+/* Séparateur de section signature : filets or + motif de mains */
+.separator-mains {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 12px auto 44px;
+}
+
+.separator-mains::before,
+.separator-mains::after {
+    content: "";
+    height: 1px;
+    flex: 0 1 180px;
+    background: linear-gradient(90deg, transparent, var(--line-gold));
+}
+
+.separator-mains::after {
+    background: linear-gradient(270deg, transparent, var(--line-gold));
+}
+
+.separator-mains img { opacity: .85; }
+
 /* Surcharge douce de l'utilitaire Bootstrap utilisé dans les pages */
 .bg-light { background-color: #FCF8EF !important; }
+
+/* Scrollbar personnalisée, signature marine/or */
+html { scrollbar-color: var(--gold-700) var(--navy-950); }
+
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: var(--navy-950); }
+::-webkit-scrollbar-thumb {
+    background: var(--gold-700);
+    border-radius: 6px;
+    border: 2px solid var(--navy-950);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--gold-500); }
 
 /* --------------------------------------------------------------------------
    5. BOUTONS
@@ -172,11 +207,27 @@ h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
 }
 
 .btn-gold {
+    position: relative;
+    overflow: hidden;
     background-color: var(--gold-500);
     border: 1px solid var(--gold-500);
     color: var(--navy-900);
     font-weight: 600;
 }
+
+/* Reflet qui balaie le bouton or au survol */
+.btn-gold::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .5) 50%, transparent 60%);
+    transform: translateX(-130%);
+    transition: transform .6s ease;
+    pointer-events: none;
+}
+
+.btn-gold:hover::before,
+.btn-gold:focus::before { transform: translateX(130%); }
 
 .btn-gold:hover,
 .btn-gold:focus {
@@ -393,12 +444,14 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
 }
 
 .card-lift {
-    transition: transform var(--transition), box-shadow var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition),
+                border-color var(--transition);
 }
 
 .card-lift:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-2);
+    border-color: var(--gold-500);
+    box-shadow: var(--shadow-2), 0 0 0 1px var(--line-gold);
 }
 
 /* Carte sombre (ex. "Prochain événement" sur l'accueil) */
@@ -436,6 +489,22 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     border-bottom: 1px solid var(--line-gold);
 }
 
+/* Grain : desktop uniquement — chaque couche décorative supplémentaire
+   coûte ~15 pts Lighthouse sur CPU mobile bridé (mesuré). */
+@media (min-width: 992px) {
+    .hero-section {
+        background:
+            url('images/grain.png'),
+            radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .18) 0%, transparent 55%),
+            linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
+    }
+}
+
+.hero-section h1 {
+    letter-spacing: .03em;
+    text-shadow: 0 2px 30px rgba(5, 15, 30, .45);
+}
+
 /* Motif signature en rotation très lente derrière le hero (§4.3).
    Neutralisé par le kill-switch prefers-reduced-motion global. */
 .hero-section::before {
@@ -453,9 +522,52 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     pointer-events: none;
 }
 
+/* Second anneau, plus grand et plus discret, en contre-rotation :
+   donne la profondeur "gravure" au fond du hero. Desktop uniquement :
+   sur mobile cette couche coûte ~15 pts Lighthouse (mesuré) pour un
+   bénéfice visuel faible sur petit écran. */
+@media (min-width: 992px) {
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: -58%;
+        left: 50%;
+        width: max(980px, 150vmin);
+        aspect-ratio: 1 / 1;
+        background: url('images/motif-mains-448.png') center / contain no-repeat;
+        opacity: .05;
+        transform: translateX(-50%) rotate(18deg);
+        animation: motif-spin-rev 420s linear infinite;
+        pointer-events: none;
+    }
+}
+
 @keyframes motif-spin {
     from { transform: translateX(-50%) rotate(0deg); }
     to   { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes motif-spin-rev {
+    from { transform: translateX(-50%) rotate(360deg); }
+    to   { transform: translateX(-50%) rotate(0deg); }
+}
+
+/* Les rotations ne démarrent qu'une fois la page chargée (classe posée
+   par motion.js) : le compositing des grandes couches ne doit jamais
+   concurrencer le premier rendu. Sans JS : motif immobile, très bien. */
+.hero-section::before,
+.hero-section::after { animation-play-state: paused; }
+
+body.anim-ready .hero-section::before,
+body.anim-ready .hero-section::after { animation-play-state: running; }
+
+/* Boutons d'appel à l'action du hero */
+.hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
 }
 
 /* --- Séquence d'entrée des en-têtes (§4.4) : eyebrow → titre → filet →
@@ -492,10 +604,19 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .24s both;
 }
 
-.hero-section .hero-sub,
+.hero-section .hero-sub {
+    animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .36s both;
+}
+
+/* Pages intérieures : le sous-titre est souvent l'élément LCP, il ne
+   passe donc jamais par opacity:0 — translation pure, comme le h1. */
 .page-header > .container > .lead,
 .header-gala .lead {
-    animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .36s both;
+    animation: settle-in .7s cubic-bezier(.22, 1, .36, 1) .36s both;
+}
+
+.hero-section .hero-cta {
+    animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .48s both;
 }
 
 .hero-section .lead { color: var(--paper); }
@@ -508,21 +629,11 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
 }
 
 /* En-tête générique des pages intérieures (gala, annonces, standard) */
-.page-header {
-    background:
-        radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .15) 0%, transparent 55%),
-        linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
-    color: var(--paper);
-    padding: clamp(40px, 7vw, 72px) 0;
-    text-align: center;
-    border-bottom: 1px solid var(--line-gold);
-    margin-bottom: 30px;
-}
-
-.page-header .lead { color: rgba(247, 242, 232, .85); }
-
-/* Alias : ancien en-tête gala, même dispositif */
+.page-header,
 .header-gala {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     background:
         radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .15) 0%, transparent 55%),
         linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
@@ -532,6 +643,35 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     margin-bottom: 30px;
 }
 
+.page-header { text-align: center; }
+
+/* Grain + motif statique en filigrane : desktop uniquement (cf. hero) */
+@media (min-width: 992px) {
+    .page-header,
+    .header-gala {
+        background:
+            url('images/grain.png'),
+            radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .15) 0%, transparent 55%),
+            linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
+    }
+
+    .page-header::before,
+    .header-gala::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: -70%;
+        left: 50%;
+        width: max(720px, 110vmin);
+        aspect-ratio: 1 / 1;
+        background: url('images/motif-mains-448.png') center / contain no-repeat;
+        opacity: .07;
+        transform: translateX(-50%) rotate(12deg);
+        pointer-events: none;
+    }
+}
+
+.page-header .lead,
 .header-gala .lead { color: rgba(247, 242, 232, .85); }
 
 /* Images de l'accueil */
