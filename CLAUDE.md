@@ -30,7 +30,8 @@ Site vitrine + billetterie du Gala de l'UECE (Union des Étudiants et Chercheurs
 /
 ├── index.html          # Accueil
 ├── gala.html           # Page de vente (CRITIQUE)
-├── standard.html       # Template pour nouvelles pages
+├── annonces.html       # Infos capitales pour étudiants internationaux (HUE / UE)
+├── standard.html       # Template pour nouvelles pages + styleguide vivant
 ├── style.css           # Design system + styles (source de vérité CSS)
 ├── js/
 │   ├── motion.js       # GSAP : reveals, nav, hero (créé en Phase 2)
