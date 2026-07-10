@@ -320,6 +320,33 @@ h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
     outline: none;
 }
 
+/* --- Navbar dynamique (Phase 2, §4.4) ---
+   Sur les pages à en-tête sombre (body.has-hero), la navbar démarre
+   transparente puis devient marine après 40 px de scroll (motion.js pose
+   .is-scrolled). La classe .js n'existe que si le script tourne : sans
+   JS, la navbar reste marine opaque en permanence. */
+body.has-hero { padding-top: 0; }
+
+body.has-hero .hero-section { padding-top: calc(80px + clamp(48px, 9vw, 96px)); }
+
+body.has-hero .page-header,
+body.has-hero .header-gala { padding-top: calc(80px + clamp(28px, 5vw, 56px)); }
+
+body.has-hero.js .navbar {
+    background-color: transparent;
+    border-bottom-color: transparent;
+    box-shadow: none;
+    transition: background-color .35s ease, border-color .35s ease,
+                box-shadow .35s ease;
+}
+
+body.has-hero.js .navbar.is-scrolled,
+body.has-hero.js .navbar:has(.navbar-collapse.show) {
+    background-color: var(--navy-900);
+    border-bottom-color: var(--line-gold);
+    box-shadow: 0 2px 14px rgba(5, 15, 30, .35);
+}
+
 /* Menu replié (mobile) : respiration et séparation */
 @media (max-width: 991.98px) {
     .navbar-collapse {
@@ -397,6 +424,9 @@ h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
    9. HERO (ACCUEIL) & EN-TÊTES DE PAGE
    -------------------------------------------------------------------------- */
 .hero-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     background:
         radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .18) 0%, transparent 55%),
         linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
@@ -404,6 +434,68 @@ h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
     padding: clamp(64px, 10vw, 110px) 0;
     text-align: center;
     border-bottom: 1px solid var(--line-gold);
+}
+
+/* Motif signature en rotation très lente derrière le hero (§4.3).
+   Neutralisé par le kill-switch prefers-reduced-motion global. */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -22%;
+    left: 50%;
+    width: max(640px, 100vmin);
+    aspect-ratio: 1 / 1;
+    background: url('images/motif-mains.svg') center / contain no-repeat;
+    opacity: .13;
+    transform: translateX(-50%);
+    animation: motif-spin 240s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes motif-spin {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* --- Séquence d'entrée des en-têtes (§4.4) : eyebrow → titre → filet →
+   sous-titre, 0.7 s, stagger 120 ms. CSS pur : joue avant/pendant le
+   chargement du JS et coûte zéro octet réseau. Neutralisée par le
+   kill-switch reduced-motion (les keyframes finissent à l'état normal).
+   ⚠ Le h1 ne passe pas par opacity:0 (ni les images, non animées) :
+   masquer l'élément LCP au chargement plombe le score Lighthouse. */
+@keyframes rise-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes settle-in {
+    from { transform: translateY(16px); }
+    to   { transform: none; }
+}
+
+.hero-section .eyebrow,
+.page-header .eyebrow,
+.header-gala .eyebrow {
+    animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.hero-section h1,
+.page-header h1,
+.header-gala h1 {
+    animation: settle-in .7s cubic-bezier(.22, 1, .36, 1) .12s both;
+}
+
+.hero-section .divider-gold,
+.page-header .divider-gold,
+.header-gala .divider-gold {
+    animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .24s both;
+}
+
+.hero-section .hero-sub,
+.page-header > .container > .lead,
+.header-gala .lead {
+    animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .36s both;
 }
 
 .hero-section .lead { color: var(--paper); }
