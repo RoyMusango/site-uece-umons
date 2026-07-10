@@ -1,0 +1,114 @@
+========================================================================
+DOCUMENTATION TECHNIQUE - ANNEXE 2 : MISE EN PRODUCTION ET GESTION
+========================================================================
+
+DATE DE CRÉATION : 29 Mars 2026
+TECHNOLOGIES : PayPal Business, Netlify, Decap CMS, Make.com
+AUTEUR : RoyE
+
+------------------------------------------------------------------------
+1. TÂCHES PRÉALABLES DU SECRÉTAIRE (COMPTE PAYPAL)
+------------------------------------------------------------------------
+
+Pour que le site puisse encaisser de l'argent réel, le secrétaire doit 
+configurer le compte financier selon ces critères stricts:
+
+1. CRÉATION DU COMPTE :
+   - Ouvrir un compte "Professionnel" (Business).
+   - Type d'entreprise : "Particulier / Personne physique".
+   - Nom commercial : Inscrire impérativement "UECE UMONS".
+     C'est ce nom qui apparaîtra sur le relevé bancaire des étudiants.
+
+2. VÉRIFICATION (KYC) :
+   - Lier le compte bancaire de l'association.
+   - Fournir une pièce d'identité du trésorier/secrétaire.
+   - Effectuer ces étapes AVANT le lancement pour lever le plafond de 
+     réception de 2 500 € et éviter le gel des fonds.
+
+3. RÉCUPÉRATION DES CLÉS TECHNIQUES :
+   - Se connecter sur https://developer.paypal.com.
+   - Aller dans "Dashboard" > "Apps & Credentials".
+   - Passer l'interrupteur de "Sandbox" à "Live".
+   - Cliquer sur l'application du site pour copier le "Live Client ID".
+
+------------------------------------------------------------------------
+2. SUIVI DES TRANSACTIONS ET VÉRIFICATION DES BILLETS A L'ENTREE
+------------------------------------------------------------------------
+
+Le secrétaire peut accéder à la liste complète des participants de deux 
+manières :
+
+1. VIA LE TABLEAU DE BORD PAYPAL :
+   - Se connecter sur le compte Business de l'UECE.
+   - Aller dans "Activité" > "Toutes les transactions".
+   - Chaque paiement affiche le nom du client et le numéro de transaction.
+   - Il est possible d'exporter cette liste en format Excel/CSV pour 
+     créer la liste de pointage de l'entrée.
+
+2. VIA LE SYSTÈME DE SCAN (JOUR J) :
+   - Chaque mail envoyé via Make.com contient un QR Code.
+   - Ce code cache le numéro de transaction unique de PayPal.
+   - À l'entrée, scannez le code avec une application gratuite.
+   - Comparez le numéro affiché avec votre liste Excel exportée.
+
+------------------------------------------------------------------------
+3. MISE À JOUR DU SITE SUR NETLIFY (SANS UMONS)
+------------------------------------------------------------------------
+
+Puisque le nom de domaine UMONS n'est plus utilisé (c'est ce que m'a demandé le président), le site est géré exclusivement via l'interface de Netlify.
+
+1. LOCALISER LE SITE :
+   - Connectez-vous sur https://app.netlify.com.
+   - Votre site se trouve dans l'onglet "Sites" (actuellement nommé 'uece-test-site', à modifier plus tard).
+
+2. MODIFIER ET METTRE À JOUR :
+   - Modifiez vos fichiers HTML localement sur votre ordinateur.
+   - Pour publier les changements : allez dans l'onglet "Deploys" de 
+     votre site sur Netlify.
+   - Glissez-déposez l'intégralité du dossier de votre site dans la 
+     zone grise "Drag and drop your project folder here".
+   - La mise à jour est instantanée et mondiale.
+
+3. NOM DE DOMAINE :
+   - Actuellement, l'adresse est ' https://uece-test-site.netlify.app/ '.
+   - Pour une adresse propre (ex: www.gala-uece.be), vous pouvez en 
+     acheter une directement dans l'onglet "Domain settings" de Netlify.
+En terme de prix c'est 14 dollar la première année et 17 dollar/an pour les années suivantes.
+
+------------------------------------------------------------------------
+4. INTERFACE D'ADMINISTRATION (DECAP CMS)
+------------------------------------------------------------------------
+
+Pour permettre aux membres non-techniques de modifier les textes (prix, 
+dates) sans toucher au code, Decap CMS a été retenu.
+
+1. ACCÈS :
+   - L'interface est accessible via l'adresse : votre-site.be/admin.
+   - Une connexion via un compte GitHub ou une invitation email est 
+     nécessaire.
+
+2. FONCTIONNEMENT :
+   - L'utilisateur modifie les champs textuels de manière visuelle.
+   - En cliquant sur "Publish", Decap CMS régénère automatiquement les 
+     fichiers HTML statiques en arrière-plan.
+   - Cela garantit qu'aucune base de données ne peut être piratée.
+
+------------------------------------------------------------------------
+5. PASSAGE FINAL EN "LIVE" (CHECK-LIST)
+------------------------------------------------------------------------
+
+Avant d'ouvrir la billetterie officielle :
+
+1. CODE HTML : Dans 'gala.html', remplacez le Client ID par la version 
+   "Live" récupérée par le secrétaire.
+2. MAKE.COM : Assurez-vous que l'interrupteur "Immediately as data 
+   arrives" est sur ON (violet) et que le scénario est sauvegardé 
+   (disquette sans point orange).
+3. PAYPAL : Vérifiez que le Webhook sur le portail développeur pointe 
+   bien vers l'URL de Make.com en mode "Live".
+4. FRAIS : Anticipez la commission PayPal (3,4% + 0,35€) sur le prix 
+   final des tickets.
+
+========================================================================
+FIN DE L'ANNEXE 2
+========================================================================

@@ -1,0 +1,97 @@
+========================================================================
+DOCUMENTATION TECHNIQUE - ANNEXE 5 : OPTIMISATION DES FLUX ET SÉCURITÉ
+========================================================================
+
+DATE DE CRÉATION : 31 Mars 2026
+OBJECTIF : Réduction des délais de liquidité et gestion des frais
+AUTEUR : RoyE (via Gemini)
+
+------------------------------------------------------------------------
+1. REVOLUT VS BANQUES CONVENTIONNELLES (VITESSE DE TRANSFERT)
+------------------------------------------------------------------------
+
+L'utilisation d'une banque numérique comme Revolut peut effectivement 
+réduire le "goulot d'étranglement" final :
+
+1. COMPATIBILITÉ SEPA INSTANT :
+   - PayPal supporte de plus en plus les virements instantanés vers les 
+     comptes bancaires compatibles (dont Revolut).
+   - Là où une banque classique mettra 1 à 3 jours ouvrables, Revolut 
+     peut recevoir les fonds en quelques secondes ou minutes après le 
+     virement depuis PayPal.
+
+2. ATTENTION AU NOM DU COMPTE :
+   - Rappel : PayPal peut bloquer le virement s'il détecte une différence 
+     entre le nom du propriétaire PayPal et le nom du titulaire du 
+     compte bancaire.
+   - La solution de secours (grise) reste de lier le compte personnel du 
+     trésorier si le compte de l'association est bloqué, car les noms 
+     correspondent parfaitement.
+
+------------------------------------------------------------------------
+2. LA CARTE PHYSIQUE PAYPAL (SOLUTION "ANTI-DÉLAI")
+------------------------------------------------------------------------
+
+Il existe une solution pour éviter totalement le délai de virement vers 
+une banque externe : la "PayPal Business Debit Mastercard".
+
+1. FONCTIONNEMENT :
+   - C'est une carte physique liée directement au solde PayPal.
+   - Elle permet de payer directement chez les fournisseurs (Colruyt, 
+     brasseurs, etc.) en utilisant l'argent des tickets au fur et à 
+     mesure qu'il arrive.
+   - Avantage : L'argent est disponible à la seconde où l'étudiant paie, 
+     sans passer par un virement vers un compte externe.
+
+2. LIMITES :
+   - C'est une Mastercard et non une carte "Bancontact" pure.
+   - Elle est acceptée partout où Mastercard l'est (quasiment tous les 
+     terminaux de paiement modernes).
+
+------------------------------------------------------------------------
+3. GÉRER LE GEL DES 21 JOURS (RÉDUIRE L'ATTENTE)
+------------------------------------------------------------------------
+
+Si malgré l'ancienneté et la vérification, PayPal gèle vos fonds pour 
+21 jours (mesure anti-fraude), vous n'êtes pas totalement 
+impuissant :
+
+1. ACTIONS POUR RÉDUIRE LE DÉLAI :
+   - Dans le détail de la transaction, le secrétaire peut marquer la 
+     commande comme "Service ou produit virtuel envoyé".
+   - Cela peut réduire le gel à 7 jours au lieu de 21.
+
+2. ACTION PRÉVENTIVE (CRUCIALE) :
+   - La vérification complète (identité + carte bancaire liée + email) 
+     doit impérativement être faite avant le lancement.
+   - Fournir la pièce d'identité du responsable légal est l'action 
+     numéro 1 pour gagner la confiance des algorithmes PayPal.
+
+------------------------------------------------------------------------
+4. FRAIS DE TRANSFERT ET COMMISSIONS
+------------------------------------------------------------------------
+
+Il ne faut pas confondre les frais de réception et les frais de retrait.
+
+1. FRAIS DE RÉCEPTION (INCONTOURNABLES) :
+   - PayPal prélève 3,40 % du montant total de chaque ticket, plus une 
+     part fixe de 0,35 EUR.
+   - Pour un ticket à 15,00 EUR, l'UECE ne reçoit réellement que 
+     14,14 EUR.
+
+2. FRAIS DE VIREMENT (SORTIE) :
+   - Virement standard vers votre compte bancaire (1-3 jours) : 
+     Généralement GRATUIT.
+   - Virement instantané vers une carte bancaire liée : PayPal facture 
+     souvent une commission (environ 1% du montant transféré).
+   - Transfert entre PayPal et compte perso : Pas de commission 
+     supplémentaire de PayPal sur un virement standard.
+
+3. RECOMMANDATION COMPTABLE :
+   - Le trésorier doit effectuer un virement immédiat de son compte 
+     perso vers le compte de l'UECE avec la communication "Recettes 
+     Gala PayPal" pour garantir une transparence totale.
+
+========================================================================
+FIN DE L'ANNEXE 5
+========================================================================

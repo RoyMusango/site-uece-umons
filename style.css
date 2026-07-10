@@ -1,0 +1,378 @@
+/* ==========================================================================
+   style.css - Fichier de styles communs UECE UMONS
+   ========================================================================== */
+
+/* --- 1. VARIABLES GLOBALES --- */
+:root {
+    --uece-blue: #002147;
+    --uece-gold: #D4AF37;
+    --uece-gold-hover: #b39020;
+}
+
+/* --- 2. STYLES DE BASE --- */
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    padding-top: 80px; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh;
+}
+
+/* --- 3. BARRE DE NAVIGATION --- */
+.navbar { 
+    background-color: #fff; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+    padding: 10px 0; 
+}
+
+.navbar-brand img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.2s;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
+.nav-link { 
+    color: var(--uece-blue) !important; 
+    font-weight: 500; 
+    margin-right: 15px; 
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--uece-gold) !important;
+}
+
+.search-box { 
+    border: 1px solid #ced4da; 
+    border-radius: 20px; 
+    padding: 5px 15px; 
+    margin-right: 15px; 
+}
+
+.btn-connexion {
+    background-color: #800040;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-connexion:hover {
+    background-color: #5a002d;
+    color: white;
+}
+
+/* --- 4. PIED DE PAGE (FOOTER) --- */
+footer { 
+    background-color: var(--uece-blue); 
+    color: white; 
+    margin-top: auto; 
+    padding-top: 40px; 
+}
+
+footer a { 
+    color: #ddd; 
+    text-decoration: none; 
+}
+
+footer a:hover {
+    color: var(--uece-gold);
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: var(--uece-gold);
+    transition: transform 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    color: white;
+}
+
+/* ==========================================================================
+   MODULES SPÉCIFIQUES : GALA 2026
+   ========================================================================== */
+
+/* --- Header Gala --- */
+.header-gala {
+    background-color: var(--uece-blue);
+    color: white;
+    padding: 40px 0;
+    border-bottom: 4px solid var(--uece-gold);
+    margin-bottom: 30px;
+}
+
+/* --- Section Image en filigrane --- */
+.soiree-exception-container {
+    position: relative;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: auto;
+    height: fit-content;
+}
+
+.soiree-exception-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background-image: url('images/logo_test.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.soiree-exception-content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.soiree-exception-content h2,
+.soiree-exception-content p,
+.soiree-exception-content ul,
+.soiree-exception-content li {
+    position: relative;
+    z-index: 3;
+}
+
+/* --- Box "En bref" --- */
+.info-box-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.info-box-compact {
+    width: 100%;
+    max-width: 310px;
+    padding: 1.0rem !important;
+    height: 100%;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    text-align: left;
+}
+
+.info-item i {
+    flex-shrink: 0;
+    margin-right: 15px;
+    margin-top: 3px;
+    font-size: 1.2rem;
+    color: var(--uece-gold);
+    width: 24px;
+    text-align: center;
+}
+
+.info-content {
+    flex-grow: 1;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--uece-blue);
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.info-desc {
+    color: #444;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.info-note-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.info-note {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.info-note i {
+    margin-right: 8px;
+    font-size: 1rem;
+}
+
+/* --- Sélection des Tickets --- */
+.ticket-card {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.ticket-card:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+}
+
+.ticket-card.active { 
+    border-color: var(--uece-blue); 
+    background-color: #e6f0ff; 
+}
+
+.ticket-vip { 
+    border-color: var(--uece-gold); 
+}
+
+.ticket-vip.active { 
+    border-color: var(--uece-gold); 
+    background-color: #fffdf5; 
+}
+
+#factureArea { 
+    display: none; 
+    background-color: #d1e7dd; 
+    padding: 20px; 
+    border-radius: 8px; 
+    margin-top: 20px; 
+}
+
+/* --- Responsive Layout --- */
+@media (min-width: 768px) {
+    .row {
+        display: flex;
+        align-items: stretch;
+    }
+    
+    .col-md-7, .col-md-5 {
+        display: flex;
+    }
+    
+    .soiree-exception-container,
+    .info-box-compact {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .soiree-exception-content {
+        flex: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .info-box-wrapper {
+        justify-content: center;
+    }
+    .info-box-compact {
+        max-width: 100%;
+    }
+}
+
+/* ==========================================================================
+   MODULES SPÉCIFIQUES : PAGE D'ACCUEIL (UECE.html)
+   ========================================================================== */
+
+/* --- Section Hero (Haut de la page d'accueil) --- */
+.hero-section {
+    background: linear-gradient(135deg, var(--uece-blue) 0%, #004080 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    border-bottom: 5px solid var(--uece-gold);
+}
+
+/* Bouton doré spécifique à l'accueil */
+.btn-gold {
+    background-color: var(--uece-gold);
+    color: var(--uece-blue);
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-gold:hover {
+    background-color: var(--uece-gold-hover);
+    color: white;
+}
+
+/* --- Gestion des images de la page d'accueil --- */
+.hero-image {
+    border: 3px solid var(--uece-gold);
+    transition: transform 0.3s;
+}
+
+.hero-image:hover {
+    transform: scale(1.02);
+}
+
+.event-image {
+    border: 2px solid #ddd;
+    transition: border-color 0.3s;
+}
+
+.event-image:hover {
+    border-color: var(--uece-blue);
+}
+
+.img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+/* --- Conteneurs pour images carrées (Ratio 1:1) --- */
+.image-square-container {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* Créé le carré parfait */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+}
+
+.square-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image remplit le carré sans être déformée */
+    transition: transform 0.3s ease;
+}
+
+.square-image:hover {
+    transform: scale(1.05);
+}
+
+/* Ajustement des images carrées sur mobile */
+@media (max-width: 768px) {
+    .image-square-container {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,94 @@
+========================================================================
+DOCUMENTATION TECHNIQUE - ANNEXE 3 : INSTALLATION DE DECAP CMS
+========================================================================
+
+DATE DE CRÉATION : 29 Mars 2026
+OBJECTIF : Activer l'interface /admin pour les modifications visuelles
+AUTEUR : RoyE
+
+------------------------------------------------------------------------
+1. CRÉATION DE LA STRUCTURE DE DOSSIERS
+------------------------------------------------------------------------
+
+Pour que l'adresse /admin fonctionne, vous devez créer un nouveau dossier 
+nommé 'admin' à la racine de votre projet (au même endroit que vos 
+fichiers index.html et gala.html).
+
+Dans ce dossier 'admin', créez deux nouveaux fichiers vides :
+1. index.html
+2. config.yml
+
+------------------------------------------------------------------------
+2. CONTENU DU FICHIER : admin/index.html
+------------------------------------------------------------------------
+
+Copiez-collez ce code exact dans le fichier 'admin/index.html'. C'est ce 
+script qui appellera l'interface visuelle par-dessus votre code.
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administration UECE UMONS</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</body>
+</html>
+
+------------------------------------------------------------------------
+3. CONFIGURATION DU FICHIER : admin/config.yml
+------------------------------------------------------------------------
+
+Ce fichier est le "cerveau" de l'interface. Il définit quels textes les 
+membres du comité ont le droit de modifier (prix, dates, etc.)[cite: 74, 77].
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "images"
+
+collections:
+  - name: "gala"
+    label: "Page Gala"
+    files:
+      - name: "infos"
+        label: "Informations Billetterie"
+        file: "gala.html"
+        fields:
+          - {label: "Prix Ticket Standard", name: "prix_std", widget: "string"}
+          - {label: "Prix Ticket VIP", name: "prix_vip", widget: "string"}
+          - {label: "Date du Gala", name: "date_gala", widget: "string"}
+          - {label: "Texte Marketing", name: "body", widget: "markdown"}
+
+------------------------------------------------------------------------
+4. ACTIVATION SUR NETLIFY (CRUCIAL)
+------------------------------------------------------------------------
+
+Une fois les fichiers créés et déposés sur Netlify par glisser-déposer :
+
+1. Allez sur votre tableau de bord Netlify.
+2. Onglet "Site configuration" > "Identity".
+3. Cliquez sur "Enable Identity".
+4. Dans "Registration preferences", choisissez "Invite only" (pour que 
+   n'importe qui ne puisse pas s'inscrire).
+5. Dans "Services" > "Git Gateway", cliquez sur "Enable Git Gateway".
+   Cela autorise Netlify à modifier vos fichiers HTML quand vous 
+   sauvegardez dans l'admin[cite: 77, 78].
+
+------------------------------------------------------------------------
+5. PREMIÈRE CONNEXION
+------------------------------------------------------------------------
+
+1. Allez sur https://uece-test-site.netlify.app/admin.
+2. L'interface de connexion apparaîtra enfin.
+3. Utilisez l'invitation par email que vous vous serez envoyé via 
+   l'onglet "Identity" de Netlify[cite: 74].
+
+========================================================================
+FIN DE L'ANNEXE 3
+========================================================================

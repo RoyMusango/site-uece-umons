@@ -1,0 +1,159 @@
+========================================================================================
+DOCUMENTATION TECHNIQUE - UECE Version en production : Choix stratégiques et Préventions
+========================================================================================
+
+DATE DE CRÉATION : 29 Mars 2026
+TECHNOLOGIES CONCERNÉES : Netlify, PayPal API, Decap CMS, EmailJS, Make.com
+AUTEUR : RoyE
+
+------------------------------------------------------------------------
+1. STRATÉGIE D'ENVOI AUTOMATIQUE DE MAILS
+------------------------------------------------------------------------
+
+Le service qu'on utilisera pour la gestion de l'envoie de mails sera make.com, il gère 1000 opérations par mois en version gratuite;
+Chaque client génère 2 opérations (1 pour la réception de l'alerte de paiement de PayPal, l'autre pour l'envoie automatique du ticket).
+Ainsi donc, si vous savez que la jauge des 500 e-mails Make est dépassée, il faudra publier un message clair sur les réseaux sociaux (Instagram, Facebook). 
+Exemple : "Victimes de notre succès ! L'envoi automatique des e-mails est saturé. Téléchargez impérativement votre billet directement sur la page après votre paiement."
+
+
+------------------------------------------------------------------------
+2. CREATION DU SCENARIO SUR MAKE.COM
+------------------------------------------------------------------------
+
+Ce type de scénarios s'appellent des webhooks, nous allons en créer un personnalisé.
+La sécurité ne vient pas du mot de passe ou d'une clé API mais de l'URL du scenario, cette dernière est aléatoire et longue.
+J'ai nommé le webhook "Récepteur PayPal Gala UECE"
+
+
+------------------------------------------------------------------------
+3. CONFIGURATION DE PAYPAL POUR QU'IL ENVOIE LE SIGNAL à MAKE.COM
+------------------------------------------------------------------------
+
+- Se rendre sur le portail développeur de PayPal : developer.paypal.com 
+- Ensuite dans la rubrique Apps & Credentials, cliquer sur l'app UECE préalablement créée.
+- Tout en bas vous avez un bouton "Add Webhook" dans lequel vous allez rajouter l'URL précédemment copiée.
+- Dans "Event types" dérouler jusqu'à Payments & Payouts, cliquer sur la flèche, dérouler et choisir "Payment capture completed"
+- Save
+
+
+------------------------------------------------------------------------
+4. TEST DE LA RECEPTION EN VERSION SANDBOX
+------------------------------------------------------------------------
+
+La version Sandbox est la version test, vous ne pourrez être en version de production qu'après avoir vérifié le compte PayPal associé.
+Pour tester notre infrastructure nous allons faire un faux paiement sur le site :
+- En mettant une adresse mail dont on a accès pour vérifier la réception du mail du ticket.
+- Puisque le système est en mode test, on ne pourra pas utiliser un vrai compte (PayPal ou Bancontact) pour effectuer le paiement, il faudra utiliser un faux compte acheteur
+que PayPal a généré pour nous.
+- Pour trouver ces faux identifiants : Dans le menu de gauche de developer PayPal, allez dans Testing Tools > Sandbox Accounts.
+Vous y verrez une adresse e-mail de type "Personal" (Acheteur). Cliquez sur les trois petits points ... à côté, puis sur "View/edit account" pour voir le mot de passe fictif généré.
+- Connectez-vous avec ce faux compte sur la fenêtre de paiement de votre site et validez l'achat.
+- verdict ? Dès que votre site affiche "Paiement Confirmé !", retournez immédiatement sur l'onglet de Make.
+Si tout s'est bien passé, l'animation aura disparu et vous verrez une petite bulle verte avec un "1" au-dessus de votre module Webhook. Cela signifie que Make a bien attrapé le paiement au vol !
+
+Remarque : si tu essaies d'utiliser ta vraie carte Bancontact (ou ton application Payconiq) en mode Sandbox, le paiement sera tout simplement bloqué et refusé.
+
+
+------------------------------------------------------------------------
+5. ENVOIE DU TICKET APRES RECEPTION
+------------------------------------------------------------------------
+
+Étape 1 : vérifier le custom_id
+Il sera question ici de vérifier si le webhook a bien reçu le nom complet et l'adresse email de l'acheteur.
+Remarque : Si jamais il n'y a pas de bulle clickable avec un "1", alors tout n'est pas perdu, reclickez sur "Run once"; si ça a quand même marché vous aurez un menu avec un bouton "Use existing data", ce qui vous affichera le fameux "1" qu'on veut.
+
+- Cliquer sur la bulle avec le "1"
+- Un panneau va s'ouvrir, chercher dans les données : Bundle 1 > resource > cherchez custom_id et vérifiez si ça contient les valeurs remplies dans le formulaire de paiement.
+
+Étape 2 : Ajouter le module Gmail
+- Sur Make, passez votre souris juste à droite de votre grand cercle rouge Webhook. Un petit bouton Add another module (un cercle avec un +) va apparaître. Cliquez dessus.
+- Tapez Gmail dans la barre de recherche
+- Cliquez sur l'icône rouge Gmail, puis sélectionnez la toute première action : Send an email
+
+Étape 3 : Connecter votre compte
+Une fenêtre / box va s'ouvrir
+- Clicker sur "Create a connection"
+- Sign in with Google et utilisez l'adresse expéditrice des mails de confirmation.
+- Une fois cette autorisation donnée, la fenêtre Google va se fermer toute seule et votre page Make va se mettre à jour. Vous devriez alors voir apparaître de nouveaux champs comme "To" (Pour), "Subject" (Sujet) et "Content" (Contenu).
+
+Etapes 4 : Génération du mail
+4.1. Le champ "To" (Destinataire)
+
+C'est ici que nous récupérons la partie droite de notre texte (l'e-mail).
+- Cliquez dans le champ To. Un petit panneau apparaît
+- Trouver la fonction "get" : Dans la barre violette, cliquez sur l'engrenage. C'est là que se trouve get. Cliquez dessus. (ça s'ajoutera dans "recipient email adress")
+- Cliquez avec votre souris juste avant le point-virgule
+- Trouver la fonction "split" : Dans la barre violette, cliquez sur le A. C'est là que se trouve get. Cliquez dessus.
+- Cliquez maintenant avant le point-virgule à l'intérieur de la bulle split
+- Allez chercher votre variable custom_id (dans l'étoile)
+- Juste après le point-virgule de la bulle split, tapez "|||"
+- Juste après le point-virgule de la bulle get, tapez 2 (Pour aller prendre l'adresse mail).
+
+Remplissez la formule exactement comme ceci (en sélectionnant la variable custom_id dans la liste de votre Webhook) :
+get(split(custom_id; |||); 2)
+(Le "2" signifie : prends le deuxième morceau après la coupure).
+
+4.2. Le Subject
+Entrez quelque chose de parlant, par exemple : Votre ticket officiel pour le Gala UECE 2026
+
+4.3. Le Corps de l'email
+Ici, nous allons faire la même opération de découpage, mais pour récupérer la partie gauche (le "1", c'est-à-dire le nom saisi par l'étudiant).
+
+- Vérifier la rubrique Body Type et choisir "Raw HTML"
+- Dans "Content", remplir un message confirmant la réception du paiement.
+Par exemple
+
+"Bonjour get(split(custom_id; |||); 1),
+
+Nous vous confirmons la bonne réception de votre paiement pour le Gala de l'UECE 2026.
+
+Votre place est officiellement réservée ! 
+
+<p>Voici votre pass d'entrée à scanner :</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ID_TRANSACTION" />
+
+Nous avons hâte de vous y retrouver.
+
+L'équipe de l'UECE UMONS"
+
+Où get(split(custom_id; |||); 1) est en fait le nom complet rempli dans le formulaire de paiement.
+
+Et où ID_TRANSACTION dans le lien ci-dessus, doit être remplacé par l'id venant de PayPal :
+- Cliquer sur la bulle de données qui vient de PayPal et qui s'appelle "id" (située dans la rubrique avec l'étoile, la première rubrique tout à gauche de la bande violette).
+
+Remarque : Nous générons un QR code qui cache en fait le numéro de transaction PayPal 
+
+
+------------------------------------------------------------------------
+6. COMMENT SCANNER LES QR CODES A L'ENTREE ?
+------------------------------------------------------------------------
+
+
+Le soir du Gala, vous n'avez pas besoin d'un appareil spécial.
+
+- Vous téléchargez n'importe quelle application gratuite de "QR Scanner" sur vos téléphones.
+- Quand un participant arrive, vous scannez le QR code contenu dans son mail.
+- Le téléphone affichera le numéro de transaction. 
+- Vous n'avez plus qu'à le cocher sur votre liste (imprimée, sur Excel, ou sur un autre téléphone).
+
+
+
+Quand tu dis "
+
+- Vous téléchargez n'importe quelle application gratuite de "QR Scanner" sur vos téléphones.
+
+- Quand un participant arrive, vous scannez le QR code contenu dans son mail.
+
+- Le téléphone affichera le numéro de transaction. 
+
+- Vous n'avez plus qu'à le cocher sur votre liste (imprimée, sur Excel, ou sur un autre téléphone)."
+
+
+------------------------------------------------------------------------
+7. TEST COMPLET
+------------------------------------------------------------------------
+- Sur make.com, bien vérifier que l'option "immediately as data arrives" est activée; laisser immediately (c'est le but) et ne pas ajouter de limite artificielle (tout sera traité au fur et à mesure que ça arrive).
+
+- Run once, en cas d'erreur 403 : https://apps.make.com/gmail-troubleshooting ou simplement refaire une connexion en acceptant les autorisations.
+- Le bouton "immediately as data arrives" assure que le mail sera envoyé à chaque paiement effectué.
+

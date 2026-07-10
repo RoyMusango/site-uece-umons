@@ -1,0 +1,65 @@
+========================================================================
+DOCUMENTATION TECHNIQUE - ANNEXE 4 : DISPONIBILITÉ DES FONDS (LIQUIDITÉ)
+========================================================================
+
+DATE DE CRÉATION : 29 Mars 2026
+OBJECTIF : Anticiper les délais bancaires et les blocages de sécurité
+AUTEUR : RoyE
+
+------------------------------------------------------------------------
+1. RÉCEPTION SUR LE COMPTE PAYPAL (INSTANTANÉE)
+------------------------------------------------------------------------
+
+Dès qu'un étudiant valide son paiement sur le site, l'argent est crédité 
+immédiatement sur le solde du compte PayPal de l'association.
+Vous verrez le montant net (après déduction de la commission de 3,4% 
++ 0,35€) s'afficher en temps réel.
+
+------------------------------------------------------------------------
+2. LES TROIS ÉCUEILS DE LA LIQUIDITÉ (RISQUES DE DÉLAIS)
+------------------------------------------------------------------------
+
+Bien que l'argent soit visible, il peut être temporairement "gelé" par 
+PayPal pour trois raisons majeures :
+
+1. L'ALGORITHME ANTI-FRAUDE (GEL DE 21 JOURS) :
+   - Si le compte PayPal est récent ou s'il reçoit soudainement un volume 
+     de paiements inhabituel, PayPal peut bloquer les fonds par sécurité.
+   - Ce gel peut durer jusqu'à 21 jours. 
+   - C'est une mesure de protection contre les litiges étudiants (remboursements).
+
+2. LE PLAFOND LÉGAL DE VÉRIFICATION (2 500 €) :
+   - En vertu des lois européennes, PayPal bloque tout retrait ou toute 
+     réception de fonds dès que le cumul atteint environ 2 500 €.
+   - Le compte est alors bloqué "en attente de vérification".
+
+3. LE DÉLAI DE TRANSFERT VERS LA BANQUE :
+   - Pour payer vos fournisseurs (boissons, sono, etc.), vous devrez 
+     virer l'argent de PayPal vers le compte bancaire de l'UECE.
+   - Ce virement prend généralement entre 1 et 3 jours ouvrables selon 
+     les banques.
+
+------------------------------------------------------------------------
+3. SOLUTIONS POUR GARANTIR LES FONDS (ACTIONS DU SECRÉTAIRE)
+------------------------------------------------------------------------
+
+Pour disposer de votre argent liquide à temps pour les courses :
+
+1. VÉRIFICATION ANTICIPÉE (2 SEMAINES AVANT) :
+   - Le secrétaire doit lier et confirmer le compte bancaire ET la carte 
+     bancaire de l'association immédiatement.
+   - Il doit fournir les pièces d'identité demandées AVANT que les ventes 
+     ne commencent pour lever les limites initiales.
+
+2. L'HISTORIQUE DE CONFIANCE :
+   - Plus le compte PayPal est vérifié et "ancien", moins PayPal risque de 
+     déclencher le gel de 21 jours lors de l'afflux des ventes.
+
+3. TRANSFERTS RÉGULIERS :
+   - N'attendez pas d'avoir 5 000 € sur PayPal. Faites des virements vers 
+     le compte bancaire de l'UECE tous les 500 € récoltés pour assurer un 
+     flux de trésorerie constant.
+
+========================================================================
+FIN DE L'ANNEXE 4
+========================================================================

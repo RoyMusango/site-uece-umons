@@ -1,0 +1,190 @@
+========================================================================
+DOCUMENTATION TECHNIQUE - ANNEXE 1 : DÉCISIONS D'INFRASTRUCTURE 
+========================================================================
+
+DATE DE CRÉATION : Février 2026
+TECHNOLOGIES CONCERNÉES : Netlify, PayPal API, Decap CMS, EmailJS
+AUTEUR : RoyE
+
+------------------------------------------------------------------------
+1. STRATÉGIE D'HÉBERGEMENT WEB
+------------------------------------------------------------------------
+
+Afin de contourner les délais de traitement des serveurs universitaires 
+tout en garantissant une sécurité maximale, l'architecture retenue est 
+celle d'un site "statique" (fichiers HTML/CSS/JS sans base de données).
+
+Solutions gratuites recommandées : 
+L'utilisation de plateformes telles que Netlify, Vercel ou GitHub Pages 
+est privilégiée.
+
+Conditions des offres gratuites : 
+Ces services n'imposent aucune limite de durée dans le temps. La limite 
+de trafic (bande passante) se situe généralement autour de 100 Go par mois, 
+ce qui est largement suffisant pour absorber le trafic d'une billetterie 
+étudiante sans aucun risque de coupure.
+
+Sécurité (Critère numéro 1) : 
+L'absence de serveur de base de données (PHP/MySQL) rend ces solutions 
+virtuellement invulnérables aux piratages informatiques classiques.
+
+Alternative payante : 
+Si des besoins supplémentaires émergent à l'avenir, un hébergeur comme 
+Infomaniak (environ 6 EUR par mois) offre le meilleur rapport qualité/prix 
+du marché européen avec des normes de confidentialité extrêmement strictes.
+
+------------------------------------------------------------------------
+2. POLITIQUE TARIFAIRE ET COMMISSIONS PAYPAL
+------------------------------------------------------------------------
+
+La billetterie en ligne sera gérée via l'API PayPal. Le compte de 
+l'association étant configuré avec un statut standard, les frais de 
+transaction commerciale en vigueur s'appliquent.
+
+Taux de commission : 
+PayPal prélève 3,40 % du montant total de la transaction, auxquels 
+s'ajoute une part fixe de 0,35 EUR par paiement validé.
+
+Impact sur le Ticket Standard (15,00 EUR) : 
+La commission s'élève à environ 0,86 EUR. L'association percevra un 
+montant net de 14,14 EUR.
+
+Impact sur le Ticket VIP (25,00 EUR) : 
+La commission s'élève à environ 1,20 EUR. L'association percevra un 
+montant net de 23,80 EUR.
+
+------------------------------------------------------------------------
+3. PLAFONDS ET SÉCURITÉ DU COMPTE FINANCIER
+------------------------------------------------------------------------
+
+Pour éviter tout blocage des fonds lors de la période critique de vente 
+des places, les limitations de sécurité de PayPal doivent être anticipées.
+
+Plafond de réception annuel : 
+En vertu des lois européennes de vérification financière, le compte sera 
+bloqué en réception dès que le volume cumulé atteindra environ 2 500 EUR.
+
+Limites journalières et mensuelles : 
+Bien qu'il n'y ait pas de limite stricte par jour, un afflux soudain de 
+paiements sur un compte récent déclenche automatiquement les algorithmes 
+anti-fraude, entraînant un gel des fonds pouvant durer 21 jours.
+
+Action préventive requise : 
+Le compte PayPal doit impérativement être vérifié en amont du lancement. 
+Cela implique de lier et confirmer le compte bancaire de l'association, 
+ainsi que de fournir la pièce d'identité du responsable légal du compte.
+
+------------------------------------------------------------------------
+4. INTERFACE D'ADMINISTRATION (CMS)
+------------------------------------------------------------------------
+
+Pour permettre aux membres du comité de modifier le texte du site (dates, 
+prix, descriptions) sans compétences en programmation, une interface 
+d'administration doit être mise en place, sans compromettre la sécurité.
+
+Solution écartée : 
+Les systèmes classiques comme WordPress sont rejetés car ils nécessitent 
+une base de données, créant des failles de sécurité majeures s'ils ne 
+sont pas mis à jour constamment.
+
+Solution retenue : 
+Le déploiement de Decap CMS.
+
+Fonctionnement technique : 
+Il s'agit d'une interface visuelle qui se superpose au code. Lorsqu'un 
+administrateur modifie un texte et sauvegarde, le système régénère les 
+fichiers statiques de manière sécurisée en arrière-plan. Il n'y a aucune 
+base de données exploitable par des attaquants, garantissant une intégrité 
+totale du site.
+
+------------------------------------------------------------------------
+5. GESTION AUTOMATISÉE DES E-MAILS ET CONFIRMATIONS
+------------------------------------------------------------------------
+
+L'absence de serveur local implique une architecture hybride pour 
+l'envoi des confirmations de réservation aux participants du Gala. 
+La solution retenue combine la sécurité absolue d'un téléchargement 
+direct et l'automatisation via un pont sécurisé.
+
+Socle de base (Téléchargement direct et immédiat) : 
+Dès la validation du paiement sur l'interface, le site web génère 
+instantanément le billet au format PDF. Le participant est invité à le 
+télécharger directement depuis la page de confirmation. En parallèle, 
+PayPal envoie un reçu financier officiel à l'acheteur.
+
+Automatisation des e-mails (Pont Make) : 
+Pour améliorer l'expérience utilisateur, un système d'envoi automatique 
+d'e-mails est mis en place via la plateforme d'automatisation Make. Ce 
+pont sécurisé connecte l'API PayPal à la boîte e-mail officielle de 
+l'association. 
+Ce service permet l'envoi de 500 e-mails automatisés par mois civil de 
+manière totalement gratuite.
+
+Plan de contingence (Dépassement de la jauge) : 
+Si le volume de ventes excède les 500 places sur un même mois, le service 
+d'e-mail automatique atteindra la limite de l'offre gratuite. Dans ce 
+scénario, le comité de l'UECE déploiera une communication officielle sur 
+ses réseaux sociaux pour rappeler aux futurs acheteurs de télécharger 
+impérativement leur billet PDF directement sur la page de confirmation 
+immédiatement après leur achat. La fonctionnalité de téléchargement direct 
+restera, quant à elle, opérationnelle et illimitée en toute circonstance.
+
+
+------------------------------------------------------------------------
+6. PROCÉDURE DE PASSATION DU TRÉSORIER (GESTION PAYPAL)
+------------------------------------------------------------------------
+
+Cette procédure est cruciale pour assurer la pérennité de la billetterie 
+lors des changements de bureau (en moyenne tous les 2 ans). Le compte 
+PayPal de l'association étant créé sous le statut "Personne physique", 
+il appartient légalement au trésorier en poste.
+
+Règle d'or de sécurité (Risque de blocage) : 
+Il ne faut absolument jamais transmettre les identifiants de l'ancien 
+compte PayPal au nouveau trésorier pour qu'il en modifie le nom. Les 
+algorithmes de sécurité de PayPal (directives KYC) détecteront ce 
+changement comme une usurpation d'identité et gèleront immédiatement 
+les fonds de l'association.
+
+Procédure officielle de transition étape par étape :
+
+1. Vider l'ancien compte : 
+Le trésorier sortant doit transférer l'intégralité des fonds restants 
+sur le compte PayPal vers le compte bancaire officiel de l'UECE.
+
+2. Création du nouveau compte PayPal : 
+Le nouveau trésorier doit créer un tout nouveau compte PayPal "Business" 
+(Professionnel). Il doit utiliser son propre nom légal pour la 
+vérification d'identité, et renseigner "UECE UMONS" en tant que nom 
+commercial (ce qui apparaîtra sur les factures des étudiants). Il est 
+impératif d'utiliser l'adresse e-mail officielle de l'association pour 
+cette création.
+
+3. Liaison bancaire : 
+Le nouveau trésorier lie ce nouveau compte PayPal au compte bancaire de 
+l'UECE. Une attestation de procuration bancaire pourra être demandée par 
+le support PayPal pour valider cette liaison.
+
+4. Mise à jour du code du site web : 
+Le nouveau trésorier génère son nouveau "Client ID" depuis le portail 
+développeur de PayPal. Il doit ensuite ouvrir le fichier 'gala.html', 
+descendre à la ligne du script PayPal et remplacer l'ancien Client ID 
+par le nouveau. Dès cet instant, les paiements arriveront sur le nouveau 
+compte.
+
+5. Clôture des anciens accès : 
+L'ancien trésorier supprime le compte bancaire de l'UECE de son PayPal. 
+Il peut ensuite clôturer ce compte PayPal ou le repasser en compte 
+personnel standard.
+
+
+------------------------------------------------------------------------
+7. REMARQUE IMPORTANTE
+------------------------------------------------------------------------
+
+il y a une petite règle technique universelle à respecter : la page d'accueil d'un site web doit toujours s'appeler index.html
+Ainsi, UECE.html --> index.html
+
+========================================================================
+FIN DE L'ANNEXE 1
+========================================================================
