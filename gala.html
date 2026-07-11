@@ -416,13 +416,17 @@
                 doc.text("Grand-Place 22, 7000 Mons", 37, 79, { align: "center" });
 
                 // partie droite : le billet
+                // (charSpace n'est pas compté par l'alignement center de
+                // jsPDF : on centre à la main sur la largeur réelle)
+                const titre = "BILLET D'ENTRÉE";
                 doc.setFont("times", "bold");
                 doc.setFontSize(15);
                 doc.setTextColor(navy[0], navy[1], navy[2]);
-                doc.text("BILLET D'ENTRÉE", 140, 20, { align: "center", charSpace: 1 });
+                const largTitre = doc.getTextWidth(titre) + (titre.length - 1) * 1;
+                doc.text(titre, 140 - largTitre / 2, 20, { charSpace: 1 });
                 doc.setDrawColor(gold[0], gold[1], gold[2]);
                 doc.setLineWidth(0.4);
-                doc.line(112, 24.5, 168, 24.5);
+                doc.line(140 - largTitre / 2, 24.5, 140 + largTitre / 2, 24.5);
 
                 const lignes = [
                     ["Invité(e)", transactionData.nom],
