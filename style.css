@@ -480,10 +480,15 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
                 border-color var(--transition);
 }
 
-.card-lift:hover {
-    transform: translateY(-3px);
-    border-color: var(--gold-500);
-    box-shadow: var(--shadow-2), 0 0 0 1px var(--line-gold);
+/* Survols réservés aux appareils à pointeur : rien ne bouge au doigt (T3.3) */
+@media (hover: hover) {
+    .card-lift:hover {
+        transform: translateY(-4px);
+        border-color: var(--gold-500);
+        box-shadow: var(--shadow-2),
+                    0 0 0 1px var(--line-gold),
+                    0 6px 28px rgba(212, 175, 55, .14);
+    }
 }
 
 /* Carte sombre (ex. "Prochain événement" sur l'accueil) : petite sœur
@@ -754,24 +759,42 @@ html.motion-rich .hero-section .hero-cta {
     height: 100%;
 }
 
+/* Colonne d'affiche (T3.2) : halo d'or diffus derrière l'image — elle
+   flotte sur un décor, pas sur du vide. Aucune dimension ne change. */
+.poster-col { position: relative; }
+
+.poster-col::before {
+    content: "";
+    position: absolute;
+    inset: -18px;
+    background: radial-gradient(58% 58% at 50% 42%, rgba(212, 175, 55, .16), transparent 72%);
+    pointer-events: none;
+}
+
 .image-square-container {
     position: relative;
     width: 100%;
     padding-top: 100%;               /* carré parfait */
     overflow: hidden;
     border-radius: var(--radius-sm);
-    /* les affiches flottent dans la pénombre de la salle d'honneur */
-    box-shadow: 0 18px 50px rgba(5, 15, 30, .45), var(--shadow-1);
+    /* pénombre + plaque or décalée façon carte posée sur une autre */
+    box-shadow:
+        16px 16px 0 -1px rgba(212, 175, 55, .10),
+        0 18px 50px rgba(5, 15, 30, .45),
+        var(--shadow-1);
     border: 1px solid var(--line-gold);
 }
 
-/* Filet or intérieur, écho du cadre double filet de l'affiche */
+/* Filet or intérieur (écho du cadre double filet) + voile d'or très
+   léger qui harmonise les affiches avec la scène */
 .image-square-container::after {
     content: "";
     position: absolute;
     inset: 10px;
     border: 1px solid rgba(212, 175, 55, .28);
     border-radius: 3px;
+    background: linear-gradient(165deg, rgba(212, 175, 55, .10), transparent 45%);
+    mix-blend-mode: overlay;
     pointer-events: none;
 }
 
@@ -791,7 +814,9 @@ html.motion-rich .image-square-container {
     transition: transform .3s ease;
 }
 
-.square-image:hover { transform: scale(1.05); }
+@media (hover: hover) {
+    .square-image:hover { transform: scale(1.05); }
+}
 
 @media (max-width: 768px) {
     .image-square-container {
@@ -1075,9 +1100,11 @@ footer .border-top { border-color: var(--line-gold) !important; }
     transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.annonce-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-2);
+@media (hover: hover) {
+    .annonce-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-2);
+    }
 }
 
 .annonce-card h2 {
