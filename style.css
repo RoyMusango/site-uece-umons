@@ -476,27 +476,39 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
 /* --------------------------------------------------------------------------
    9. HERO (ACCUEIL) & EN-TÊTES DE PAGE
    -------------------------------------------------------------------------- */
+/* « Salle d'honneur » (fusion A+B validée) — couches, du fond au contenu :
+   1. dégradé marine vertical  2. halo « lustre » fixe en haut
+   3. vignette qui assombrit les bords  4. arc monumental de mains (::before)
+   5. halo suiveur de curseur (::after, palier 2)  6. grain (desktop)
+   7. contenu. Tout est dégradés/SVG : aucune image lourde. */
 .hero-section {
     position: relative;
     overflow: hidden;
     isolation: isolate;
+    /* géométrie de l'arc : surchargée en desktop ci-dessous */
+    --arc-size: 120vmin;
+    --arc-visible: 34vmin;           /* hauteur de l'arc qui entre dans le cadre */
     background:
-        radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .18) 0%, transparent 55%),
-        linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
+        radial-gradient(140% 100% at 50% 30%, transparent 55%, rgba(5, 15, 30, .55) 100%),
+        radial-gradient(600px 420px at 50% -10%, rgba(212, 175, 55, .22), transparent 60%),
+        linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 45%, var(--navy-800) 100%);
     color: var(--paper);
     padding: clamp(64px, 10vw, 110px) 0;
     text-align: center;
     border-bottom: 1px solid var(--line-gold);
 }
 
-/* Grain : desktop uniquement — chaque couche décorative supplémentaire
-   coûte ~15 pts Lighthouse sur CPU mobile bridé (mesuré). */
+/* Desktop : arc plus vaste + grain. Chaque couche décorative coûte
+   ~15 pts Lighthouse sur CPU mobile bridé (mesuré) : le mobile reste épuré. */
 @media (min-width: 992px) {
     .hero-section {
+        --arc-size: max(900px, 160vmin);
+        --arc-visible: clamp(280px, 42vmin, 470px);
         background:
             url('images/grain.png'),
-            radial-gradient(ellipse at 50% -20%, rgba(212, 175, 55, .18) 0%, transparent 55%),
-            linear-gradient(170deg, var(--navy-950) 0%, var(--navy-800) 100%);
+            radial-gradient(140% 100% at 50% 30%, transparent 55%, rgba(5, 15, 30, .55) 100%),
+            radial-gradient(600px 420px at 50% -10%, rgba(212, 175, 55, .22), transparent 60%),
+            linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 45%, var(--navy-800) 100%);
     }
 }
 
@@ -505,62 +517,55 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     text-shadow: 0 2px 30px rgba(5, 15, 30, .45);
 }
 
-/* Motif signature en rotation très lente derrière le hero (§4.3).
-   Neutralisé par le kill-switch prefers-reduced-motion global. */
+/* Arc monumental : le cercle de mains, décentré vers le haut — seul son
+   arc inférieur traverse le cadre derrière le titre, comme une fresque.
+   La translation vit dans `translate` (parallax curseur via --phx/--phy),
+   la rotation dans `transform` (animée) : les deux ne se marchent pas dessus. */
 .hero-section::before {
     content: "";
     position: absolute;
     z-index: -1;
-    top: -22%;
     left: 50%;
-    width: max(640px, 100vmin);
+    top: calc(var(--arc-visible) - var(--arc-size));
+    width: var(--arc-size);
     aspect-ratio: 1 / 1;
     background: url('images/motif-mains.svg') center / contain no-repeat;
-    opacity: .13;
-    transform: translateX(-50%);
-    animation: motif-spin 240s linear infinite;
+    opacity: .10;
+    translate: calc(-50% + var(--phx, 0px)) var(--phy, 0px);
     pointer-events: none;
 }
 
-/* Second anneau, plus grand et plus discret, en contre-rotation :
-   donne la profondeur "gravure" au fond du hero. Desktop uniquement :
-   sur mobile cette couche coûte ~15 pts Lighthouse (mesuré) pour un
-   bénéfice visuel faible sur petit écran. */
+/* Halo suiveur de curseur (palier 2) : la « bougie » de la salle d'honneur.
+   Position pilotée par motion-desktop.js via --mx/--my, lissage rAF. */
+.hero-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(420px 420px at var(--mx, 50%) var(--my, 35%),
+                rgba(235, 212, 139, .10), transparent 65%);
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity .8s ease;
+    pointer-events: none;
+}
+
+html.motion-rich .hero-section::after { opacity: 1; }
+
+/* Rotation de l'arc : desktop uniquement, et jamais avant la fin du
+   chargement (le compositing ne doit pas concurrencer le premier rendu). */
+@keyframes motif-rot {
+    to { transform: rotate(360deg); }
+}
+
 @media (min-width: 992px) {
-    .hero-section::after {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        top: -58%;
-        left: 50%;
-        width: max(980px, 150vmin);
-        aspect-ratio: 1 / 1;
-        background: url('images/motif-mains-448.png') center / contain no-repeat;
-        opacity: .05;
-        transform: translateX(-50%) rotate(18deg);
-        animation: motif-spin-rev 420s linear infinite;
-        pointer-events: none;
+    .hero-section::before {
+        animation: motif-rot 400s linear infinite;
+        animation-play-state: paused;
     }
+
+    body.anim-ready .hero-section::before { animation-play-state: running; }
 }
-
-@keyframes motif-spin {
-    from { transform: translateX(-50%) rotate(0deg); }
-    to   { transform: translateX(-50%) rotate(360deg); }
-}
-
-@keyframes motif-spin-rev {
-    from { transform: translateX(-50%) rotate(360deg); }
-    to   { transform: translateX(-50%) rotate(0deg); }
-}
-
-/* Les rotations ne démarrent qu'une fois la page chargée (classe posée
-   par motion.js) : le compositing des grandes couches ne doit jamais
-   concurrencer le premier rendu. Sans JS : motif immobile, très bien. */
-.hero-section::before,
-.hero-section::after { animation-play-state: paused; }
-
-body.anim-ready .hero-section::before,
-body.anim-ready .hero-section::after { animation-play-state: running; }
 
 /* Boutons d'appel à l'action du hero */
 .hero-cta {
@@ -570,12 +575,12 @@ body.anim-ready .hero-section::after { animation-play-state: running; }
     gap: 14px;
 }
 
-/* --- Séquence d'entrée des en-têtes (§4.4) : eyebrow → titre → filet →
-   sous-titre, 0.7 s, stagger 120 ms. CSS pur : joue avant/pendant le
-   chargement du JS et coûte zéro octet réseau. Neutralisée par le
-   kill-switch reduced-motion (les keyframes finissent à l'état normal).
-   ⚠ Le h1 ne passe pas par opacity:0 (ni les images, non animées) :
-   masquer l'élément LCP au chargement plombe le score Lighthouse. */
+/* --- Séquence d'entrée des en-têtes (§4.4, T2.4) : eyebrow → titre →
+   filet → sous-titre → CTA, 0.7 s, stagger 120 ms. CSS pur, mais scellée
+   sous html.motion-rich : desktop uniquement, rien sur mobile, rien en
+   reduced-motion (motion-rich n'y est jamais posée), rien sans JS.
+   ⚠ Le h1 et les sous-titres ne passent pas par opacity:0 (ni les
+   images) : masquer un candidat LCP au chargement plombe Lighthouse. */
 @keyframes rise-in {
     from { opacity: 0; transform: translateY(12px); }
     to   { opacity: 1; transform: none; }
@@ -586,36 +591,36 @@ body.anim-ready .hero-section::after { animation-play-state: running; }
     to   { transform: none; }
 }
 
-.hero-section .eyebrow,
-.page-header .eyebrow,
-.header-gala .eyebrow {
+html.motion-rich .hero-section .eyebrow,
+html.motion-rich .page-header .eyebrow,
+html.motion-rich .header-gala .eyebrow {
     animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) both;
 }
 
-.hero-section h1,
-.page-header h1,
-.header-gala h1 {
+html.motion-rich .hero-section h1,
+html.motion-rich .page-header h1,
+html.motion-rich .header-gala h1 {
     animation: settle-in .7s cubic-bezier(.22, 1, .36, 1) .12s both;
 }
 
-.hero-section .divider-gold,
-.page-header .divider-gold,
-.header-gala .divider-gold {
+html.motion-rich .hero-section .divider-gold,
+html.motion-rich .page-header .divider-gold,
+html.motion-rich .header-gala .divider-gold {
     animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .24s both;
 }
 
-.hero-section .hero-sub {
+html.motion-rich .hero-section .hero-sub {
     animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .36s both;
 }
 
-/* Pages intérieures : le sous-titre est souvent l'élément LCP, il ne
-   passe donc jamais par opacity:0 — translation pure, comme le h1. */
-.page-header > .container > .lead,
-.header-gala .lead {
+/* Sous-titres d'en-têtes : souvent l'élément LCP, jamais d'opacity:0 —
+   translation pure, comme le h1. */
+html.motion-rich .page-header > .container > .lead,
+html.motion-rich .header-gala .lead {
     animation: settle-in .7s cubic-bezier(.22, 1, .36, 1) .36s both;
 }
 
-.hero-section .hero-cta {
+html.motion-rich .hero-section .hero-cta {
     animation: rise-in .7s cubic-bezier(.22, 1, .36, 1) .48s both;
 }
 
@@ -702,8 +707,25 @@ body.anim-ready .hero-section::after { animation-play-state: running; }
     padding-top: 100%;               /* carré parfait */
     overflow: hidden;
     border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-1);
+    /* les affiches flottent dans la pénombre de la salle d'honneur */
+    box-shadow: 0 18px 50px rgba(5, 15, 30, .45), var(--shadow-1);
     border: 1px solid var(--line-gold);
+}
+
+/* Filet or intérieur, écho du cadre double filet de l'affiche */
+.image-square-container::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(212, 175, 55, .28);
+    border-radius: 3px;
+    pointer-events: none;
+}
+
+/* Inclinaison 3D au survol (palier 2) : transform posé par
+   motion-desktop.js, lissé par rAF — transform/opacity uniquement */
+html.motion-rich .image-square-container {
+    will-change: transform;
 }
 
 .square-image {
