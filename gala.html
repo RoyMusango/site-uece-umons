@@ -328,7 +328,11 @@
         function initializePayPal() {
             paypalButtonsInstance = paypal.Buttons({
                 onInit: function(data, actions) {
-                    actions.disable();
+                    // Correctif 11/07/2026 : après un changement de formule, les
+                    // boutons sont recréés alors que le formulaire est déjà rempli.
+                    // On évalue donc l'état réel au lieu de désactiver aveuglément,
+                    // sinon les boutons restent morts (bug d'origine du site).
+                    validateForm() ? actions.enable() : actions.disable();
                     document.getElementById('nomParticipant').addEventListener('input', () => validateForm() ? actions.enable() : actions.disable());
                     document.getElementById('emailParticipant').addEventListener('input', () => validateForm() ? actions.enable() : actions.disable());
                 },
