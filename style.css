@@ -16,7 +16,7 @@
     --gold-300: #EBD48B;
     --gold-400: #DFC15F;
     --gold-500: #D4AF37;
-    --gold-700: #8C6D1F;
+    --gold-700: #7A5E19;   /* or foncé : AA (≥4.5) sur --paper, mesuré 5.5 */
     --paper:    #F7F2E8;
     --ink:      #131A26;
     --muted:    #5D6678;
@@ -99,16 +99,23 @@ h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
     line-height: 1.55;
 }
 
-/* Eyebrow : capitales espacées or, comme sur l'affiche */
+/* Eyebrow : capitales espacées or, comme sur l'affiche.
+   Sur fond clair : or foncé (AA) ; sur fond sombre : or vif. */
 .eyebrow {
     font-family: var(--font-text);
     font-size: .8rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .18em;
-    color: var(--gold-500);
+    color: var(--gold-700);
     margin-bottom: .75rem;
 }
+
+.hero-section .eyebrow,
+.page-header .eyebrow,
+.header-gala .eyebrow,
+.section-dark .eyebrow,
+.card-dark .eyebrow { color: var(--gold-500); }
 
 .text-navy { color: var(--navy-800); }
 .text-gold { color: var(--gold-500); }
@@ -318,6 +325,7 @@ html { scrollbar-color: var(--gold-700) var(--navy-950); }
 .btn-primary {
     background-color: var(--navy-800);
     border-color: var(--navy-800);
+    color: #fff;
 }
 
 .btn-primary:hover,
@@ -387,7 +395,9 @@ html { scrollbar-color: var(--gold-700) var(--navy-950); }
 
 .navbar-toggler {
     border: 1px solid var(--line-gold);
-    padding: 6px 10px;
+    padding: 9px 12px;
+    min-width: 44px;
+    min-height: 44px;   /* cible tactile AA */
 }
 
 .navbar-toggler-icon {
@@ -1283,6 +1293,22 @@ footer .border-top { border-color: var(--line-gold) !important; }
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-items: flex-start;
+}
+
+/* Étiquette lisible sur n'importe quelle couleur de pastille (AA) */
+.swatch-label {
+    background: rgba(5, 15, 30, .78);
+    color: var(--paper);
+    padding: 1px 7px;
+    border-radius: 4px;
+}
+
+/* Liens de contenu : marine soutenu, soulignement or (AA sur papier) */
+.styleguide-section p a {
+    color: var(--navy-700);
+    text-decoration-color: var(--gold-500);
+    text-underline-offset: 3px;
 }
 
 /* ==========================================================================
