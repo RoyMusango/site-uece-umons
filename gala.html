@@ -318,7 +318,10 @@
                 document.getElementById('card-standard').classList.remove('active');
             }
             document.getElementById('displayAmount').innerText = currentPrice + ".00 €";
-            if (paypalButtonsInstance) { document.getElementById('paypal-button-container').innerHTML = ''; initializePayPal(); }
+            // Correctif 11/07/2026 : on ne recrée PLUS les boutons PayPal au
+            // changement de formule. createOrder lit currentPrice/currentTicketType
+            // AU CLIC, la recréation était inutile — et elle échouait par
+            // intermittence (conteneur vidé sans close()), boutons disparus.
         }
 
         function validateForm() {
