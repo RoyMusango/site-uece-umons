@@ -456,11 +456,13 @@
                 doc.save("Billet_UECE_" + transactionData.id + ".pdf");
             }
 
-            // le logo est optionnel : le billet se génère même s'il ne charge pas
+            // le logo est optionnel : le billet se génère même s'il ne charge pas.
+            // logo-billet.png = 300px, calibré pour 26mm à 300dpi : net à
+            // l'impression sans alourdir le PDF. Chargé au téléchargement.
             const img = new Image();
             img.onload = function () { dessiner(img); };
             img.onerror = function () { dessiner(null); };
-            img.src = "images/logo-nav.png";
+            img.src = "images/logo-billet.png";
         }
 
         document.addEventListener('DOMContentLoaded', () => initializePayPal());
