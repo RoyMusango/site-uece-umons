@@ -49,7 +49,7 @@
         Promise.all([
             import('https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm'),
             import('https://cdn.jsdelivr.net/npm/gsap@3.12.5/ScrollTrigger.js/+esm'),
-            import('./js/motion-desktop.js')
+            import('./motion-desktop.js')   /* relatif à motion-gate.js (js/) */
         ]).then(function (mods) {
             var gsap = mods[0].gsap || mods[0].default;
             var ScrollTrigger = mods[1].ScrollTrigger || mods[1].default;
