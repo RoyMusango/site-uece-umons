@@ -610,6 +610,38 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
 
 html.motion-rich .hero-section::after { opacity: 1; }
 
+/* Halo suiveur générique des sections sombres (T4.2, palier 2) :
+   tout élément [data-glow] reçoit une lueur d'or qui suit le curseur,
+   pilotée par motion-desktop.js via --gx/--gy. Sous le texte (z-index
+   négatif + isolation), au-dessus du fond. */
+html.motion-rich [data-glow] {
+    position: relative;
+    isolation: isolate;
+}
+
+html.motion-rich [data-glow]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(380px 380px at var(--gx, 50%) var(--gy, 50%),
+                rgba(235, 212, 139, .09), transparent 70%);
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity .5s ease;
+    pointer-events: none;
+}
+
+html.motion-rich [data-glow]:hover::after { opacity: 1; }
+
+/* Hover magnétique des CTA (T4.3, palier 2) : le transform est piloté
+   image par image par le moteur — on le retire de la transition CSS
+   pour éviter le bras de fer. */
+html.motion-rich [data-magnet] {
+    transition-property: background-color, color, border-color, box-shadow;
+    will-change: transform;
+}
+
 /* Rotation de l'arc : desktop uniquement, et jamais avant la fin du
    chargement (le compositing ne doit pas concurrencer le premier rendu). */
 @keyframes motif-rot {
