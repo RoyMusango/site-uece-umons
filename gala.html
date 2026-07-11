@@ -322,7 +322,12 @@
         }
 
         function validateForm() {
-            return document.getElementById('nomParticipant').value.length > 0 && document.getElementById('emailParticipant').value.length > 0;
+            // Correctif 11/07/2026 : l'email alimente l'envoi du billet via
+            // Make ; un format invalide ou des espaces cassaient la chaîne en
+            // aval (mail jamais reçu). Validation de forme minimale.
+            const nomOk = document.getElementById('nomParticipant').value.trim().length > 0;
+            const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(document.getElementById('emailParticipant').value.trim());
+            return nomOk && emailOk;
         }
 
         function initializePayPal() {
@@ -340,9 +345,10 @@
                 // Création de la commande sécurisée avec transmission des données
                 createOrder: function(data, actions) {
                     // On récupère les valeurs du formulaire (rempli par le client)
-                    const nomSaisi = document.getElementById('nomParticipant').value;
-                    const emailSaisi = document.getElementById('emailParticipant').value;
-                    
+                    // .trim() : un espace autour de l'email invalide l'envoi Gmail
+                    const nomSaisi = document.getElementById('nomParticipant').value.trim();
+                    const emailSaisi = document.getElementById('emailParticipant').value.trim();
+
                     // On fusionne les deux avec un séparateur unique (|||) pour Make
                     const donneesPourMake = nomSaisi + "|||" + emailSaisi;
 
