@@ -1083,6 +1083,24 @@ footer .border-top { border-color: var(--line-gold) !important; }
 }
 
 /* ==========================================================================
+   REVEALS AU SCROLL (paliers 1+2 — js/reveals.js)
+   RÈGLE ANTI-FOUC / PALIER 0 : les états « avant animation » ne vivent que
+   sous html.motion-on, posée par motion-gate.js. Sans JS, en reduced-motion
+   ou en saveData, aucun contenu n'est jamais caché.
+   ========================================================================== */
+html.motion-on [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s cubic-bezier(.22, 1, .36, 1),
+                transform .7s cubic-bezier(.22, 1, .36, 1);
+}
+
+html.motion-on [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ==========================================================================
    ACCESSIBILITÉ
    ========================================================================== */
 :focus-visible {
@@ -1101,5 +1119,12 @@ footer .border-top { border-color: var(--line-gold) !important; }
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    /* Ceinture + bretelles : si motion-on a été posée avant que l'OS ne
+       passe en reduced-motion, les reveals restent malgré tout visibles. */
+    html.motion-on [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
