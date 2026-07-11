@@ -78,7 +78,20 @@ Le style peut changer, la logique et les identifiants NON :
 - ✅ **Phase 1** : design system (réécriture de `style.css` avec tokens couleur + typo
   fluide, habillage de index/standard/gala, styleguide vivant dans standard.html,
   correction du lien mort `UECE.html`→`index.html`). Zones gelées intactes.
-- 🔄 **Phase 2 EN COURS** : hero & motion (GSAP), c'est là qu'on travaille maintenant.
+- ✅ **Phase 2** (12/07/2026, blocs 1→7) : direction retenue = fusion « Salle d'honneur »
+  (lumière-curseur dominante) + tilt 3D des affiches. Infrastructure paliers :
+  `js/motion-gate.js` (html.motion-on / html.motion-rich, import() GSAP+ScrollTrigger
+  jsdelivr `+esm` après load+idle), `js/reveals.js` (IO tous paliers), `js/motion-desktop.js`
+  (halo curseur, parallax, tilt, [data-glow], [data-magnet], séparateurs dessinés).
+  Grain/2ᵉ anneau/filigranes = desktop ≥992px uniquement (coût mobile mesuré ~15 pts/couche).
+  Gala habillé (double filet hero + tickets) ; billet PDF redessiné (DL paysage, logo 300px) ;
+  bugs corrigés en zone gelée (assumés, documentés) : recréation boutons PayPal supprimée,
+  email validé+trim avant custom_id. Scores localhost : 4 pages a11y 100, perf 87-98,
+  JS custom 11 Ko. ⚠ Reste : dernier achat fictif de validation (en prod post-merge, cf. T7.4).
+  Pièges passation : interrupteur Make « Immediately as data arrives » = cause n°1 de mails
+  absents ; connexion Gmail de Make à ré-autoriser avant le 25/09/2026 ; champ To =
+  `{{get(split(1.resource.custom_id; "|||"); 2)}}` ; purger la file du webhook après des
+  tests ratés (les vieux paquets se rejouent via Run once).
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 
