@@ -18,8 +18,20 @@
    ========================================================================== */
 export function init(gsap, ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
-    /* gsap/ScrollTrigger restent disponibles pour les blocs suivants
-       (reveals enrichis T5.1) ; le moteur curseur ci-dessous est vanilla. */
+
+    /* GSAP est effectivement là : les états "avant dessin" des
+       séparateurs peuvent s'appliquer (cf. html.motion-gsap en CSS) */
+    document.documentElement.classList.add('motion-gsap');
+
+    /* Séparateurs signature : les filets se dessinent au scroll (T5.1) */
+    gsap.utils.toArray('.separator-mains').forEach(function (el) {
+        ScrollTrigger.create({
+            trigger: el,
+            start: 'top 88%',
+            once: true,
+            onEnter: function () { el.classList.add('is-drawn'); }
+        });
+    });
 
     var hero = document.querySelector('.hero-section');
     var tilts = Array.prototype.slice.call(document.querySelectorAll('[data-tilt]'));

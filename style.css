@@ -178,6 +178,37 @@ h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
 
 .separator-mains img { opacity: .85; }
 
+/* Enrichissement desktop (T5.1) : les filets se dessinent depuis le
+   motif au passage du scroll. html.motion-gsap n'est posée par
+   motion-desktop.js QU'après le chargement effectif de GSAP : en cas
+   d'échec CDN, les séparateurs restent simplement visibles. */
+html.motion-gsap .separator-mains::before {
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+    transition: transform .9s cubic-bezier(.22, 1, .36, 1);
+}
+
+html.motion-gsap .separator-mains::after {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform .9s cubic-bezier(.22, 1, .36, 1);
+}
+
+html.motion-gsap .separator-mains img {
+    opacity: 0;
+    transform: rotate(-30deg) scale(.8);
+    transition: opacity .7s ease .25s,
+                transform .7s cubic-bezier(.22, 1, .36, 1) .25s;
+}
+
+html.motion-gsap .separator-mains.is-drawn::before,
+html.motion-gsap .separator-mains.is-drawn::after { transform: scaleX(1); }
+
+html.motion-gsap .separator-mains.is-drawn img {
+    opacity: .85;
+    transform: none;
+}
+
 /* Surcharge douce de l'utilitaire Bootstrap utilisé dans les pages */
 .bg-light { background-color: #FCF8EF !important; }
 
