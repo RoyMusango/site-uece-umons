@@ -181,6 +181,38 @@ h4, .h4 { font-size: var(--fs-h4); font-weight: 600; }
 /* Surcharge douce de l'utilitaire Bootstrap utilisé dans les pages */
 .bg-light { background-color: #FCF8EF !important; }
 
+/* Zone claire de l'accueil (T3.1) : fini le flat — chaleur d'or en haut
+   à droite, ombre marine froide en bas à gauche, papier qui fonce
+   doucement, filet or de clôture. */
+main.bg-light {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(700px 380px at 85% 0%, rgba(212, 175, 55, .10), transparent 65%),
+        radial-gradient(900px 480px at 8% 100%, rgba(0, 33, 71, .07), transparent 70%),
+        linear-gradient(180deg, #FCF8EF 0%, #F7F2E8 60%, #F3ECDD 100%) !important;
+    border-bottom: 1px solid var(--line-gold);
+}
+
+/* Filigrane de mains dans l'angle, desktop uniquement (coût mesuré des
+   grandes couches décoratives sur mobile) */
+@media (min-width: 992px) {
+    main.bg-light::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        right: -170px;
+        top: -60px;
+        width: 430px;
+        aspect-ratio: 1 / 1;
+        background: url('images/motif-mains.svg') center / contain no-repeat;
+        opacity: .05;
+        pointer-events: none;
+    }
+
+    main.bg-light > .container { position: relative; z-index: 1; }
+}
+
 /* Scrollbar personnalisée, signature marine/or */
 html { scrollbar-color: var(--gold-700) var(--navy-950); }
 
@@ -454,11 +486,32 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     box-shadow: var(--shadow-2), 0 0 0 1px var(--line-gold);
 }
 
-/* Carte sombre (ex. "Prochain événement" sur l'accueil) */
+/* Carte sombre (ex. "Prochain événement" sur l'accueil) : petite sœur
+   de la salle d'honneur — lustre d'angle + fragment d'arc en filigrane */
 .card-dark {
-    background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-800) 100%);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(320px 220px at 82% -8%, rgba(212, 175, 55, .16), transparent 60%),
+        linear-gradient(160deg, var(--navy-900) 0%, var(--navy-800) 100%);
     border: 1px solid var(--line-gold);
     color: var(--paper);
+}
+
+@media (min-width: 992px) {
+    .card-dark::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        right: -140px;
+        bottom: -160px;
+        width: 360px;
+        aspect-ratio: 1 / 1;
+        background: url('images/motif-mains.svg') center / contain no-repeat;
+        opacity: .08;
+        pointer-events: none;
+    }
 }
 
 .card-dark h4, .card-dark h5 { color: var(--paper); }
