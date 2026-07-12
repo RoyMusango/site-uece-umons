@@ -12,8 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- style.css en dernier : ses surcharges du design system gagnent sur Bootstrap -->
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/motion-gate.js"></script>
+    <script defer src="js/reveals.js"></script>
 </head>
-<body>
+<body class="has-hero">
 
         <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
@@ -74,9 +76,14 @@
             <hr class="divider-gold">
             <p class="hero-sub mb-4">Accueillir, Intégrer, Représenter.</p>
 
+            <div class="hero-cta mb-5">
+                <a href="gala.html" class="btn btn-gold btn-lg" data-magnet>Réserver ma place au Gala</a>
+                <a href="annonces.html" class="btn btn-outline-gold btn-lg" data-magnet>Infos étudiants HUE&nbsp;/&nbsp;UE</a>
+            </div>
+
             <div class="row justify-content-center mt-4">
-                <div class="col-md-5 text-center mb-3">
-                    <div class="image-square-container">
+                <div class="col-md-5 text-center mb-3 poster-col">
+                    <div class="image-square-container" data-tilt>
                         <img src="images/activites-800.jpg"
                             srcset="images/activites-400.jpg 400w, images/activites-800.jpg 800w"
                             sizes="(max-width: 767px) 92vw, 440px"
@@ -86,8 +93,8 @@
                     </div>
                     <p class="mt-2 caption-light"><small>Échanges interculturels</small></p>
                 </div>
-                <div class="col-md-5 text-center mb-3">
-                    <div class="image-square-container">
+                <div class="col-md-5 text-center mb-3 poster-col">
+                    <div class="image-square-container" data-tilt>
                         <img src="images/evenements-800.jpg"
                             srcset="images/evenements-400.jpg 400w, images/evenements-800.jpg 800w"
                             sizes="(max-width: 767px) 92vw, 440px"
@@ -102,10 +109,13 @@
 
     <main class="py-5 bg-light">
         <div class="container">
+            <div class="separator-mains" aria-hidden="true">
+                <img src="images/motif-mains.svg" alt="" width="44" height="44">
+            </div>
             <div class="row g-4">
                 <!-- Box de gauche : Bienvenue -->
                 <div class="col-lg-7">
-                    <div class="card card-lift shadow-sm h-100">
+                    <div class="card card-lift shadow-sm h-100" data-reveal>
                         <div class="card-body p-5">
                             <h2 class="card-title mb-4 text-navy">
                                 <i class="fas fa-hands-helping me-2 text-gold"></i>
@@ -128,7 +138,7 @@
 
                 <!-- Box de droite : Prochain événement -->
                 <div class="col-lg-5">
-                    <div class="card card-dark card-lift shadow-sm h-100">
+                    <div class="card card-dark card-lift shadow-sm h-100" data-reveal="0.15" data-glow>
                         <div class="card-body p-5 d-flex flex-column">
                             <div class="mb-4">
                                 <h3 class="h4 card-title mb-3">
@@ -159,7 +169,7 @@
         </div>
     </main>
 
-    <footer>
+    <footer data-glow>
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">

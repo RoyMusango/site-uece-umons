@@ -12,8 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- style.css en dernier : ses surcharges du design system gagnent sur Bootstrap -->
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/motion-gate.js"></script>
+    <script defer src="js/reveals.js"></script>
 </head>
-<body>
+<body class="has-hero">
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
@@ -67,7 +69,7 @@
         </div>
     </nav>
 
-    <header class="page-header">
+    <header class="page-header" data-glow>
         <div class="container">
             <p class="eyebrow">Étudiants &amp; chercheurs internationaux</p>
             <h1>Infos importantes</h1>
@@ -92,7 +94,7 @@
              et éditables via le CMS sans toucher au HTML.
              ================================================================ -->
 
-        <article class="annonce-card">
+        <article class="annonce-card" data-reveal>
             <div class="annonce-meta">
                 <span class="badge-annonce badge-tous">Tous</span>
                 <span class="annonce-deadline"><i class="fas fa-hourglass-half"></i>Dans les 8 jours ouvrables suivant l'arrivée</span>
@@ -102,7 +104,7 @@
             <p class="annonce-source mb-0">Source : <a href="https://www.mons.be" target="_blank" rel="noopener">Ville de Mons — service Étrangers</a> · Publié le 01/07/2026</p>
         </article>
 
-        <article class="annonce-card">
+        <article class="annonce-card" data-reveal>
             <div class="annonce-meta">
                 <span class="badge-annonce badge-hue">HUE</span>
                 <span class="annonce-deadline"><i class="fas fa-hourglass-half"></i>Au moins 45 jours avant l'expiration de la carte A</span>
@@ -112,7 +114,7 @@
             <p class="annonce-source mb-0">Source : <a href="https://dofi.ibz.be/fr" target="_blank" rel="noopener">Office des Étrangers</a> · Publié le 01/07/2026 — <em>montants et modalités à vérifier chaque année</em></p>
         </article>
 
-        <article class="annonce-card">
+        <article class="annonce-card" data-reveal>
             <div class="annonce-meta">
                 <span class="badge-annonce badge-hue">HUE</span>
                 <span class="annonce-deadline"><i class="fas fa-hourglass-half"></i>Avant la rentrée 2026-2027</span>
@@ -122,7 +124,7 @@
             <p class="annonce-source mb-0">Source : <a href="https://dofi.ibz.be/fr" target="_blank" rel="noopener">Office des Étrangers</a> · Publié le 01/07/2026</p>
         </article>
 
-        <article class="annonce-card">
+        <article class="annonce-card" data-reveal>
             <div class="annonce-meta">
                 <span class="badge-annonce badge-ue">UE</span>
                 <span class="annonce-deadline"><i class="fas fa-hourglass-half"></i>Dans les 3 mois suivant l'arrivée</span>
@@ -143,7 +145,7 @@
         <p class="text-soft small mt-4 mb-0"><i class="fas fa-info-circle me-1"></i>Ces informations sont publiées à titre indicatif par l'UECE et ne remplacent pas les communications officielles de la Ville de Mons, de l'Office des Étrangers ou de l'UMONS. Vérifiez toujours la source avant d'agir.</p>
     </main>
 
-    <footer>
+    <footer data-glow>
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
