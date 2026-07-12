@@ -83,22 +83,32 @@
             <div class="row justify-content-center mt-4">
                 <div class="col-md-5 text-center mb-3 poster-col">
                     <div class="image-square-container" data-tilt>
-                        <img src="images/activites-800.jpg"
-                            srcset="images/activites-400.jpg 400w, images/activites-800.jpg 800w"
-                            sizes="(max-width: 767px) 92vw, 440px"
-                            fetchpriority="high"
-                            class="img-fluid rounded shadow-sm border square-image"
-                            alt="Affiche d'une soirée réseautage UECE">
+                        <picture>
+                            <source type="image/webp"
+                                srcset="images/activites-400.webp 400w, images/activites-800.webp 800w"
+                                sizes="(max-width: 767px) 92vw, 440px">
+                            <img src="images/activites-800.jpg"
+                                srcset="images/activites-400.jpg 400w, images/activites-800.jpg 800w"
+                                sizes="(max-width: 767px) 92vw, 440px"
+                                fetchpriority="high"
+                                class="img-fluid rounded shadow-sm border square-image"
+                                alt="Affiche d'une soirée réseautage UECE">
+                        </picture>
                     </div>
                     <p class="mt-2 caption-light"><small>Échanges interculturels</small></p>
                 </div>
                 <div class="col-md-5 text-center mb-3 poster-col">
                     <div class="image-square-container" data-tilt>
-                        <img src="images/evenements-800.jpg"
-                            srcset="images/evenements-400.jpg 400w, images/evenements-800.jpg 800w"
-                            sizes="(max-width: 767px) 92vw, 440px"
-                            class="img-fluid rounded shadow-sm border square-image"
-                            alt="Affiche du Gala UECE Kings and Queens">
+                        <picture>
+                            <source type="image/webp"
+                                srcset="images/evenements-400.webp 400w, images/evenements-800.webp 800w"
+                                sizes="(max-width: 767px) 92vw, 440px">
+                            <img src="images/evenements-800.jpg"
+                                srcset="images/evenements-400.jpg 400w, images/evenements-800.jpg 800w"
+                                sizes="(max-width: 767px) 92vw, 440px"
+                                class="img-fluid rounded shadow-sm border square-image"
+                                alt="Affiche du Gala UECE Kings and Queens">
+                        </picture>
                     </div>
                     <p class="mt-2 caption-light"><small>Événements étudiants</small></p>
                 </div>
