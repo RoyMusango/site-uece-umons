@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="fonts/Outfit-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/CormorantGaramond-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <title>Gala 2026 - UECE UMONS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- style.css en dernier : ses surcharges du design system gagnent sur Bootstrap -->
     <link rel="stylesheet" href="style.css">
     <script defer src="js/motion-gate.js"></script>
     <script defer src="js/reveals.js"></script>
+    <script defer src="js/gala-cta.js"></script>
 </head>
-<body class="has-hero">
+<body class="has-hero page-gala">
 
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
@@ -59,14 +59,15 @@
                         <h2 class="mb-4">Une soirée d'exception</h2>
                         <p class="lead">Rejoignez-nous pour une nuit mémorable où les cultures du monde entier se rencontrent dans l'élégance et la convivialité.</p>
                         <p>Le Gala annuel de l'UECE est bien plus qu'une simple soirée. C'est un moment de partage, de découverte et de célébration de la richesse de notre communauté internationale.</p>
-                        <p>Cette année, nous vous préparons un programme exceptionnel :</p>
-                        <ul class="mt-3">
-                            <li class="mb-2"><strong>Dîner gastronomique</strong> aux saveurs internationales</li>
-                            <li class="mb-2"><strong>Spectacles culturels</strong> par nos étudiants</li>
-                            <li class="mb-2"><strong>DJ international</strong> et piste de danse</li>
-                            <li class="mb-2"><strong>Tombola</strong> avec des lots prestigieux</li>
-                            <li class="mb-2"><strong>Photographe professionnel</strong> pour immortaliser votre soirée</li>
-                        </ul>
+                        <p>Cette année, nous vous préparons un programme exceptionnel&nbsp;:</p>
+                        <div class="timeline mt-3">
+                            <div class="timeline-item"><span class="timeline-time">18h30</span> <strong>Ouverture des portes</strong> — accueil en musique</div>
+                            <div class="timeline-item"><span class="timeline-time">19h30</span> <strong>Dîner gastronomique</strong> aux saveurs internationales</div>
+                            <div class="timeline-item"><span class="timeline-time">21h30</span> <strong>Spectacles culturels</strong> par nos étudiants</div>
+                            <div class="timeline-item"><span class="timeline-time">22h30</span> <strong>Tombola</strong> avec des lots prestigieux</div>
+                            <div class="timeline-item"><span class="timeline-time">23h00</span> <strong>DJ international</strong> et piste de danse jusqu'au bout de la nuit</div>
+                        </div>
+                        <p class="text-soft small mt-3 mb-0"><i class="fas fa-camera me-1 text-gold"></i>Photographe professionnel toute la soirée — <em>horaires indicatifs, à confirmer par le comité</em>.</p>
                     </div>
                 </div>
             </div>
@@ -255,7 +256,45 @@
                 </div>
             </div>
         </div>
+
+        <!-- FAQ — réponses d'exemple À VALIDER par le comité avant diffusion -->
+        <div class="separator-mains" aria-hidden="true">
+            <img src="images/motif-mains.svg" alt="" width="44" height="44">
+        </div>
+        <section class="faq mb-4" data-reveal>
+            <h2 class="h3 text-center mb-4">Questions fréquentes</h2>
+            <details>
+                <summary>Comment vais-je recevoir mon billet&nbsp;?</summary>
+                <p>Deux fois plutôt qu'une&nbsp;: un e-mail de confirmation avec votre QR code d'entrée vous est envoyé automatiquement après paiement, et vous pouvez télécharger votre billet PDF directement sur la page de confirmation. L'un ou l'autre fait foi à l'entrée.</p>
+            </details>
+            <details>
+                <summary>Puis-je payer sans compte PayPal&nbsp;?</summary>
+                <p>Oui. Choisissez «&nbsp;Carte bancaire&nbsp;» ou «&nbsp;Bancontact&nbsp;» parmi les boutons de paiement&nbsp;: aucun compte PayPal n'est nécessaire.</p>
+            </details>
+            <details>
+                <summary>Le billet est-il remboursable&nbsp;?</summary>
+                <p>Les billets ne sont ni remboursables ni échangeables, sauf en cas d'annulation de l'événement. En cas d'empêchement, contactez-nous à UECE.UMONS@umons.ac.be — nous ferons de notre mieux.</p>
+            </details>
+            <details>
+                <summary>Quel est le dress code&nbsp;?</summary>
+                <p>Tenue de soirée, thème <strong>Noir &amp; Or</strong>. Costume, robe de soirée, tenues traditionnelles élégantes&nbsp;: faites-vous beaux et belles, un photographe professionnel sera là toute la soirée.</p>
+            </details>
+            <details>
+                <summary>Faut-il être étudiant de l'UMONS pour venir&nbsp;?</summary>
+                <p>Non, le Gala est ouvert à toutes et tous dans la limite des places disponibles. Les étudiants et chercheurs internationaux de l'UMONS restent nos invités d'honneur.</p>
+            </details>
+        </section>
     </main>
+
+    <!-- Récap prix + CTA sticky (mobile uniquement, masqué quand la
+         billetterie est à l'écran — js/gala-cta.js) -->
+    <div class="cta-sticky" id="ctaSticky">
+        <div class="cta-sticky-prix">
+            <strong>Gala 2026</strong>
+            <span>Standard 15&nbsp;€ · VIP 25&nbsp;€</span>
+        </div>
+        <a href="#participantForm" class="btn btn-gold">Réserver</a>
+    </div>
 
     <footer data-glow>
         <div class="container text-center pb-3">
