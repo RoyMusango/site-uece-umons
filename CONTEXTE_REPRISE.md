@@ -92,6 +92,15 @@ Le style peut changer, la logique et les identifiants NON :
   absents ; connexion Gmail de Make à ré-autoriser avant le 25/09/2026 ; champ To =
   `{{get(split(1.resource.custom_id; "|||"); 2)}}` ; purger la file du webhook après des
   tests ratés (les vieux paquets se rejouent via Run once).
+- ✅ **Phase 3** (12/07/2026, branche `phase-3-gala-conversion`) : programme en timeline
+  (horaires indicatifs à confirmer), FAQ 5 questions (réponses d'exemple À VALIDER),
+  récap prix + CTA sticky mobile (masqué dès que la réservation est à l'écran,
+  js/gala-cta.js). Zones gelées intactes. ⚠ Test Sandbox requis avant merge.
+- ✅ **Phase 4** (12/07/2026, branche `phase-4-perf-qa`, empilée sur la 3) : polices
+  auto-hébergées dans /fonts (Google Fonts retiré du site — un tiers de moins),
+  affiches en WebP + repli JPEG (-35/-40 %). FCP ~2,3 s partout en local, CLS ~0,
+  a11y 100 ×4. Mesure locale bruitée (CDN throttlent les runs répétés) : vérité perf
+  à lire sur PageSpeed Insights en prod après merge.
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 
