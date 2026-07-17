@@ -6,6 +6,9 @@
     <link rel="preload" href="fonts/Outfit-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/CormorantGaramond-700-latin.woff2" as="font" type="font/woff2" crossorigin>
     <title>Accueil - UECE UMONS</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
@@ -76,9 +79,20 @@
             <hr class="divider-gold">
             <p class="hero-sub mb-4">Accueillir, Intégrer, Représenter.</p>
 
+            <!-- Porte d'entrée du site : panneau déroulant vers l'association
+                 (demande de Roy, 17/07/2026). L'accès Gala reste assuré par la
+                 carte « Prochain événement » juste en dessous et par la nav. -->
             <div class="hero-cta mb-5">
-                <a href="gala.html" class="btn btn-gold btn-lg" data-magnet>Réserver ma place au Gala</a>
-                <a href="annonces.html" class="btn btn-outline-gold btn-lg" data-magnet>Infos étudiants HUE&nbsp;/&nbsp;UE</a>
+                <div class="dropdown dropdown-hero">
+                    <button class="btn btn-gold btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Découvrir l'UECE</button>
+                    <ul class="dropdown-menu menu-panel">
+                        <li><a class="dropdown-item" href="association.html"><span class="panel-titre">Qui sommes-nous&nbsp;?</span><small>Accueillir, intégrer, représenter&nbsp;: notre mission</small></a></li>
+                        <li><a class="dropdown-item" href="association.html#bureau-actuel"><span class="panel-titre">Le bureau actuel</span><small>L'équipe 2026 – 2027 qui fait vivre l'UECE</small></a></li>
+                        <li><a class="dropdown-item" href="association.html#bureaux"><span class="panel-titre">L'historique des bureaux</span><small>Celles et ceux qui ont porté l'association</small></a></li>
+                        <li><a class="dropdown-item" href="faq.html"><span class="panel-titre">Questions fréquentes</span><small>Les réponses avant de nous écrire</small></a></li>
+                        <li class="panel-action"><a href="association.html" class="btn btn-gold btn-sm">Plus d'informations <i class="fas fa-arrow-right ms-1"></i></a></li>
+                    </ul>
+                </div>
             </div>
 
             <div class="row justify-content-center mt-4">
