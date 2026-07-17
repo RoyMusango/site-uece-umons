@@ -2048,6 +2048,18 @@ html.motion-rich .affiche-cadre { will-change: transform; }
     object-fit: contain;         /* image ENTIÈRE, jamais recadrée */
 }
 
+/* Carte vedette (Beffroi) : photo portrait affichée en ENTIER à sa
+   proportion naturelle — c'est elle qui donne sa hauteur à la carte.
+   Réservée aux photos trop verticales pour un bandeau (le fond flouté
+   y ferait du vide — retour Roy 17/07/2026). */
+.carte-vedette { overflow: hidden; }
+
+.carte-vedette .img-vedette {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .carrousel-affiches .carousel-indicators {
     position: static;
     margin: 12px auto 0;
