@@ -1668,28 +1668,149 @@ html.motion-on [data-reveal].is-in {
     border-radius: 2px;
 }
 
-/* --- Historique des bureaux (association.html, Phase 6) --- */
+/* --- Historique des bureaux et membres (association.html, Phase 6) --- */
 .bureau-membre {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 4px 12px;
-    padding: 7px 0;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
     border-bottom: 1px solid var(--line-gold);
 }
 
 .bureau-membre:last-child { border-bottom: none; }
 
-.bureau-role {
-    flex: 0 0 10.5em;
+.bureau-nom { font-weight: 600; color: var(--ink); }
+
+.bureau-role,
+.membre-role {
     color: var(--muted);
-    font-size: .82rem;
+    font-size: .8rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: .08em;
 }
 
-.bureau-nom { font-weight: 600; color: var(--ink); }
+.membre-role { color: var(--gold-700); }
+
+/* Avatars : photo ronde, ou initiales or sur marine si pas de photo */
+.membre-avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.membre-avatar-initiales {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 25%, var(--navy-700), var(--navy-900));
+    border: 1px solid var(--line-gold);
+    color: var(--gold-300);
+    font-weight: 600;
+    letter-spacing: .04em;
+}
+
+.membre-avatar-petit { width: 44px; height: 44px; font-size: .85rem; }
+
+.membre-avatar-grand { width: 96px; height: 96px; font-size: 1.5rem; margin: 0 auto; }
+
+/* Conditions d'adhésion : coches or */
+.liste-conditions {
+    list-style: none;
+    padding-left: 0;
+    max-width: 580px;
+}
+
+.liste-conditions li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 10px;
+}
+
+.liste-conditions li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold-700);
+    font-weight: 700;
+}
+
+/* --- Carrousel de la mission (association.html, Phase 6) ---
+   Image de fond + voile marine + texte ; défilement auto géré par
+   js/association-carrousel.js (désactivé en reduced-motion). */
+.carrousel-mission {
+    border: 1px solid var(--line-gold);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-2);
+    background-color: var(--navy-900);
+}
+
+.carrousel-mission .carousel-item { min-height: 440px; }
+
+@media (max-width: 575.98px) {
+    .carrousel-mission .carousel-item { min-height: 540px; }
+}
+
+.carrousel-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carrousel-voile {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(0, 23, 48, .30) 0%,
+        rgba(0, 23, 48, .55) 45%,
+        rgba(5, 15, 30, .93) 100%);
+}
+
+.carrousel-fond-motif {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 90% at 50% 0%,
+        var(--navy-700) 0%, var(--navy-900) 55%, var(--navy-950) 100%);
+}
+
+.carrousel-fond-motif::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("images/motif-mains.svg") center 34% / 300px no-repeat;
+    opacity: .16;
+}
+
+.carrousel-texte {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 24px clamp(56px, 11vw, 110px) 54px;
+    text-align: center;
+    color: var(--paper);
+}
+
+.carrousel-texte h3 {
+    color: var(--paper);
+    margin-bottom: .6rem;
+}
+
+.carrousel-texte p {
+    max-width: 640px;
+    margin: 0 auto;
+    color: rgba(247, 242, 232, .92);
+}
+
+.carrousel-mission .carousel-indicators [data-bs-target] {
+    width: 26px;
+    height: 3px;
+    background-color: var(--gold-500);
+}
 
 /* Kill-switch global animations/transitions */
 @media (prefers-reduced-motion: reduce) {

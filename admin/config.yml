@@ -144,20 +144,46 @@ collections:
 
   - name: association
     label: "Page Association"
-    description: "Historique des bureaux affiché sur « C'est quoi l'UECE ? » (association.html)."
+    description: "Conditions d'adhésion, bureau actuel et historique des bureaux (association.html)."
     files:
       - name: bureaux
-        label: "Association — historique des bureaux"
+        label: "Association — adhésion et bureaux"
         file: data/bureaux.json
         fields:
-          - { label: "Texte d'introduction", name: intro, widget: text }
-          - label: "Bureaux (un par mandat)"
+          - { label: "Texte d'introduction (historique)", name: intro, widget: text }
+
+          - label: "Conditions d'adhésion"
+            name: adhesion
+            widget: object
+            fields:
+              - label: "Liste des conditions"
+                name: conditions
+                widget: list
+                hint: "Une condition par ligne — affichées avec une coche dorée."
+                field: { label: "Condition", name: condition, widget: string }
+
+          - label: "Bureau actuel"
+            name: bureauActuel
+            widget: object
+            fields:
+              - { label: "Période (ex. 2025 – 2026)", name: periode, widget: string }
+              - label: "Membres"
+                name: membres
+                widget: list
+                summary: "{{fields.role}} — {{fields.nom}}"
+                fields:
+                  - { label: "Rôle (ex. Présidence)", name: role, widget: string }
+                  - { label: "Nom", name: nom, widget: string }
+                  - { label: "Photo (optionnelle)", name: photo, widget: image, required: false, hint: "Portrait carré de préférence — il s'affiche en rond." }
+                  - { label: "Mini-bio (optionnelle)", name: description, widget: text, required: false, hint: "Ex. Étudiant en master 1 en sciences économiques, passionné de gestion." }
+
+          - label: "Bureaux précédents (historique)"
             name: bureaux
             widget: list
             summary: "{{fields.periode}}"
             hint: "Mettez le bureau le plus récent en premier."
             fields:
-              - { label: "Période (ex. 2025 – 2026)", name: periode, widget: string }
+              - { label: "Période (ex. 2024 – 2025)", name: periode, widget: string }
               - { label: "Nom d'équipe (optionnel)", name: nom, widget: string, required: false }
               - label: "Membres"
                 name: membres
@@ -166,3 +192,5 @@ collections:
                 fields:
                   - { label: "Rôle (ex. Présidence)", name: role, widget: string }
                   - { label: "Nom", name: nom, widget: string }
+                  - { label: "Photo (optionnelle)", name: photo, widget: image, required: false, hint: "Portrait carré de préférence — il s'affiche en rond." }
+                  - { label: "Mini-bio (optionnelle)", name: description, widget: text, required: false, hint: "Ex. Étudiante en bachelier en droit, passionnée de théâtre." }
