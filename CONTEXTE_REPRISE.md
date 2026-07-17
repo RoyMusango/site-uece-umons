@@ -101,6 +101,21 @@ Le style peut changer, la logique et les identifiants NON :
   affiches en WebP + repli JPEG (-35/-40 %). FCP ~2,3 s partout en local, CLS ~0,
   a11y 100 ×4. Mesure locale bruitée (CDN throttlent les runs répétés) : vérité perf
   à lire sur PageSpeed Insights en prod après merge.
+- ✅ **Phase 5** (17/07/2026, branche `phase-5-contenus`) : contenus du gala
+  externalisés dans `data/gala.json`, injectés par `js/gala-data.js`
+  (fetch + textContent uniquement, repli silencieux sur le HTML si échec).
+  Marqueurs `data-edit` / `data-edit-lines` / `data-edit-programme` /
+  `data-edit-faq` posés dans gala.html (zones gelées intactes — script ajouté
+  et attributs seulement). Admin Decap CMS dans `admin/` (backend DecapBridge :
+  bloc `backend:` de config.yml à remplacer par celui généré à l'inscription
+  decapbridge.com — action humaine restante). **Décision assumée : les PRIX ne
+  sont PAS éditables par le CMS** (ils sont câblés dans selectTicket, zone
+  gelée ; un CMS qui change l'affichage sans changer le débit ferait payer un
+  mauvais montant) → procédure « changement de prix » documentée au README §5.
+  Idem date/lieu : éditables côté site, mais aussi écrits en dur dans le billet
+  PDF (telechargerFacture) et le mail Make → README §6. README réécrit en
+  document de passation complet. ⚠ Reste : inscription DecapBridge + coller le
+  bloc backend, et test Sandbox (gala.html modifié).
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 
