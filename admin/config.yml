@@ -117,3 +117,52 @@ collections:
             fields:
               - { label: "Question", name: question, widget: string }
               - { label: "Réponse", name: reponse, widget: text }
+
+  - name: faq
+    label: "Page FAQ"
+    description: "Questions/réponses générales de la page FAQ (faq.html)."
+    files:
+      - name: contenus
+        label: "FAQ — questions et réponses"
+        file: data/faq.json
+        fields:
+          - label: "En-tête de la page"
+            name: entete
+            widget: object
+            fields:
+              - { label: "Sur-titre", name: eyebrow, widget: string }
+              - { label: "Titre", name: titre, widget: string }
+              - { label: "Sous-titre", name: sousTitre, widget: text }
+          - label: "Questions"
+            name: questions
+            widget: list
+            summary: "{{fields.question}}"
+            hint: "L'ordre d'affichage sur le site est l'ordre de cette liste."
+            fields:
+              - { label: "Question", name: question, widget: string }
+              - { label: "Réponse", name: reponse, widget: text }
+
+  - name: association
+    label: "Page Association"
+    description: "Historique des bureaux affiché sur « C'est quoi l'UECE ? » (association.html)."
+    files:
+      - name: bureaux
+        label: "Association — historique des bureaux"
+        file: data/bureaux.json
+        fields:
+          - { label: "Texte d'introduction", name: intro, widget: text }
+          - label: "Bureaux (un par mandat)"
+            name: bureaux
+            widget: list
+            summary: "{{fields.periode}}"
+            hint: "Mettez le bureau le plus récent en premier."
+            fields:
+              - { label: "Période (ex. 2025 – 2026)", name: periode, widget: string }
+              - { label: "Nom d'équipe (optionnel)", name: nom, widget: string, required: false }
+              - label: "Membres"
+                name: membres
+                widget: list
+                summary: "{{fields.role}} — {{fields.nom}}"
+                fields:
+                  - { label: "Rôle (ex. Présidence)", name: role, widget: string }
+                  - { label: "Nom", name: nom, widget: string }

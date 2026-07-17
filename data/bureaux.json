@@ -1,0 +1,15 @@
+{
+  "intro": "Depuis sa création, l'UECE est portée par des équipes d'étudiants bénévoles qui se passent le flambeau. Cette page honore celles et ceux qui ont fait vivre l'association, année après année.",
+  "bureaux": [
+    {
+      "periode": "2025 – 2026",
+      "nom": "Bureau en exercice",
+      "membres": [
+        { "role": "Présidence", "nom": "À compléter" },
+        { "role": "Vice-présidence", "nom": "À compléter" },
+        { "role": "Trésorerie", "nom": "À compléter" },
+        { "role": "Secrétariat", "nom": "À compléter" }
+      ]
+    }
+  ]
+}

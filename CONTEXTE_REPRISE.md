@@ -115,7 +115,22 @@ Le style peut changer, la logique et les identifiants NON :
   Idem date/lieu : éditables côté site, mais aussi écrits en dur dans le billet
   PDF (telechargerFacture) et le mail Make → README §6. README réécrit en
   document de passation complet. ⚠ Reste : inscription DecapBridge + coller le
-  bloc backend, et test Sandbox (gala.html modifié).
+  bloc backend, et test Sandbox (gala.html modifié — Roy a choisi de le
+  reporter, migration Stripe envisagée). Mergée en prod le 17/07/2026.
+- ✅ **Phase 6** (17/07/2026, branche `phase-6-faq-historique-menu`) : trois
+  chantiers demandés par Roy. (1) `faq.html` : FAQ générale, 9 questions
+  d'exemple À VALIDER, éditable via data/faq.json + js/faq-data.js.
+  (2) `association.html` « C'est quoi l'UECE ? » : mission (3 cartes), CTA
+  devenir membre, section #bureaux = historique des bureaux éditable via
+  data/bureaux.json + js/bureaux-data.js (noms « À compléter » — Roy collecte
+  auprès des anciens bureaux). (3) Menus déroulants « prestige » : ouverture au
+  survol desktop (clic Bootstrap conservé), fondu+glissement, filet or, panneau
+  large 2 colonnes .menu-panel pour le menu Infos (titre + description par
+  entrée), reduced-motion géré, mobile Bootstrap intact. Nav normalisée sur les
+  7 pages (liens morts « Historique »/standard.html remplacés par
+  association.html). CMS : collections faq + association ajoutées. Vérifié
+  jsdom 15/15 (injections + nav des 7 pages). Annexe 6 créée (comparatif
+  PayPal/Stripe/Bancontact, quotas, données à collecter).
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 

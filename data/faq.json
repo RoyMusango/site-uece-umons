@@ -1,0 +1,45 @@
+{
+  "entete": {
+    "eyebrow": "Foire aux questions",
+    "titre": "On vous répond",
+    "sousTitre": "Les réponses aux questions qu'on nous pose le plus souvent. Un doute ? Écrivez-nous, on complète la liste."
+  },
+  "questions": [
+    {
+      "question": "C'est quoi l'UECE, en une phrase ?",
+      "reponse": "L'Union des Étudiants et Chercheurs Étrangers de l'UMONS : une association étudiante qui accueille, intègre et représente les étudiants et chercheurs internationaux à Mons. Pour en savoir plus, visitez la page « C'est quoi l'UECE ? »."
+    },
+    {
+      "question": "Comment devenir membre de l'UECE ?",
+      "reponse": "Écrivez-nous à UECE.UMONS@umons.ac.be ou contactez-nous sur Instagram : le comité vous expliquera les modalités d'adhésion en cours. Être membre, c'est soutenir l'association et profiter d'avantages lors de nos événements."
+    },
+    {
+      "question": "Je viens d'arriver à Mons, par où commencer ?",
+      "reponse": "Consultez le Guide de l'étudiant (culture, lieux clés, bons plans) et la page Infos importantes HUE / UE pour les démarches selon votre situation. Et suivez nos réseaux : les événements d'intégration sont la meilleure porte d'entrée."
+    },
+    {
+      "question": "L'UECE peut-elle faire mes démarches administratives (visa, titre de séjour…) ?",
+      "reponse": "Non — mais elle vous oriente. Nous vous indiquons les bons interlocuteurs (services de l'UMONS, administration communale…) et les bonnes informations ; les démarches restent personnelles."
+    },
+    {
+      "question": "Comment acheter un ticket pour le Gala ?",
+      "reponse": "Tout se passe sur la page Gala : choisissez votre formule, remplissez vos coordonnées et payez en ligne de façon sécurisée. Votre billet arrive par e-mail avec un QR code, et un PDF est téléchargeable immédiatement après le paiement."
+    },
+    {
+      "question": "J'ai payé mais je n'ai pas reçu mon billet, que faire ?",
+      "reponse": "Vérifiez d'abord vos courriers indésirables, puis cliquez sur « Afficher les images » dans votre boîte mail : le QR code est une image. Si rien n'arrive, écrivez-nous en indiquant le nom et l'e-mail utilisés lors de l'achat — nous retrouverons votre paiement."
+    },
+    {
+      "question": "Comment trouver un logement à Mons ?",
+      "reponse": "Commencez par les kots et résidences référencés par l'UMONS, et méfiez-vous des annonces qui demandent un paiement avant toute visite. L'UECE peut vous orienter vers les bonnes plateformes — écrivez-nous."
+    },
+    {
+      "question": "Comment rejoindre le comité ou proposer un projet ?",
+      "reponse": "L'UECE vit grâce à ses bénévoles ! Écrivez-nous ou venez nous parler lors d'un événement : il y a toujours une place pour les bonnes volontés (organisation, communication, logistique…)."
+    },
+    {
+      "question": "Comment contacter l'UECE ?",
+      "reponse": "Par e-mail à UECE.UMONS@umons.ac.be, ou via nos réseaux sociaux (Instagram, Facebook, TikTok — liens en bas de page)."
+    }
+  ]
+}

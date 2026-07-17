@@ -607,6 +607,91 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     .navbar .d-flex { flex-wrap: wrap; gap: 10px; padding-bottom: 6px; }
 }
 
+/* --- Menus déroulants « prestige » (Phase 6) ------------------------------
+   Desktop : ouverture au survol (le clic Bootstrap reste actif), fondu +
+   glissement doux, et panneau large multi-colonnes pour le menu Infos
+   (.menu-panel : titre + description par entrée).
+   Mobile (<992px) : comportement Bootstrap intact, liste verticale. */
+.navbar .dropdown-menu {
+    border-top: 2px solid var(--gold-500);
+    min-width: 250px;
+}
+
+.navbar .dropdown-item { border-left: 2px solid transparent; }
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus { border-left-color: var(--gold-500); }
+
+.menu-panel .dropdown-item { white-space: normal; }
+
+.menu-panel .panel-titre { display: block; font-weight: 600; }
+
+.menu-panel .dropdown-item small {
+    display: block;
+    color: var(--muted);
+    margin-top: 2px;
+    transition: color var(--transition);
+}
+
+.menu-panel .dropdown-item:hover small,
+.menu-panel .dropdown-item:focus small { color: rgba(247, 242, 232, .78); }
+
+@media (min-width: 992px) {
+    /* Toujours rendu (pour pouvoir l'animer) ; révélé au survol, au focus
+       clavier ou au clic Bootstrap (.show). */
+    .navbar .navbar-nav .dropdown-menu {
+        display: block;
+        top: 100%;
+        margin-top: 0;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        transition: opacity .28s ease, transform .28s ease,
+                    visibility 0s linear .28s;
+    }
+
+    .navbar .dropdown:hover > .dropdown-menu,
+    .navbar .dropdown:focus-within > .dropdown-menu,
+    .navbar .navbar-nav .dropdown-menu.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        transition: opacity .28s ease, transform .28s ease;
+    }
+
+    /* Panneau large centré sous son déclencheur */
+    .navbar .navbar-nav .menu-panel {
+        left: 50%;
+        transform: translate(-50%, 10px);
+        display: flex;
+        flex-wrap: wrap;
+        width: 560px;
+        padding: .7rem .4rem;
+    }
+
+    .navbar .dropdown:hover > .menu-panel,
+    .navbar .dropdown:focus-within > .menu-panel,
+    .navbar .navbar-nav .menu-panel.show { transform: translate(-50%, 0); }
+
+    .menu-panel > li { width: 50%; }
+
+    .menu-panel .dropdown-item { padding: .6rem 1.1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar .navbar-nav .dropdown-menu {
+        transition: none;
+        transform: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 992px) {
+    /* le recentrage horizontal du panneau n'est pas une animation : on le garde */
+    .navbar .navbar-nav .menu-panel { transform: translateX(-50%) !important; }
+}
+
 /* --------------------------------------------------------------------------
    7. FORMULAIRES
    -------------------------------------------------------------------------- */
@@ -1582,6 +1667,29 @@ html.motion-on [data-reveal].is-in {
     outline-offset: 2px;
     border-radius: 2px;
 }
+
+/* --- Historique des bureaux (association.html, Phase 6) --- */
+.bureau-membre {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line-gold);
+}
+
+.bureau-membre:last-child { border-bottom: none; }
+
+.bureau-role {
+    flex: 0 0 10.5em;
+    color: var(--muted);
+    font-size: .82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.bureau-nom { font-weight: 600; color: var(--ink); }
 
 /* Kill-switch global animations/transitions */
 @media (prefers-reduced-motion: reduce) {

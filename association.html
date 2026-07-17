@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="fonts/Outfit-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/CormorantGaramond-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <title>C'est quoi l'UECE ? - UECE UMONS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <!-- style.css en dernier : ses surcharges du design system gagnent sur Bootstrap -->
+    <link rel="stylesheet" href="style.css">
+    <script defer src="js/motion-gate.js"></script>
+    <script defer src="js/reveals.js"></script>
+    <!-- Injecte l'historique des bureaux depuis data/bureaux.json (CMS) -->
+    <script defer src="js/bureaux-data.js"></script>
+</head>
+<body class="has-hero">
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src='images/logo-nav.png' width="44" height="44" alt="Logo UECE">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Ouvrir le menu de navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">L'Association</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="association.html">C'est quoi l'UECE&nbsp;?</a></li>
+                            <li><a class="dropdown-item" href="association.html#bureaux">Historique des bureaux</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="standard.html">Nos cercles membres</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Infos</a>
+                        <ul class="dropdown-menu menu-panel">
+                            <li><a class="dropdown-item" href="gala.html"><span class="panel-titre">Gala 2026 · Billetterie</span><small>Réservez votre place</small></a></li>
+                            <li><a class="dropdown-item" href="annonces.html"><span class="panel-titre">Infos HUE&nbsp;/&nbsp;UE</span><small>Les démarches essentielles</small></a></li>
+                            <li><a class="dropdown-item" href="guide.html"><span class="panel-titre">Guide de l'étudiant</span><small>Vivre à Mons au quotidien</small></a></li>
+                            <li><a class="dropdown-item" href="faq.html"><span class="panel-titre">FAQ</span><small>Les réponses à vos questions</small></a></li>
+                            <li><a class="dropdown-item" href="standard.html"><span class="panel-titre">Logement</span><small>Se loger à Mons</small></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Espace Membre</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="standard.html">Mes cotisations</a></li>
+                            <li><a class="dropdown-item" href="standard.html">Documents administratifs</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <form class="d-flex" role="search">
+                        <input class="form-control search-box" type="search" placeholder="Rechercher..." aria-label="Search">
+                    </form>
+                    <a href="standard.html" class="btn-connexion">Se Connecter</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header" data-glow>
+        <div class="container">
+            <p class="eyebrow">L'Association</p>
+            <h1>C'est quoi l'UECE&nbsp;?</h1>
+            <hr class="divider-gold">
+            <p class="lead">L'Union des Étudiants et Chercheurs Étrangers de l'UMONS&nbsp;:<br>une association par et pour les étudiants internationaux, qui fait le pont entre les cultures.</p>
+        </div>
+    </header>
+
+    <main class="container pb-5">
+
+        <!-- ================================================================
+             Textes de présentation À VALIDER par le comité. L'historique des
+             bureaux (noms des membres) est éditable via l'administration :
+             data/bureaux.json, injecté par js/bureaux-data.js.
+             ================================================================ -->
+
+        <!-- Mission -->
+        <section class="mb-5 mt-4">
+            <p class="eyebrow text-center mb-1">Notre raison d'être</p>
+            <h2 class="text-center mb-4">Accueillir, Intégrer, Représenter</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card card-lift h-100" data-reveal>
+                        <div class="card-body p-4">
+                            <h3 class="h4"><i class="fas fa-hands-helping me-2 text-gold"></i>Accueillir</h3>
+                            <p class="mb-0">Événements d'intégration, premiers repères à Mons, conseils entre étudiants&nbsp;: nous facilitons l'arrivée des étudiants et chercheurs internationaux, dès les premiers jours.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-lift h-100" data-reveal="0.1">
+                        <div class="card-body p-4">
+                            <h3 class="h4"><i class="fas fa-users me-2 text-gold"></i>Intégrer</h3>
+                            <p class="mb-0">Rencontres interculturelles, soirées, entraide académique et bons plans du quotidien&nbsp;: nous créons des liens entre les communautés — et avec les étudiants belges.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-lift h-100" data-reveal="0.2">
+                        <div class="card-body p-4">
+                            <h3 class="h4"><i class="fas fa-bullhorn me-2 text-gold"></i>Représenter</h3>
+                            <p class="mb-0">Nous portons la voix des étudiants internationaux auprès de l'UMONS et de ses partenaires, et nous relayons leurs préoccupations là où les décisions se prennent.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Devenir membre -->
+        <div class="frame-double p-4 mx-auto mb-5" style="background: var(--surface); max-width: 760px;" data-reveal>
+            <p class="eyebrow mb-2">Envie de faire partie de l'aventure&nbsp;?</p>
+            <h2 class="h3 mb-2">Devenez membre</h2>
+            <p class="mb-3">Étudiant international, chercheur, ou simplement curieux des autres cultures&nbsp;: l'UECE est ouverte à toutes et tous. Écrivez-nous, le comité vous expliquera les modalités d'adhésion.</p>
+            <a href="mailto:UECE.UMONS@umons.ac.be" class="btn btn-gold"><i class="fas fa-envelope me-2"></i>UECE.UMONS@umons.ac.be</a>
+        </div>
+
+        <div class="separator-mains" aria-hidden="true">
+            <img src="images/motif-mains.svg" alt="" width="44" height="44">
+        </div>
+
+        <!-- Historique des bureaux -->
+        <section id="bureaux" class="mb-5">
+            <p class="eyebrow text-center mb-1">Notre histoire</p>
+            <h2 class="text-center mb-3">L'historique des bureaux</h2>
+            <p class="text-center mx-auto mb-4" style="max-width: 720px;" data-edit-intro-bureaux>Depuis sa création, l'UECE est portée par des équipes d'étudiants bénévoles qui se passent le flambeau. Cette page honore celles et ceux qui ont fait vivre l'association, année après année.</p>
+
+            <div class="row g-4 justify-content-center" data-edit-bureaux>
+                <!-- Contenu par défaut, remplacé par data/bureaux.json.
+                     Les noms sont à compléter par le comité via l'administration. -->
+                <div class="col-md-6">
+                    <article class="card card-lift h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h4 mb-1">2025 – 2026</h3>
+                            <p class="eyebrow mb-3">Bureau en exercice</p>
+                            <ul class="list-unstyled mb-0">
+                                <li class="bureau-membre"><span class="bureau-role">Présidence</span><span class="bureau-nom">À compléter</span></li>
+                                <li class="bureau-membre"><span class="bureau-role">Vice-présidence</span><span class="bureau-nom">À compléter</span></li>
+                                <li class="bureau-membre"><span class="bureau-role">Trésorerie</span><span class="bureau-nom">À compléter</span></li>
+                                <li class="bureau-membre"><span class="bureau-role">Secrétariat</span><span class="bureau-nom">À compléter</span></li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <p class="text-center text-soft small mt-4 mb-0"><i class="fas fa-envelope me-1 text-gold"></i>Ancien membre d'un bureau&nbsp;? Aidez-nous à compléter cette page&nbsp;: écrivez-nous vos années et vos noms.</p>
+        </section>
+    </main>
+
+    <footer data-glow>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <p class="footer-title">Nous contacter</p>
+                    <p>
+                        <i class="fas fa-map-marker-alt me-2"></i> Place du Parc 20, 7000 Mons<br>
+                        <i class="fas fa-envelope me-2"></i> UECE.UMONS@umons.ac.be<br>
+                        <i class="fas fa-phone me-2"></i> +32 65 00 00 00
+                    </p>
+                </div>
+
+                <div class="col-md-4 mb-4 text-center">
+                    <p class="footer-title">Suivez-nous</p>
+                    <div class="mt-3">
+                        <a href="https://www.facebook.com/gerantpg" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4 text-end">
+                    <p class="footer-title">Informations</p>
+                    <ul class="list-unstyled">
+                        <li><a href="standard.html">Mentions Légales</a></li>
+                        <li><a href="standard.html">Politique de confidentialité</a></li>
+                        <li><a href="standard.html">Statuts de l'association</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center py-3 border-top border-secondary mt-3">
+                <small>&copy; 2026 UECE UMONS. Tous droits réservés.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
