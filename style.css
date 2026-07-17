@@ -707,7 +707,10 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     left: 50%;
     transform: translateX(-50%);
     top: 100%;
-    margin-top: 8px;
+    /* ⚠ AUCUN espace entre le bouton et le panneau : un trou fait perdre le
+       survol pendant que le curseur descend vers le panneau, qui se referme
+       alors avant d'être cliquable (bug vécu le 17/07/2026). */
+    margin-top: 0;
     border-top: 2px solid var(--gold-500);
     min-width: min(92vw, 340px);
     text-align: left;
@@ -1912,6 +1915,22 @@ html.motion-on [data-reveal].is-in {
 }
 
 .carrousel-mission .carousel-indicators [data-bs-target] {
+    width: 26px;
+    height: 3px;
+    background-color: var(--gold-500);
+}
+
+/* --- Carrousel d'affiches du hero (index.html, Phase 6e) ---
+   Fondu enchaîné (pas de glissement) pour pouvoir laisser déborder le halo
+   d'or et la pénombre des affiches ; puces or SOUS la légende, pas dessus. */
+.carrousel-affiches .carousel-inner { overflow: visible; }
+
+.carrousel-affiches .carousel-indicators {
+    position: static;
+    margin: 12px auto 0;
+}
+
+.carrousel-affiches .carousel-indicators [data-bs-target] {
     width: 26px;
     height: 3px;
     background-color: var(--gold-500);
