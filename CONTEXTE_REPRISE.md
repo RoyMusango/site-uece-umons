@@ -171,6 +171,18 @@ Le style peut changer, la logique et les identifiants NON :
   data/evenements.json + js/evenements-data.js, collection CMS ajoutée ;
   entrée « Événements » dans le panneau Infos des 8 pages (6 entrées, 3×2).
   Vérifié jsdom 16/16.
+- ✅ **Phase 6e** (17/07/2026) : (1) VRAI correctif du panneau hero — le bug
+  restant n'était plus le z-index mais **le trou de 8 px (margin-top) entre le
+  bouton et le panneau** : en descendant le curseur, le :hover se perdait dans
+  le vide et le panneau se refermait avant d'être cliquable → margin-top: 0
+  (leçon : un panneau au survol doit être COLLÉ à son déclencheur).
+  (2) Les 2 affiches du hero sont maintenant un **carrousel en fondu enchaîné**
+  (6 s, pause au survol, puces or sous la légende, swipe mobile) — halo
+  .poster-col, cadre double filet et tilt 3D conservés ; carousel-fade +
+  overflow:visible pour ne pas rogner les ombres ; 1re affiche fetchpriority
+  high, 2e lazy. (3) js/association-carrousel.js généralisé en
+  **js/carrousels.js** (initialise tout [data-carrousel-auto], reduced-motion
+  → pas d'auto-défilement) — utilisé par index et association. jsdom 13/13.
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 

@@ -19,7 +19,7 @@
     <!-- Injecte l'historique des bureaux depuis data/bureaux.json (CMS) -->
     <script defer src="js/bureaux-data.js"></script>
     <!-- Carrousel de la mission (défilement auto, respecte reduced-motion) -->
-    <script defer src="js/association-carrousel.js"></script>
+    <script defer src="js/carrousels.js"></script>
 </head>
 <body class="has-hero">
 
@@ -95,12 +95,12 @@
              ================================================================ -->
 
         <!-- Mission : carrousel visuel (défilement auto 6 s, pause au survol,
-             pas de défilement auto en reduced-motion — js/association-carrousel.js) -->
+             pas de défilement auto en reduced-motion — js/carrousels.js) -->
         <section class="mb-5 mt-4">
             <p class="eyebrow text-center mb-1">Notre raison d'être</p>
             <h2 class="text-center mb-4">Accueillir, Intégrer, Représenter</h2>
 
-            <div id="carrouselMission" class="carousel slide carrousel-mission" data-reveal>
+            <div id="carrouselMission" class="carousel slide carrousel-mission" data-carrousel-auto data-reveal>
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carrouselMission" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Accueillir"></button>
                     <button type="button" data-bs-target="#carrouselMission" data-bs-slide-to="1" aria-label="Intégrer"></button>

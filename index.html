@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="js/motion-gate.js"></script>
     <script defer src="js/reveals.js"></script>
+    <!-- Carrousel d'affiches du hero (défilement auto, respecte reduced-motion) -->
+    <script defer src="js/carrousels.js"></script>
 </head>
 <body class="has-hero">
 
@@ -96,37 +98,52 @@
                 </div>
             </div>
 
+            <!-- Affiches en carrousel (demande Roy, 17/07/2026) : une affiche
+                 à la fois, fondu enchaîné toutes les 6 s, pause au survol,
+                 pas de défilement auto en reduced-motion (js/carrousels.js).
+                 Le halo, le cadre et l'inclinaison 3D sont conservés. -->
             <div class="row justify-content-center mt-4">
-                <div class="col-md-5 text-center mb-3 poster-col">
-                    <div class="image-square-container" data-tilt>
-                        <picture>
-                            <source type="image/webp"
-                                srcset="images/activites-400.webp 400w, images/activites-800.webp 800w"
-                                sizes="(max-width: 767px) 92vw, 440px">
-                            <img src="images/activites-800.jpg"
-                                srcset="images/activites-400.jpg 400w, images/activites-800.jpg 800w"
-                                sizes="(max-width: 767px) 92vw, 440px"
-                                fetchpriority="high"
-                                class="img-fluid rounded shadow-sm border square-image"
-                                alt="Affiche d'une soirée réseautage UECE">
-                        </picture>
+                <div class="col-md-6 col-lg-5 text-center mb-3 poster-col">
+                    <div id="carrouselAffiches" class="carousel slide carousel-fade carrousel-affiches" data-carrousel-auto>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="image-square-container" data-tilt>
+                                    <picture>
+                                        <source type="image/webp"
+                                            srcset="images/activites-400.webp 400w, images/activites-800.webp 800w"
+                                            sizes="(max-width: 767px) 92vw, 440px">
+                                        <img src="images/activites-800.jpg"
+                                            srcset="images/activites-400.jpg 400w, images/activites-800.jpg 800w"
+                                            sizes="(max-width: 767px) 92vw, 440px"
+                                            fetchpriority="high"
+                                            class="img-fluid rounded shadow-sm border square-image"
+                                            alt="Affiche d'une soirée réseautage UECE">
+                                    </picture>
+                                </div>
+                                <p class="mt-2 mb-0 caption-light"><small>Échanges interculturels</small></p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="image-square-container" data-tilt>
+                                    <picture>
+                                        <source type="image/webp"
+                                            srcset="images/evenements-400.webp 400w, images/evenements-800.webp 800w"
+                                            sizes="(max-width: 767px) 92vw, 440px">
+                                        <img src="images/evenements-800.jpg"
+                                            srcset="images/evenements-400.jpg 400w, images/evenements-800.jpg 800w"
+                                            sizes="(max-width: 767px) 92vw, 440px"
+                                            loading="lazy"
+                                            class="img-fluid rounded shadow-sm border square-image"
+                                            alt="Affiche du Gala UECE Kings and Queens">
+                                    </picture>
+                                </div>
+                                <p class="mt-2 mb-0 caption-light"><small>Événements étudiants</small></p>
+                            </div>
+                        </div>
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carrouselAffiches" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Échanges interculturels"></button>
+                            <button type="button" data-bs-target="#carrouselAffiches" data-bs-slide-to="1" aria-label="Événements étudiants"></button>
+                        </div>
                     </div>
-                    <p class="mt-2 caption-light"><small>Échanges interculturels</small></p>
-                </div>
-                <div class="col-md-5 text-center mb-3 poster-col">
-                    <div class="image-square-container" data-tilt>
-                        <picture>
-                            <source type="image/webp"
-                                srcset="images/evenements-400.webp 400w, images/evenements-800.webp 800w"
-                                sizes="(max-width: 767px) 92vw, 440px">
-                            <img src="images/evenements-800.jpg"
-                                srcset="images/evenements-400.jpg 400w, images/evenements-800.jpg 800w"
-                                sizes="(max-width: 767px) 92vw, 440px"
-                                class="img-fluid rounded shadow-sm border square-image"
-                                alt="Affiche du Gala UECE Kings and Queens">
-                        </picture>
-                    </div>
-                    <p class="mt-2 caption-light"><small>Événements étudiants</small></p>
                 </div>
             </div>
         </div>
