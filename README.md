@@ -37,9 +37,12 @@ style.css       Design system              docs/       Annexes techniques d'orig
 3. Ouvrir « Page Gala » → modifier les champs (date, lieu, programme, FAQ…).
 4. Cliquer **Publier**. Le site se met à jour tout seul en ~1 minute.
 
-Ce que l'administration permet de changer : en-tête de page, texte d'intro,
-programme de la soirée, encadré « En bref » (date, heure, lieu, dress code),
-les 3 blocs d'informations, les textes des billets, la FAQ.
+Ce que l'administration permet de changer :
+- **Page Gala** : en-tête, texte d'intro, programme de la soirée, encadré
+  « En bref » (date, heure, lieu, dress code), les 3 blocs d'informations,
+  les textes des billets, la FAQ du gala.
+- **Page FAQ** : toutes les questions/réponses générales.
+- **Page Association** : l'historique des bureaux (périodes, rôles, noms).
 
 **Ce qu'elle ne permet PAS de changer — c'est volontaire :**
 - **Les prix des billets** → voir §5, procédure spéciale.
