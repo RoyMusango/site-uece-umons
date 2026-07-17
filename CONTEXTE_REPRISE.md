@@ -131,6 +131,21 @@ Le style peut changer, la logique et les identifiants NON :
   association.html). CMS : collections faq + association ajoutées. Vérifié
   jsdom 15/15 (injections + nav des 7 pages). Annexe 6 créée (comparatif
   PayPal/Stripe/Bancontact, quotas, données à collecter).
+- ✅ **Phase 6b** (17/07/2026, sur demande de Roy) : association.html enrichie.
+  (1) Mission = carrousel Bootstrap plein cadre (auto 6 s, pause au survol,
+  PAS d'auto-défilement en reduced-motion via js/association-carrousel.js ;
+  fonds : activites/evenements + 3ᵉ panneau motif-mains sur marine ; noscript
+  redonne les textes). (2) Encart membre → conditions d'adhésion listées
+  (coches or, PLACEHOLDERS à valider : critère d'éligibilité et montant de la
+  cotisation à compléter par le comité) + « écrivez-nous pour plus d'infos ».
+  (3) Section « Le bureau actuel » (cartes membres : photo ronde ou initiales
+  or/marine, rôle, mini-bio) + historique enrichi pareil. data/bureaux.json
+  restructuré (adhesion, bureauActuel, bureaux) ; CMS mis à jour (widget image
+  pour les photos → images/uploads). Vérifié jsdom 14/14. **Annexe 7 créée :
+  liste de courses d'images par section (mission, portraits, culture, campus
+  UMONS, marchés…) + règles de droits ; recommandation actée : max 1 carrousel
+  par page, images fixes en bandeau pour les grilles de cartes.** L'image
+  Ducasse évoquée par Roy n'est PAS dans images/ (à réclamer).
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 
