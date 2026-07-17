@@ -142,6 +142,35 @@ collections:
               - { label: "Question", name: question, widget: string }
               - { label: "Réponse", name: reponse, widget: text }
 
+  - name: evenements
+    label: "Page Événements"
+    description: "Les rendez-vous affichés sur evenements.html (accordéon dépliable)."
+    files:
+      - name: contenus
+        label: "Événements — liste des rendez-vous"
+        file: data/evenements.json
+        fields:
+          - label: "En-tête de la page"
+            name: entete
+            widget: object
+            fields:
+              - { label: "Sur-titre", name: eyebrow, widget: string }
+              - { label: "Titre", name: titre, widget: string }
+              - { label: "Sous-titre", name: sousTitre, widget: text }
+          - label: "Événements"
+            name: evenements
+            widget: list
+            summary: "{{fields.titre}} — {{fields.jour}}"
+            hint: "Le premier de la liste s'affiche déplié. Mettez le prochain événement en premier."
+            fields:
+              - { label: "Titre", name: titre, widget: string }
+              - { label: "Jour", name: jour, widget: string, hint: "Ex. Samedi 15 mai 2026 — ou « Date à confirmer »." }
+              - { label: "Heure", name: heure, widget: string, required: false }
+              - { label: "Lieu", name: lieu, widget: string, required: false }
+              - { label: "Description", name: description, widget: text }
+              - { label: "Lien du bouton (optionnel)", name: lienUrl, widget: string, required: false, hint: "Ex. gala.html, ou un lien d'inscription complet." }
+              - { label: "Texte du bouton (optionnel)", name: lienTexte, widget: string, required: false, hint: "Ex. Réserver ma place. Vide = « Plus d'informations »." }
+
   - name: association
     label: "Page Association"
     description: "Conditions d'adhésion, bureau actuel et historique des bureaux (association.html)."
