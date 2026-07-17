@@ -210,8 +210,8 @@ Le style peut changer, la logique et les identifiants NON :
   en object-fit:contain sur fond = la même affiche floutée/assombrie
   (.affiche-fond, cover permis car décoratif). Règle « même taille de
   scène » ajoutée à CLAUDE.md §4.4. jsdom 7/7.
-- ⏳ **Phase 6h (17/07/2026, branche `phase-6h-images-guide`, PAS poussée —
-  en attente de validation Roy sur localhost)** : intégration des 14 images
+- ✅ **Phase 6h (17/07/2026, validée par Roy sur localhost puis mergée)** :
+  intégration des 14 images
   déposées par Roy (converties par ffmpeg en 400/800 px WebP+JPEG, noms
   normalisés sans espaces/accents ; 3 sources illisibles par System.Drawing
   → ffmpeg passe partout). guide.html : 6 bandeaux de cartes 3/2 (Doudou/
@@ -219,7 +219,15 @@ Le style peut changer, la logique et les identifiants NON :
   ville, Campus Nimy, Gare) + carrousel « Le Doudou en images » (5 photos :
   braderie ×2, sound party ×2, fanfares) + carrousel des marchés (Dolez,
   fleurs, Noël) — scène commune paysage .scene-photo (3/2, contain sur fond
-  flouté). jsdom 10/10. **Images encore manquantes : musées (BAM/Van Gogh),
+  flouté). jsdom 10/10. Complétée dans la même branche : (a) 2 images de
+  musées (Memorial Museum + musée du Doudou) en mini-carrousel décoratif sur
+  la carte Musées ; (b) texte gratuité (5 musées communaux gratuits pour les
+  étudiants + 1er dimanche du mois gratuit pour tous — sources de Roy) ;
+  (c) **le Beffroi en CARTE VEDETTE** (.carte-vedette : photo portrait
+  ENTIÈRE à proportion naturelle à gauche, texte + eyebrow UNESCO à droite)
+  après un retour de Roy : le fond flouté ne vaut que si l'image remplit
+  ~70 % de la scène, sinon changer de mise en page. Les 3 autres cartes
+  culture en rangée col-lg-4. **Images encore manquantes : BAM/Van Gogh,
   Grand Large, portraits des bureaux (actuel + anciens), remplaçantes du
   carrousel mission (accueillir/intégrer/représenter).**
 
