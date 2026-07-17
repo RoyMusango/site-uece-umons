@@ -197,6 +197,20 @@ Le style peut changer, la logique et les identifiants NON :
   CLAUDE.md §4.4 : jamais d'image de contenu recadrée dans un carrousel,
   texte du visuel intégralement lisible ; cover réservé aux fonds
   décoratifs.** jsdom 9/9.
+- 🔒 **NOUVELLE RÈGLE DE TRAVAIL (Roy, 17/07/2026) : plus aucun push direct
+  en production.** Chaque push = un build Netlify = des crédits (plan à
+  300 crédits/cycle, 50 % consommés le 17/07 à cause des pushs multiples).
+  Processus : branche → validation par Roy sur http://localhost:8000
+  (`python -m http.server 8000` dans le repo) → merge + UN SEUL push après
+  validation explicite. (Rappel : GSAP marche sur localhost ; c'est file://
+  qui le bloque. Téléphone via IP LAN : non, pare-feu.)
+- ⏳ **Phase 6g (17/07/2026, committée sur `phase-6g-scene-commune`, PAS
+  poussée — en attente de validation Roy sur localhost)** : scène commune
+  pour le carrousel d'affiches — toutes les diapositives au même format
+  (ratio 4/5, cadre identique), affiche ENTIÈRE en object-fit:contain sur
+  fond = la même affiche floutée/assombrie (.affiche-fond, cover permis car
+  décoratif). Règle « même taille de scène » ajoutée à CLAUDE.md §4.4.
+  jsdom 7/7.
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 
