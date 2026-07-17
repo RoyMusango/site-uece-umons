@@ -183,6 +183,20 @@ Le style peut changer, la logique et les identifiants NON :
   high, 2e lazy. (3) js/association-carrousel.js généralisé en
   **js/carrousels.js** (initialise tout [data-carrousel-auto], reduced-motion
   → pas d'auto-défilement) — utilisé par index et association. jsdom 13/13.
+- ✅ **Phase 6f** (17/07/2026) : (1) CAUSE RACINE (n°3 !) du panneau derrière
+  les affiches enfin neutralisée : l'animation d'entrée `rise-in`
+  (fill-mode both) fige un transform sur .hero-cta → contexte d'empilement ;
+  un z-index sur les ENFANTS ne sert à rien, il faut le poser sur l'élément
+  animé lui-même → `.hero-cta { position:relative; z-index:1020 }`.
+  Historique complet du bug : ① z-index enfant ② trou 8 px ③ contexte de
+  l'animation. (2) Affiches ENTIÈRES dans le carrousel : elles ne sont pas
+  carrées (634×800, 553×798) — le conteneur carré les rognait depuis le
+  début → `.affiche-cadre` (cadre inline-block qui épouse l'image : bordure,
+  double filet, pénombre) + `.affiche-img` (height auto, max-height commune
+  560px → aucun saut entre diapositives). **Règle absolue inscrite dans
+  CLAUDE.md §4.4 : jamais d'image de contenu recadrée dans un carrousel,
+  texte du visuel intégralement lisible ; cover réservé aux fonds
+  décoratifs.** jsdom 9/9.
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 

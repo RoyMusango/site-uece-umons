@@ -991,6 +991,14 @@ html.motion-rich [data-magnet] {
     flex-wrap: wrap;
     justify-content: center;
     gap: 14px;
+    /* ⚠ L'animation d'entrée rise-in (fill-mode both) laisse un transform
+       appliqué en permanence : .hero-cta devient son propre contexte
+       d'empilement. Sans z-index ICI (sur l'élément animé lui-même), tout
+       z-index posé sur ses enfants reste enfermé dessous, et le panneau
+       « Découvrir l'UECE » passe derrière les affiches (bug 17/07/2026,
+       trois causes successives — voir CONTEXTE_REPRISE Phase 6f). */
+    position: relative;
+    z-index: 1020;              /* sous la navbar (1030), au-dessus du reste */
 }
 
 /* --- Séquence d'entrée des en-têtes (§4.4, T2.4) : eyebrow → titre →
@@ -1920,10 +1928,55 @@ html.motion-on [data-reveal].is-in {
     background-color: var(--gold-500);
 }
 
-/* --- Carrousel d'affiches du hero (index.html, Phase 6e) ---
+/* --- Carrousel d'affiches du hero (index.html, Phase 6e/6f) ---
    Fondu enchaîné (pas de glissement) pour pouvoir laisser déborder le halo
-   d'or et la pénombre des affiches ; puces or SOUS la légende, pas dessus. */
+   d'or et la pénombre des affiches ; puces or SOUS la légende, pas dessus.
+   RÈGLE (Roy, 17/07/2026, valable pour TOUS les carrousels de contenu) :
+   l'image n'est JAMAIS recadrée — le cadre épouse l'affiche entière, son
+   texte reste intégralement lisible. Les affiches ne sont pas carrées
+   (634×800 et 553×798) : pas de format imposé. */
 .carrousel-affiches .carousel-inner { overflow: visible; }
+
+.carrousel-affiches .carousel-item { text-align: center; }
+
+/* Cadre qui épouse l'image : bordure, double filet et pénombre suivent la
+   forme réelle de l'affiche. overflow:hidden ne rogne rien — l'image
+   ENTIÈRE est à l'intérieur, il ne fait qu'arrondir les coins. */
+.affiche-cadre {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+    border: 1px solid var(--line-gold);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow:
+        16px 16px 0 -1px rgba(212, 175, 55, .10),
+        0 18px 50px rgba(5, 15, 30, .45),
+        var(--shadow-1);
+}
+
+.affiche-cadre::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px solid rgba(212, 175, 55, .28);
+    border-radius: 3px;
+    background: linear-gradient(165deg, rgba(212, 175, 55, .10), transparent 45%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+/* Image entière : hauteur commune (pas de saut entre les diapositives),
+   largeur naturelle selon le format de chaque affiche. */
+.affiche-img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: min(72vh, 560px);
+}
+
+html.motion-rich .affiche-cadre { will-change: transform; }
 
 .carrousel-affiches .carousel-indicators {
     position: static;
