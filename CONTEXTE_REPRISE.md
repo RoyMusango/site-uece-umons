@@ -204,13 +204,24 @@ Le style peut changer, la logique et les identifiants NON :
   (`python -m http.server 8000` dans le repo) → merge + UN SEUL push après
   validation explicite. (Rappel : GSAP marche sur localhost ; c'est file://
   qui le bloque. Téléphone via IP LAN : non, pare-feu.)
-- ⏳ **Phase 6g (17/07/2026, committée sur `phase-6g-scene-commune`, PAS
-  poussée — en attente de validation Roy sur localhost)** : scène commune
-  pour le carrousel d'affiches — toutes les diapositives au même format
-  (ratio 4/5, cadre identique), affiche ENTIÈRE en object-fit:contain sur
-  fond = la même affiche floutée/assombrie (.affiche-fond, cover permis car
-  décoratif). Règle « même taille de scène » ajoutée à CLAUDE.md §4.4.
-  jsdom 7/7.
+- ✅ **Phase 6g** (17/07/2026, validée par Roy sur localhost puis mergée/
+  poussée e348669) : scène commune pour le carrousel d'affiches — toutes les
+  diapositives au même format (ratio 4/5, cadre identique), affiche ENTIÈRE
+  en object-fit:contain sur fond = la même affiche floutée/assombrie
+  (.affiche-fond, cover permis car décoratif). Règle « même taille de
+  scène » ajoutée à CLAUDE.md §4.4. jsdom 7/7.
+- ⏳ **Phase 6h (17/07/2026, branche `phase-6h-images-guide`, PAS poussée —
+  en attente de validation Roy sur localhost)** : intégration des 14 images
+  déposées par Roy (converties par ffmpeg en 400/800 px WebP+JPEG, noms
+  normalisés sans espaces/accents ; 3 sources illisibles par System.Drawing
+  → ffmpeg passe partout). guide.html : 6 bandeaux de cartes 3/2 (Doudou/
+  lumeçon, Beffroi [source 360px, un peu petite], Sainte-Waudru, Hôtel de
+  ville, Campus Nimy, Gare) + carrousel « Le Doudou en images » (5 photos :
+  braderie ×2, sound party ×2, fanfares) + carrousel des marchés (Dolez,
+  fleurs, Noël) — scène commune paysage .scene-photo (3/2, contain sur fond
+  flouté). jsdom 10/10. **Images encore manquantes : musées (BAM/Van Gogh),
+  Grand Large, portraits des bureaux (actuel + anciens), remplaçantes du
+  carrousel mission (accueillir/intégrer/représenter).**
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 

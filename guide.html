@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="js/motion-gate.js"></script>
     <script defer src="js/reveals.js"></script>
+    <!-- Carrousels photos (Doudou, marchés) : défilement auto, reduced-motion géré -->
+    <script defer src="js/carrousels.js"></script>
 </head>
 <body class="has-hero">
 
@@ -97,6 +99,10 @@
             <div class="row g-4">
                 <div class="col-md-6">
                     <div class="card card-lift h-100" data-reveal>
+                        <picture>
+                            <source type="image/webp" srcset="images/doudou-lumecon-400.webp 400w, images/doudou-lumecon-800.webp 738w" sizes="(max-width: 767px) 92vw, 420px">
+                            <img src="images/doudou-lumecon-800.jpg" srcset="images/doudou-lumecon-400.jpg 400w, images/doudou-lumecon-800.jpg 738w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
+                        </picture>
                         <div class="card-body p-4">
                             <h3 class="h4"><i class="fas fa-dragon me-2 text-gold"></i>Le Doudou (Ducasse de Mons)</h3>
                             <p class="mb-0">L'événement de l'année, inscrit au patrimoine de l'UNESCO&nbsp;: le week-end de la Trinité, toute la ville vibre au rythme de la procession du Car d'Or et du combat dit «&nbsp;Lumeçon&nbsp;» entre saint Georges et le dragon. Une expérience montoise à vivre au moins une fois.</p>
@@ -105,6 +111,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card card-lift h-100" data-reveal="0.1">
+                        <picture>
+                            <source type="image/webp" srcset="images/beffroi-400.webp 360w">
+                            <img src="images/beffroi-400.jpg" class="carte-bandeau" style="object-position: 50% 22%;" alt="" loading="lazy">
+                        </picture>
                         <div class="card-body p-4">
                             <h3 class="h4"><i class="fas fa-landmark me-2 text-gold"></i>Le Beffroi</h3>
                             <p class="mb-0">Unique beffroi baroque de Belgique, classé UNESCO, il veille sur la ville depuis son jardin perché. La montée vaut la récompense&nbsp;: le plus beau panorama sur Mons et ses environs.</p>
@@ -113,6 +123,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card card-lift h-100" data-reveal>
+                        <picture>
+                            <source type="image/webp" srcset="images/sainte-waudru-400.webp 400w, images/sainte-waudru-800.webp 800w" sizes="(max-width: 767px) 92vw, 420px">
+                            <img src="images/sainte-waudru-800.jpg" srcset="images/sainte-waudru-400.jpg 400w, images/sainte-waudru-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
+                        </picture>
                         <div class="card-body p-4">
                             <h3 class="h4"><i class="fas fa-church me-2 text-gold"></i>Grand-Place &amp; Sainte-Waudru</h3>
                             <p class="mb-0">La Grand-Place et son Hôtel de Ville gothique — n'oubliez pas de caresser <em>de la main gauche</em> la tête du petit singe du Grand-Garde, ça porte bonheur — puis la majestueuse collégiale Sainte-Waudru, écrin du Car d'Or.</p>
@@ -128,6 +142,72 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Carrousel Doudou : scène commune paysage, images ENTIÈRES
+                 sur fond flouté (règle CLAUDE.md §4.4) -->
+            <p class="eyebrow text-center mb-1 mt-5">Patrimoine vivant</p>
+            <h3 class="text-center mb-4">Le Doudou en images</h3>
+            <div id="carrouselDoudou" class="carousel slide carousel-fade carrousel-affiches" data-carrousel-auto data-reveal>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="affiche-cadre scene-photo">
+                            <img class="affiche-fond" src="images/doudou-braderie-1-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/doudou-braderie-1-400.webp 400w, images/doudou-braderie-1-800.webp 673w" sizes="(max-width: 991px) 92vw, 820px">
+                                <img src="images/doudou-braderie-1-800.jpg" srcset="images/doudou-braderie-1-400.jpg 400w, images/doudou-braderie-1-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="La braderie du Doudou dans les rues de Mons">
+                            </picture>
+                        </div>
+                        <p class="mt-2 mb-0 text-center text-soft"><small>La braderie du Doudou</small></p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="affiche-cadre scene-photo">
+                            <img class="affiche-fond" src="images/doudou-sound-party-1-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/doudou-sound-party-1-400.webp 400w, images/doudou-sound-party-1-800.webp 673w" sizes="(max-width: 991px) 92vw, 820px">
+                                <img src="images/doudou-sound-party-1-800.jpg" srcset="images/doudou-sound-party-1-400.jpg 400w, images/doudou-sound-party-1-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="La foule à la Doudou Sound Party">
+                            </picture>
+                        </div>
+                        <p class="mt-2 mb-0 text-center text-soft"><small>Doudou Sound Party</small></p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="affiche-cadre scene-photo">
+                            <img class="affiche-fond" src="images/doudou-fanfares-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/doudou-fanfares-400.webp 400w, images/doudou-fanfares-800.webp 673w" sizes="(max-width: 991px) 92vw, 820px">
+                                <img src="images/doudou-fanfares-800.jpg" srcset="images/doudou-fanfares-400.jpg 400w, images/doudou-fanfares-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Le festival des fanfares pendant la Ducasse">
+                            </picture>
+                        </div>
+                        <p class="mt-2 mb-0 text-center text-soft"><small>Le festival des fanfares</small></p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="affiche-cadre scene-photo">
+                            <img class="affiche-fond" src="images/doudou-braderie-2-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/doudou-braderie-2-400.webp 400w, images/doudou-braderie-2-800.webp 673w" sizes="(max-width: 991px) 92vw, 820px">
+                                <img src="images/doudou-braderie-2-800.jpg" srcset="images/doudou-braderie-2-400.jpg 400w, images/doudou-braderie-2-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Ambiance de la braderie du Doudou">
+                            </picture>
+                        </div>
+                        <p class="mt-2 mb-0 text-center text-soft"><small>La braderie du Doudou</small></p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="affiche-cadre scene-photo">
+                            <img class="affiche-fond" src="images/doudou-sound-party-2-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/doudou-sound-party-2-400.webp 400w, images/doudou-sound-party-2-800.webp 673w" sizes="(max-width: 991px) 92vw, 820px">
+                                <img src="images/doudou-sound-party-2-800.jpg" srcset="images/doudou-sound-party-2-400.jpg 400w, images/doudou-sound-party-2-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Scène de la Doudou Sound Party">
+                            </picture>
+                        </div>
+                        <p class="mt-2 mb-0 text-center text-soft"><small>Doudou Sound Party</small></p>
+                    </div>
+                </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carrouselDoudou" data-bs-slide-to="0" class="active" aria-current="true" aria-label="La braderie du Doudou"></button>
+                    <button type="button" data-bs-target="#carrouselDoudou" data-bs-slide-to="1" aria-label="Doudou Sound Party"></button>
+                    <button type="button" data-bs-target="#carrouselDoudou" data-bs-slide-to="2" aria-label="Le festival des fanfares"></button>
+                    <button type="button" data-bs-target="#carrouselDoudou" data-bs-slide-to="3" aria-label="La braderie du Doudou, suite"></button>
+                    <button type="button" data-bs-target="#carrouselDoudou" data-bs-slide-to="4" aria-label="Doudou Sound Party, suite"></button>
+                </div>
+            </div>
         </section>
 
         <div class="separator-mains" aria-hidden="true">
@@ -141,6 +221,10 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="card card-lift h-100" data-reveal>
+                        <picture>
+                            <source type="image/webp" srcset="images/hotel-de-ville-400.webp 400w, images/hotel-de-ville-800.webp 800w" sizes="(max-width: 767px) 92vw, 420px">
+                            <img src="images/hotel-de-ville-800.jpg" srcset="images/hotel-de-ville-400.jpg 400w, images/hotel-de-ville-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
+                        </picture>
                         <div class="card-body p-4">
                             <h3 class="h4"><i class="fas fa-city me-2 text-gold"></i>Administration</h3>
                             <p class="mb-0">L'Hôtel de Ville (Grand-Place) et le service Population / Étrangers de la Ville de Mons&nbsp;: c'est là que se font déclaration d'arrivée, inscription au registre et titres de séjour. Consultez la page <a href="annonces.html">Infos importantes</a> pour les démarches et délais.</p>
@@ -149,6 +233,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card card-lift h-100" data-reveal="0.1">
+                        <picture>
+                            <source type="image/webp" srcset="images/campus-nimy-400.webp 400w, images/campus-nimy-800.webp 800w" sizes="(max-width: 767px) 92vw, 420px">
+                            <img src="images/campus-nimy-800.jpg" srcset="images/campus-nimy-400.jpg 400w, images/campus-nimy-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
+                        </picture>
                         <div class="card-body p-4">
                             <h3 class="h4"><i class="fas fa-graduation-cap me-2 text-gold"></i>Campus UMONS</h3>
                             <p class="mb-0">Entre le campus de la Plaine de Nimy et les bâtiments du centre-ville, tout se fait à pied ou en bus. Bibliothèques, restaurants universitaires et services aux étudiants&nbsp;: le guide officiel de l'UMONS complète le nôtre.</p>
@@ -157,6 +245,10 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card card-lift h-100" data-reveal="0.2">
+                        <picture>
+                            <source type="image/webp" srcset="images/gare-mons-400.webp 400w, images/gare-mons-800.webp 800w" sizes="(max-width: 767px) 92vw, 420px">
+                            <img src="images/gare-mons-800.jpg" srcset="images/gare-mons-400.jpg 400w, images/gare-mons-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
+                        </picture>
                         <div class="card-body p-4">
                             <h3 class="h4"><i class="fas fa-water me-2 text-gold"></i>Se déplacer, respirer</h3>
                             <p class="mb-0">La gare de Mons et le réseau de bus TEC pour rayonner, et le Grand Large — le lac de Mons — pour courir, ramer ou simplement souffler entre deux blocus.</p>
@@ -174,6 +266,47 @@
         <section class="mb-5">
             <p class="eyebrow text-center mb-1">Bons plans du panier</p>
             <h2 class="text-center mb-4">Les marchés de la semaine</h2>
+
+            <div id="carrouselMarches" class="carousel slide carousel-fade carrousel-affiches mb-4" data-carrousel-auto data-reveal>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="affiche-cadre scene-photo">
+                            <img class="affiche-fond" src="images/marche-dolez-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/marche-dolez-400.webp 400w, images/marche-dolez-800.webp 800w" sizes="(max-width: 991px) 92vw, 820px">
+                                <img src="images/marche-dolez-800.jpg" srcset="images/marche-dolez-400.jpg 400w, images/marche-dolez-800.jpg 800w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Étals du marché du boulevard Dolez">
+                            </picture>
+                        </div>
+                        <p class="mt-2 mb-0 text-center text-soft"><small>Le marché du boulevard Dolez</small></p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="affiche-cadre scene-photo">
+                            <img class="affiche-fond" src="images/marche-fleurs-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/marche-fleurs-400.webp 400w, images/marche-fleurs-800.webp 800w" sizes="(max-width: 991px) 92vw, 820px">
+                                <img src="images/marche-fleurs-800.jpg" srcset="images/marche-fleurs-400.jpg 400w, images/marche-fleurs-800.jpg 800w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Le marché aux fleurs de Mons">
+                            </picture>
+                        </div>
+                        <p class="mt-2 mb-0 text-center text-soft"><small>Le marché aux fleurs</small></p>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="affiche-cadre scene-photo">
+                            <img class="affiche-fond" src="images/marche-noel-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/marche-noel-400.webp 400w, images/marche-noel-800.webp 800w" sizes="(max-width: 991px) 92vw, 820px">
+                                <img src="images/marche-noel-800.jpg" srcset="images/marche-noel-400.jpg 400w, images/marche-noel-800.jpg 800w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Chalets du marché de Noël sur la Grand-Place de Mons">
+                            </picture>
+                        </div>
+                        <p class="mt-2 mb-0 text-center text-soft"><small>Le marché de Noël</small></p>
+                    </div>
+                </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carrouselMarches" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Le marché du boulevard Dolez"></button>
+                    <button type="button" data-bs-target="#carrouselMarches" data-bs-slide-to="1" aria-label="Le marché aux fleurs"></button>
+                    <button type="button" data-bs-target="#carrouselMarches" data-bs-slide-to="2" aria-label="Le marché de Noël"></button>
+                </div>
+            </div>
+
             <div class="frame-double p-4 mx-auto" style="background: var(--surface); max-width: 760px;" data-reveal>
                 <div class="timeline">
                     <div class="timeline-item"><span class="timeline-time">Ven.</span> <strong>Marché du boulevard Dolez</strong> — produits frais et locaux, en matinée</div>

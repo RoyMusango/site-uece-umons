@@ -1997,6 +1997,37 @@ html.motion-on [data-reveal].is-in {
 
 html.motion-rich .affiche-cadre { will-change: transform; }
 
+/* Scène paysage (ratio 3/2) pour les carrousels de PHOTOS (guide :
+   Doudou, marchés) — même principe que .affiche-scene : image entière
+   en contain sur elle-même floutée, taille identique pour toutes les
+   diapositives d'un même carrousel. */
+.affiche-cadre.scene-photo {
+    display: block;
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    aspect-ratio: 3 / 2;
+}
+
+.scene-photo .affiche-img {
+    position: absolute;
+    inset: 14px;
+    width: calc(100% - 28px);
+    height: calc(100% - 28px);
+    object-fit: contain;
+}
+
+/* Bandeau photo en tête de carte (guide) : photo d'illustration
+   décorative — le recadrage cover y est permis (règle §4.4). */
+.carte-bandeau {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-bottom: 1px solid var(--line-gold);
+    border-radius: calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0;
+}
+
 .carrousel-affiches .carousel-indicators {
     position: static;
     margin: 12px auto 0;
