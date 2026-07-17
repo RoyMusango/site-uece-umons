@@ -14,6 +14,8 @@
     <script defer src="js/motion-gate.js"></script>
     <script defer src="js/reveals.js"></script>
     <script defer src="js/gala-cta.js"></script>
+    <!-- Phase 5 : injecte les contenus éditables de data/gala.json (CMS) -->
+    <script defer src="js/gala-data.js"></script>
 </head>
 <body class="has-hero page-gala">
 
@@ -29,7 +31,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">L'Association</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="standard.html">Historique</a></li></ul></li>
                     <li class="nav-item"><a class="nav-link" href="standard.html">Nos cercles membres</a></li>
-                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Infos</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="gala.html">Gala 2026</a></li><li><a class="dropdown-item" href="annonces.html">Infos importantes (HUE / UE)</a></li></ul></li>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Infos</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="gala.html">Gala 2026</a></li><li><a class="dropdown-item" href="annonces.html">Infos importantes (HUE / UE)</a></li><li><a class="dropdown-item" href="guide.html">Guide de l'étudiant</a></li></ul></li>
                     <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Espace Membre</a><ul class="dropdown-menu"><li><a class="dropdown-item" href="standard.html">Connexion</a></li></ul></li>
                 </ul>
                 <div class="d-flex align-items-center">
@@ -42,10 +44,10 @@
 
     <div class="header-gala text-center" data-glow>
         <div class="container">
-            <p class="eyebrow">L'UECE présente</p>
-            <h1 class="display-4 fw-bold">Gala de Prestige UECE 2026</h1>
+            <p class="eyebrow" data-edit="hero.eyebrow">L'UECE présente</p>
+            <h1 class="display-4 fw-bold" data-edit="hero.titre">Gala de Prestige UECE 2026</h1>
             <hr class="divider-gold">
-            <p class="lead">L'événement de l'année pour célébrer notre diversité culturelle</p>
+            <p class="lead" data-edit="hero.sousTitre">L'événement de l'année pour célébrer notre diversité culturelle</p>
         </div>
     </div>
 
@@ -56,18 +58,18 @@
             <div class="col-lg-8 col-md-7">
                 <div class="soiree-exception-container shadow-sm" data-reveal>
                     <div class="soiree-exception-content">
-                        <h2 class="mb-4">Une soirée d'exception</h2>
-                        <p class="lead">Rejoignez-nous pour une nuit mémorable où les cultures du monde entier se rencontrent dans l'élégance et la convivialité.</p>
-                        <p>Le Gala annuel de l'UECE est bien plus qu'une simple soirée. C'est un moment de partage, de découverte et de célébration de la richesse de notre communauté internationale.</p>
-                        <p>Cette année, nous vous préparons un programme exceptionnel&nbsp;:</p>
-                        <div class="timeline mt-3">
+                        <h2 class="mb-4" data-edit="intro.titre">Une soirée d'exception</h2>
+                        <p class="lead" data-edit="intro.accroche">Rejoignez-nous pour une nuit mémorable où les cultures du monde entier se rencontrent dans l'élégance et la convivialité.</p>
+                        <p data-edit="intro.paragraphe">Le Gala annuel de l'UECE est bien plus qu'une simple soirée. C'est un moment de partage, de découverte et de célébration de la richesse de notre communauté internationale.</p>
+                        <p data-edit="intro.annonceProgramme">Cette année, nous vous préparons un programme exceptionnel&nbsp;:</p>
+                        <div class="timeline mt-3" data-edit-programme>
                             <div class="timeline-item"><span class="timeline-time">18h30</span> <strong>Ouverture des portes</strong> — accueil en musique</div>
                             <div class="timeline-item"><span class="timeline-time">19h30</span> <strong>Dîner gastronomique</strong> aux saveurs internationales</div>
                             <div class="timeline-item"><span class="timeline-time">21h30</span> <strong>Spectacles culturels</strong> par nos étudiants</div>
                             <div class="timeline-item"><span class="timeline-time">22h30</span> <strong>Tombola</strong> avec des lots prestigieux</div>
                             <div class="timeline-item"><span class="timeline-time">23h00</span> <strong>DJ international</strong> et piste de danse jusqu'au bout de la nuit</div>
                         </div>
-                        <p class="text-soft small mt-3 mb-0"><i class="fas fa-camera me-1 text-gold"></i>Photographe professionnel toute la soirée — <em>horaires indicatifs, à confirmer par le comité</em>.</p>
+                        <p class="text-soft small mt-3 mb-0"><i class="fas fa-camera me-1 text-gold"></i><span data-edit="intro.note">Photographe professionnel toute la soirée — <em>horaires indicatifs, à confirmer par le comité</em>.</span></p>
                     </div>
                 </div>
             </div>
@@ -82,7 +84,7 @@
                         <i class="fas fa-calendar-alt"></i>
                         <div class="info-content">
                             <div class="info-label">Date</div>
-                            <div class="info-desc">Samedi 15 Mai 2026</div>
+                            <div class="info-desc" data-edit="enBref.date">Samedi 15 Mai 2026</div>
                         </div>
                     </div>
                     
@@ -91,7 +93,7 @@
                         <i class="fas fa-clock"></i>
                         <div class="info-content">
                             <div class="info-label">Heure</div>
-                            <div class="info-desc">19h00 - 03h00</div>
+                            <div class="info-desc" data-edit="enBref.heure">19h00 - 03h00</div>
                         </div>
                     </div>
                     
@@ -100,7 +102,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="info-content">
                             <div class="info-label">Lieu</div>
-                            <div class="info-desc">Salle des Congrès<br>Grand-Place 22, 7000 Mons</div>
+                            <div class="info-desc" data-edit-lines="enBref.lieu">Salle des Congrès<br>Grand-Place 22, 7000 Mons</div>
                         </div>
                     </div>
                     
@@ -109,7 +111,7 @@
                         <i class="fas fa-tshirt"></i>
                         <div class="info-content">
                             <div class="info-label">Dress code</div>
-                            <div class="info-desc">Tenue de soirée<br><small class="text-muted">(Noir & Or)</small></div>
+                            <div class="info-desc"><span data-edit="enBref.dressCode">Tenue de soirée</span><br><small class="text-muted" data-edit="enBref.dressCodeDetail">(Noir & Or)</small></div>
                         </div>
                     </div>
                     
@@ -117,7 +119,7 @@
                     <div class="info-note-container">
                         <div class="info-note">
                             <i class="fas fa-info-circle"></i>
-                            <span>Ouverture des portes à 18h30</span>
+                            <span data-edit="enBref.notePortes">Ouverture des portes à 18h30</span>
                         </div>
                     </div>
                 </div>
@@ -136,22 +138,22 @@
                         <div class="col-md-4 mb-3">
                             <div class="text-center p-3">
                                 <i class="fas fa-ticket-alt fa-2x mb-2 text-gold"></i>
-                                <h4 class="h5">Billetterie</h4>
-                                <p>Réservation obligatoire<br>Places limitées</p>
+                                <h4 class="h5" data-edit="infos.bloc1.titre">Billetterie</h4>
+                                <p data-edit-lines="infos.bloc1.texte">Réservation obligatoire<br>Places limitées</p>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="text-center p-3">
                                 <i class="fas fa-utensils fa-2x mb-2 text-gold"></i>
-                                <h4 class="h5">Restauration</h4>
-                                <p>Buffet international<br>Options végétariennes</p>
+                                <h4 class="h5" data-edit="infos.bloc2.titre">Restauration</h4>
+                                <p data-edit-lines="infos.bloc2.texte">Buffet international<br>Options végétariennes</p>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="text-center p-3">
                                 <i class="fas fa-car fa-2x mb-2 text-gold"></i>
-                                <h4 class="h5">Transport</h4>
-                                <p>Possibilité de covoiturage<br>Parking à proximité<br>Arrêt bus à 200m</p>
+                                <h4 class="h5" data-edit="infos.bloc3.titre">Transport</h4>
+                                <p data-edit-lines="infos.bloc3.texte">Possibilité de covoiturage<br>Parking à proximité<br>Arrêt bus à 200m</p>
                             </div>
                         </div>
                     </div>
@@ -197,8 +199,8 @@
                         <div class="ticket-card active" id="card-standard" onclick="selectTicket('standard')">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <strong>Ticket Standard</strong><br>
-                                    <small class="text-muted">Accès soirée + Repas gastronomique</small>
+                                    <strong data-edit="billets.standardNom">Ticket Standard</strong><br>
+                                    <small class="text-muted" data-edit="billets.standardDescription">Accès soirée + Repas gastronomique</small>
                                 </div>
                                 <div class="text-end">
                                     <span class="h4 mb-0 d-block ticket-price-standard">15.00 €</span>
@@ -210,8 +212,8 @@
                         <div class="ticket-card ticket-vip" id="card-vip" onclick="selectTicket('vip')">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div>
-                                    <strong class="ticket-price-vip">Ticket VIP</strong><br>
-                                    <small class="text-muted">Accès prioritaire + Boissons incluses + Vestiaire</small>
+                                    <strong class="ticket-price-vip" data-edit="billets.vipNom">Ticket VIP</strong><br>
+                                    <small class="text-muted" data-edit="billets.vipDescription">Accès prioritaire + Boissons incluses + Vestiaire</small>
                                 </div>
                                 <div class="text-end">
                                     <span class="h4 mb-0 d-block ticket-price-vip">25.00 €</span>
@@ -261,7 +263,7 @@
         <div class="separator-mains" aria-hidden="true">
             <img src="images/motif-mains.svg" alt="" width="44" height="44">
         </div>
-        <section class="faq mb-4" data-reveal>
+        <section class="faq mb-4" data-reveal data-edit-faq>
             <h2 class="h3 text-center mb-4">Questions fréquentes</h2>
             <details>
                 <summary>Comment vais-je recevoir mon billet&nbsp;?</summary>
