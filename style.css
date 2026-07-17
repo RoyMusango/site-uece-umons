@@ -695,7 +695,13 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
 /* --- Panneau déroulant du hero (index.html, « Découvrir l'UECE ») ---
    Ouverture au clic (Bootstrap, positionnement statique) + au survol sur
    desktop. Centré sous le bouton, même langage visuel que les menus nav. */
-.dropdown-hero { position: relative; display: inline-block; }
+.dropdown-hero {
+    position: relative;
+    display: inline-block;
+    /* passe DEVANT les affiches du hero (elles créent leur propre contexte
+       d'empilement et arrivent après dans le DOM) */
+    z-index: 100;
+}
 
 .dropdown-hero .dropdown-menu {
     left: 50%;
@@ -1534,6 +1540,37 @@ footer .border-top { border-color: var(--line-gold) !important; }
 .faq details > p {
     padding: 0 18px 16px;
     margin: 0;
+}
+
+/* --- Page Événements : accordéon des rendez-vous (Phase 6d) ---
+   Réutilise l'habillage .faq ; ajoute le sous-titre de date dans le titre
+   et le bloc de détails (jour / heure / lieu + description + bouton). */
+.evenements summary {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+}
+
+.evt-quand {
+    color: var(--gold-700);
+    font-size: .78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+}
+
+.evenements .evt-corps { padding: 0 18px 16px; }
+
+.evenements .evt-corps p { margin: 0 0 .7rem; }
+
+.evt-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    color: var(--muted);
+    font-size: .9rem;
 }
 
 /* --- Récap prix + CTA sticky mobile (Phase 3) --- */
