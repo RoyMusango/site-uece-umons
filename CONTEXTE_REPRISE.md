@@ -160,6 +160,17 @@ Le style peut changer, la logique et les identifiants NON :
   (Roy collecte, Annexe 7).** Rappel donné : les effets curseur/GSAP ne
   fonctionnent pas en ouvrant les .html en file:// (import() CDN bloqué) —
   tester sur uece-umons.netlify.app.
+- ✅ **Phase 6d** (17/07/2026) : (1) BUG CORRIGÉ — le panneau « Découvrir
+  l'UECE » du hero passait DERRIÈRE les affiches (contexte d'empilement :
+  .poster-col/.image-square-container en position:relative arrivent après
+  dans le DOM) → .dropdown-hero { z-index: 100 }. (2) Nouvelle page
+  `evenements.html` : accordéon dépliable (habillage .faq réutilisé) — titre
+  + date dans l'en-tête dépliable, détail jour/heure/lieu (icônes or),
+  description, bouton optionnel ; 1er événement déplié d'office ; 3 exemples
+  À VALIDER (Gala réel + réseautage + soirée jeux) ; éditable via
+  data/evenements.json + js/evenements-data.js, collection CMS ajoutée ;
+  entrée « Événements » dans le panneau Infos des 8 pages (6 entrées, 3×2).
+  Vérifié jsdom 16/16.
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 

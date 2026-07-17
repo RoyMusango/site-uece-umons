@@ -42,7 +42,10 @@ Ce que l'administration permet de changer :
   « En bref » (date, heure, lieu, dress code), les 3 blocs d'informations,
   les textes des billets, la FAQ du gala.
 - **Page FAQ** : toutes les questions/réponses générales.
-- **Page Association** : l'historique des bureaux (périodes, rôles, noms).
+- **Page Association** : conditions d'adhésion, bureau actuel et historique
+  des bureaux (périodes, rôles, noms, photos, mini-bios).
+- **Page Événements** : la liste des rendez-vous (titre, jour, heure, lieu,
+  description, bouton optionnel).
 
 **Ce qu'elle ne permet PAS de changer — c'est volontaire :**
 - **Les prix des billets** → voir §5, procédure spéciale.
