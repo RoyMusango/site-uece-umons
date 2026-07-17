@@ -2028,6 +2028,26 @@ html.motion-rich .affiche-cadre { will-change: transform; }
     border-radius: calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0;
 }
 
+/* Bandeau-scène : pour les photos qu'un recadrage mutilerait (monuments
+   verticaux type beffroi, musées) — la photo ENTIÈRE en contain sur
+   elle-même floutée, même format 3/2 que les autres bandeaux. */
+.carte-bandeau-scene {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--navy-900);
+    border-bottom: 1px solid var(--line-gold);
+    border-radius: calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0;
+}
+
+.carte-bandeau-scene .bandeau-img {
+    position: absolute;
+    inset: 8px;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    object-fit: contain;         /* image ENTIÈRE, jamais recadrée */
+}
+
 .carrousel-affiches .carousel-indicators {
     position: static;
     margin: 12px auto 0;

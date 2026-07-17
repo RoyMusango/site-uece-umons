@@ -111,10 +111,15 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card card-lift h-100" data-reveal="0.1">
-                        <picture>
-                            <source type="image/webp" srcset="images/beffroi-400.webp 360w">
-                            <img src="images/beffroi-400.jpg" class="carte-bandeau" style="object-position: 50% 22%;" alt="" loading="lazy">
-                        </picture>
+                        <!-- Beffroi vertical : bandeau-scène, la tour ENTIÈRE
+                             sur fond flouté (plus aucun rognage) -->
+                        <div class="carte-bandeau-scene">
+                            <img class="affiche-fond" src="images/beffroi-400.webp" alt="" aria-hidden="true" loading="lazy">
+                            <picture>
+                                <source type="image/webp" srcset="images/beffroi-400.webp 360w">
+                                <img src="images/beffroi-400.jpg" class="bandeau-img" alt="" loading="lazy">
+                            </picture>
+                        </div>
                         <div class="card-body p-4">
                             <h3 class="h4"><i class="fas fa-landmark me-2 text-gold"></i>Le Beffroi</h3>
                             <p class="mb-0">Unique beffroi baroque de Belgique, classé UNESCO, il veille sur la ville depuis son jardin perché. La montée vaut la récompense&nbsp;: le plus beau panorama sur Mons et ses environs.</p>
@@ -135,9 +140,33 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card card-lift h-100" data-reveal="0.1">
+                        <!-- Mini-carrousel des musées (décoratif) : images
+                             entières en bandeau-scène, fondu auto -->
+                        <div id="carrouselMusees" class="carousel slide carousel-fade" data-carrousel-auto aria-hidden="true">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="carte-bandeau-scene">
+                                        <img class="affiche-fond" src="images/musee-memorial-400.webp" alt="" loading="lazy">
+                                        <picture>
+                                            <source type="image/webp" srcset="images/musee-memorial-400.webp 400w, images/musee-memorial-800.webp 515w" sizes="(max-width: 767px) 92vw, 420px">
+                                            <img src="images/musee-memorial-800.jpg" srcset="images/musee-memorial-400.jpg 400w, images/musee-memorial-800.jpg 515w" sizes="(max-width: 767px) 92vw, 420px" class="bandeau-img" alt="" loading="lazy">
+                                        </picture>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="carte-bandeau-scene">
+                                        <img class="affiche-fond" src="images/musee-doudou-400.webp" alt="" loading="lazy">
+                                        <picture>
+                                            <source type="image/webp" srcset="images/musee-doudou-400.webp 400w, images/musee-doudou-800.webp 800w" sizes="(max-width: 767px) 92vw, 420px">
+                                            <img src="images/musee-doudou-800.jpg" srcset="images/musee-doudou-400.jpg 400w, images/musee-doudou-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="bandeau-img" alt="" loading="lazy">
+                                        </picture>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body p-4">
                             <h3 class="h4"><i class="fas fa-palette me-2 text-gold"></i>Musées &amp; art</h3>
-                            <p class="mb-0">Le BAM (Beaux-Arts), le Mons Memorial Museum pour l'histoire, et la petite maison de Cuesmes où vécut Vincent Van Gogh pendant sa période boraine. Tarifs étudiants avantageux dans la plupart des musées.</p>
+                            <p class="mb-0">Le BAM (Beaux-Arts), la maison Van Gogh à Cuesmes, et les musées du Pôle muséal&nbsp;: Silex's, Artothèque, Mons Memorial Museum, musée du Doudou et Beffroi. <strong>Bon plan&nbsp;:</strong> ces cinq derniers sont <strong>gratuits pour les étudiants</strong>, et tous les musées communaux sont <strong>gratuits pour tout le monde le premier dimanche du mois</strong>.</p>
                         </div>
                     </div>
                 </div>
