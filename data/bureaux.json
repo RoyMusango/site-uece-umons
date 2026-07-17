@@ -8,7 +8,7 @@
     ]
   },
   "bureauActuel": {
-    "periode": "2025 – 2026",
+    "periode": "2026 – 2027",
     "membres": [
       { "role": "Présidence", "nom": "À compléter", "photo": "", "description": "" },
       { "role": "Vice-présidence", "nom": "À compléter", "photo": "", "description": "" },
@@ -18,11 +18,13 @@
   },
   "bureaux": [
     {
-      "periode": "2024 – 2025",
+      "periode": "2025 – 2026",
       "nom": "",
       "membres": [
         { "role": "Présidence", "nom": "À compléter", "photo": "", "description": "" },
-        { "role": "Trésorerie", "nom": "À compléter", "photo": "", "description": "" }
+        { "role": "Vice-présidence", "nom": "À compléter", "photo": "", "description": "" },
+        { "role": "Trésorerie", "nom": "À compléter", "photo": "", "description": "" },
+        { "role": "Secrétariat", "nom": "À compléter", "photo": "", "description": "" }
       ]
     }
   ]
