@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "eyebrow": "L'UECE présente",
+    "titre": "Gala de Prestige UECE 2026",
+    "sousTitre": "L'événement de l'année pour célébrer notre diversité culturelle"
+  },
+  "intro": {
+    "titre": "Une soirée d'exception",
+    "accroche": "Rejoignez-nous pour une nuit mémorable où les cultures du monde entier se rencontrent dans l'élégance et la convivialité.",
+    "paragraphe": "Le Gala annuel de l'UECE est bien plus qu'une simple soirée. C'est un moment de partage, de découverte et de célébration de la richesse de notre communauté internationale.",
+    "annonceProgramme": "Cette année, nous vous préparons un programme exceptionnel :",
+    "note": "Photographe professionnel toute la soirée — horaires indicatifs, à confirmer par le comité."
+  },
+  "programme": [
+    { "heure": "18h30", "titre": "Ouverture des portes", "detail": "— accueil en musique" },
+    { "heure": "19h30", "titre": "Dîner gastronomique", "detail": "aux saveurs internationales" },
+    { "heure": "21h30", "titre": "Spectacles culturels", "detail": "par nos étudiants" },
+    { "heure": "22h30", "titre": "Tombola", "detail": "avec des lots prestigieux" },
+    { "heure": "23h00", "titre": "DJ international", "detail": "et piste de danse jusqu'au bout de la nuit" }
+  ],
+  "enBref": {
+    "date": "Samedi 15 Mai 2026",
+    "heure": "19h00 - 03h00",
+    "lieu": "Salle des Congrès\nGrand-Place 22, 7000 Mons",
+    "dressCode": "Tenue de soirée",
+    "dressCodeDetail": "(Noir & Or)",
+    "notePortes": "Ouverture des portes à 18h30"
+  },
+  "infos": {
+    "bloc1": { "titre": "Billetterie", "texte": "Réservation obligatoire\nPlaces limitées" },
+    "bloc2": { "titre": "Restauration", "texte": "Buffet international\nOptions végétariennes" },
+    "bloc3": { "titre": "Transport", "texte": "Possibilité de covoiturage\nParking à proximité\nArrêt bus à 200m" }
+  },
+  "billets": {
+    "standardNom": "Ticket Standard",
+    "standardDescription": "Accès soirée + Repas gastronomique",
+    "vipNom": "Ticket VIP",
+    "vipDescription": "Accès prioritaire + Boissons incluses + Vestiaire"
+  },
+  "faq": [
+    {
+      "question": "Comment vais-je recevoir mon billet ?",
+      "reponse": "Deux fois plutôt qu'une : un e-mail de confirmation avec votre QR code d'entrée vous est envoyé automatiquement après paiement, et vous pouvez télécharger votre billet PDF directement sur la page de confirmation. L'un ou l'autre fait foi à l'entrée."
+    },
+    {
+      "question": "Puis-je payer sans compte PayPal ?",
+      "reponse": "Oui. Choisissez « Carte de débit ou crédit » parmi les boutons de paiement : aucun compte PayPal n'est nécessaire."
+    },
+    {
+      "question": "Le billet est-il remboursable ?",
+      "reponse": "Les billets ne sont ni remboursables ni échangeables, sauf en cas d'annulation de l'événement. En cas d'empêchement, contactez-nous à UECE.UMONS@umons.ac.be — nous ferons de notre mieux."
+    },
+    {
+      "question": "Quel est le dress code ?",
+      "reponse": "Tenue de soirée, thème Noir & Or. Costume, robe de soirée, tenues traditionnelles élégantes : faites-vous beaux et belles, un photographe professionnel sera là toute la soirée."
+    },
+    {
+      "question": "Faut-il être étudiant de l'UMONS pour venir ?",
+      "reponse": "Non, le Gala est ouvert à toutes et tous dans la limite des places disponibles. Les étudiants et chercheurs internationaux de l'UMONS restent nos invités d'honneur."
+    }
+  ]
+}
