@@ -146,6 +146,20 @@ Le style peut changer, la logique et les identifiants NON :
   UMONS, marchés…) + règles de droits ; recommandation actée : max 1 carrousel
   par page, images fixes en bandeau pour les grilles de cartes.** L'image
   Ducasse évoquée par Roy n'est PAS dans images/ (à réclamer).
+- ✅ **Phase 6c** (17/07/2026) : (1) hero accueil — les 2 boutons (Gala /
+  Infos HUE-UE) remplacés par le panneau déroulant « Découvrir l'UECE »
+  (4 entrées vers association/FAQ + bouton « Plus d'informations » ; survol
+  desktop + clic partout, data-bs-display=static ; l'accès Gala reste via la
+  carte « Prochain événement » et la nav — décision de conversion assumée et
+  signalée à Roy). (2) Favicon logo UECE généré (32/192/180 px PNG depuis
+  logo-uece.png 499², System.Drawing) et référencé sur les 8 pages.
+  (3) Mandats corrigés : bureau actuel = 2026 – 2027, l'historique commence à
+  2025 – 2026. Vérifié jsdom 19/19. **Stripe REPORTÉ : pas encore de compte
+  bancaire UECE (prérequis IBAN) — conseil donné : lancer l'ouverture du
+  compte en parallèle, c'est le chemin critique. Prochain chantier : images
+  (Roy collecte, Annexe 7).** Rappel donné : les effets curseur/GSAP ne
+  fonctionnent pas en ouvrant les .html en file:// (import() CDN bloqué) —
+  tester sur uece-umons.netlify.app.
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 
