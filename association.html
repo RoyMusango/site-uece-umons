@@ -15,6 +15,8 @@
     <script defer src="js/reveals.js"></script>
     <!-- Injecte l'historique des bureaux depuis data/bureaux.json (CMS) -->
     <script defer src="js/bureaux-data.js"></script>
+    <!-- Carrousel de la mission (défilement auto, respecte reduced-motion) -->
+    <script defer src="js/association-carrousel.js"></script>
 </head>
 <body class="has-hero">
 
@@ -88,45 +90,123 @@
              data/bureaux.json, injecté par js/bureaux-data.js.
              ================================================================ -->
 
-        <!-- Mission -->
+        <!-- Mission : carrousel visuel (défilement auto 6 s, pause au survol,
+             pas de défilement auto en reduced-motion — js/association-carrousel.js) -->
         <section class="mb-5 mt-4">
             <p class="eyebrow text-center mb-1">Notre raison d'être</p>
             <h2 class="text-center mb-4">Accueillir, Intégrer, Représenter</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card card-lift h-100" data-reveal>
-                        <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-hands-helping me-2 text-gold"></i>Accueillir</h3>
-                            <p class="mb-0">Événements d'intégration, premiers repères à Mons, conseils entre étudiants&nbsp;: nous facilitons l'arrivée des étudiants et chercheurs internationaux, dès les premiers jours.</p>
+
+            <div id="carrouselMission" class="carousel slide carrousel-mission" data-reveal>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carrouselMission" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Accueillir"></button>
+                    <button type="button" data-bs-target="#carrouselMission" data-bs-slide-to="1" aria-label="Intégrer"></button>
+                    <button type="button" data-bs-target="#carrouselMission" data-bs-slide-to="2" aria-label="Représenter"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <picture>
+                            <source type="image/webp" srcset="images/activites-400.webp 400w, images/activites-800.webp 800w" sizes="(max-width: 767px) 100vw, 1100px">
+                            <img src="images/activites-800.jpg" srcset="images/activites-400.jpg 400w, images/activites-800.jpg 800w" sizes="(max-width: 767px) 100vw, 1100px" class="carrousel-img" alt="">
+                        </picture>
+                        <div class="carrousel-voile" aria-hidden="true"></div>
+                        <div class="carrousel-texte">
+                            <h3><i class="fas fa-hands-helping me-2 text-gold"></i>Accueillir</h3>
+                            <p>Événements d'intégration, premiers repères à Mons, conseils entre étudiants&nbsp;: nous facilitons l'arrivée des étudiants et chercheurs internationaux, dès les premiers jours.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <picture>
+                            <source type="image/webp" srcset="images/evenements-400.webp 400w, images/evenements-800.webp 800w" sizes="(max-width: 767px) 100vw, 1100px">
+                            <img src="images/evenements-800.jpg" srcset="images/evenements-400.jpg 400w, images/evenements-800.jpg 800w" sizes="(max-width: 767px) 100vw, 1100px" class="carrousel-img" alt="" loading="lazy">
+                        </picture>
+                        <div class="carrousel-voile" aria-hidden="true"></div>
+                        <div class="carrousel-texte">
+                            <h3><i class="fas fa-users me-2 text-gold"></i>Intégrer</h3>
+                            <p>Rencontres interculturelles, soirées, entraide académique et bons plans du quotidien&nbsp;: nous créons des liens entre les communautés — et avec les étudiants belges.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carrousel-fond-motif" aria-hidden="true"></div>
+                        <div class="carrousel-texte">
+                            <h3><i class="fas fa-bullhorn me-2 text-gold"></i>Représenter</h3>
+                            <p>Nous portons la voix des étudiants internationaux auprès de l'UMONS et de ses partenaires, et nous relayons leurs préoccupations là où les décisions se prennent.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card card-lift h-100" data-reveal="0.1">
-                        <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-users me-2 text-gold"></i>Intégrer</h3>
-                            <p class="mb-0">Rencontres interculturelles, soirées, entraide académique et bons plans du quotidien&nbsp;: nous créons des liens entre les communautés — et avec les étudiants belges.</p>
-                        </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrouselMission" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carrouselMission" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+
+            <!-- Sans JavaScript, seul le premier panneau du carrousel est
+                 visible : on redonne les deux autres textes ici. -->
+            <noscript>
+                <div class="mt-4">
+                    <p><strong>Intégrer.</strong> Rencontres interculturelles, soirées, entraide académique et bons plans du quotidien&nbsp;: nous créons des liens entre les communautés — et avec les étudiants belges.</p>
+                    <p><strong>Représenter.</strong> Nous portons la voix des étudiants internationaux auprès de l'UMONS et de ses partenaires, et nous relayons leurs préoccupations là où les décisions se prennent.</p>
+                </div>
+            </noscript>
+        </section>
+
+        <!-- Devenir membre : conditions d'adhésion À VALIDER par le comité
+             (éditables via l'administration : data/bureaux.json → adhesion) -->
+        <div class="frame-double p-4 mx-auto mb-5" style="background: var(--surface); max-width: 760px;" data-reveal>
+            <p class="eyebrow mb-2">Rejoindre l'UECE</p>
+            <h2 class="h3 mb-3">Devenir membre</h2>
+            <ul class="liste-conditions text-start mx-auto mb-3" data-edit-conditions>
+                <li>Être étudiant·e ou chercheur·euse, à l'UMONS ou dans un établissement d'enseignement supérieur montois (à valider par le comité)</li>
+                <li>Payer la cotisation annuelle (montant à compléter par le comité)</li>
+                <li>Adhérer aux valeurs de l'association&nbsp;: respect, ouverture et entraide entre les cultures</li>
+            </ul>
+            <p class="mb-3">Écrivez-nous pour plus d'informations&nbsp;: le comité vous guidera pour la suite.</p>
+            <a href="mailto:UECE.UMONS@umons.ac.be" class="btn btn-gold"><i class="fas fa-envelope me-2"></i>UECE.UMONS@umons.ac.be</a>
+        </div>
+
+        <div class="separator-mains" aria-hidden="true">
+            <img src="images/motif-mains.svg" alt="" width="44" height="44">
+        </div>
+
+        <!-- Bureau actuel (photos + mini-bios éditables via l'administration) -->
+        <section id="bureau-actuel" class="mb-5">
+            <p class="eyebrow text-center mb-1">Qui fait vivre l'UECE</p>
+            <h2 class="text-center mb-1">Le bureau actuel</h2>
+            <p class="text-center text-soft mb-4" data-edit-periode-actuel>Mandat 2025 – 2026</p>
+            <div class="row g-4 justify-content-center" data-edit-bureau-actuel>
+                <div class="col-6 col-lg-3">
+                    <div class="card card-lift membre-carte h-100 text-center p-4">
+                        <div class="membre-avatar membre-avatar-initiales membre-avatar-grand" aria-hidden="true">ÀC</div>
+                        <h3 class="h6 mb-1 mt-3">À compléter</h3>
+                        <p class="membre-role mb-2">Présidence</p>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card card-lift h-100" data-reveal="0.2">
-                        <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-bullhorn me-2 text-gold"></i>Représenter</h3>
-                            <p class="mb-0">Nous portons la voix des étudiants internationaux auprès de l'UMONS et de ses partenaires, et nous relayons leurs préoccupations là où les décisions se prennent.</p>
-                        </div>
+                <div class="col-6 col-lg-3">
+                    <div class="card card-lift membre-carte h-100 text-center p-4">
+                        <div class="membre-avatar membre-avatar-initiales membre-avatar-grand" aria-hidden="true">ÀC</div>
+                        <h3 class="h6 mb-1 mt-3">À compléter</h3>
+                        <p class="membre-role mb-2">Vice-présidence</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="card card-lift membre-carte h-100 text-center p-4">
+                        <div class="membre-avatar membre-avatar-initiales membre-avatar-grand" aria-hidden="true">ÀC</div>
+                        <h3 class="h6 mb-1 mt-3">À compléter</h3>
+                        <p class="membre-role mb-2">Trésorerie</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="card card-lift membre-carte h-100 text-center p-4">
+                        <div class="membre-avatar membre-avatar-initiales membre-avatar-grand" aria-hidden="true">ÀC</div>
+                        <h3 class="h6 mb-1 mt-3">À compléter</h3>
+                        <p class="membre-role mb-2">Secrétariat</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Devenir membre -->
-        <div class="frame-double p-4 mx-auto mb-5" style="background: var(--surface); max-width: 760px;" data-reveal>
-            <p class="eyebrow mb-2">Envie de faire partie de l'aventure&nbsp;?</p>
-            <h2 class="h3 mb-2">Devenez membre</h2>
-            <p class="mb-3">Étudiant international, chercheur, ou simplement curieux des autres cultures&nbsp;: l'UECE est ouverte à toutes et tous. Écrivez-nous, le comité vous expliquera les modalités d'adhésion.</p>
-            <a href="mailto:UECE.UMONS@umons.ac.be" class="btn btn-gold"><i class="fas fa-envelope me-2"></i>UECE.UMONS@umons.ac.be</a>
-        </div>
 
         <div class="separator-mains" aria-hidden="true">
             <img src="images/motif-mains.svg" alt="" width="44" height="44">
@@ -140,17 +220,27 @@
 
             <div class="row g-4 justify-content-center" data-edit-bureaux>
                 <!-- Contenu par défaut, remplacé par data/bureaux.json.
-                     Les noms sont à compléter par le comité via l'administration. -->
+                     Les noms, photos et mini-bios sont à compléter par le
+                     comité via l'administration. -->
                 <div class="col-md-6">
                     <article class="card card-lift h-100">
                         <div class="card-body p-4">
-                            <h3 class="h4 mb-1">2025 – 2026</h3>
-                            <p class="eyebrow mb-3">Bureau en exercice</p>
+                            <h3 class="h4 mb-1">2024 – 2025</h3>
                             <ul class="list-unstyled mb-0">
-                                <li class="bureau-membre"><span class="bureau-role">Présidence</span><span class="bureau-nom">À compléter</span></li>
-                                <li class="bureau-membre"><span class="bureau-role">Vice-présidence</span><span class="bureau-nom">À compléter</span></li>
-                                <li class="bureau-membre"><span class="bureau-role">Trésorerie</span><span class="bureau-nom">À compléter</span></li>
-                                <li class="bureau-membre"><span class="bureau-role">Secrétariat</span><span class="bureau-nom">À compléter</span></li>
+                                <li class="bureau-membre">
+                                    <div class="membre-avatar membre-avatar-initiales membre-avatar-petit" aria-hidden="true">ÀC</div>
+                                    <div>
+                                        <div class="bureau-nom">À compléter</div>
+                                        <div class="bureau-role">Présidence</div>
+                                    </div>
+                                </li>
+                                <li class="bureau-membre">
+                                    <div class="membre-avatar membre-avatar-initiales membre-avatar-petit" aria-hidden="true">ÀC</div>
+                                    <div>
+                                        <div class="bureau-nom">À compléter</div>
+                                        <div class="bureau-role">Trésorerie</div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </article>

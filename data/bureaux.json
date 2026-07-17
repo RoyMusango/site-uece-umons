@@ -1,14 +1,28 @@
 {
   "intro": "Depuis sa création, l'UECE est portée par des équipes d'étudiants bénévoles qui se passent le flambeau. Cette page honore celles et ceux qui ont fait vivre l'association, année après année.",
+  "adhesion": {
+    "conditions": [
+      "Être étudiant·e ou chercheur·euse, à l'UMONS ou dans un établissement d'enseignement supérieur montois (à valider par le comité)",
+      "Payer la cotisation annuelle (montant à compléter par le comité)",
+      "Adhérer aux valeurs de l'association : respect, ouverture et entraide entre les cultures"
+    ]
+  },
+  "bureauActuel": {
+    "periode": "2025 – 2026",
+    "membres": [
+      { "role": "Présidence", "nom": "À compléter", "photo": "", "description": "" },
+      { "role": "Vice-présidence", "nom": "À compléter", "photo": "", "description": "" },
+      { "role": "Trésorerie", "nom": "À compléter", "photo": "", "description": "" },
+      { "role": "Secrétariat", "nom": "À compléter", "photo": "", "description": "" }
+    ]
+  },
   "bureaux": [
     {
-      "periode": "2025 – 2026",
-      "nom": "Bureau en exercice",
+      "periode": "2024 – 2025",
+      "nom": "",
       "membres": [
-        { "role": "Présidence", "nom": "À compléter" },
-        { "role": "Vice-présidence", "nom": "À compléter" },
-        { "role": "Trésorerie", "nom": "À compléter" },
-        { "role": "Secrétariat", "nom": "À compléter" }
+        { "role": "Présidence", "nom": "À compléter", "photo": "", "description": "" },
+        { "role": "Trésorerie", "nom": "À compléter", "photo": "", "description": "" }
       ]
     }
   ]
