@@ -692,6 +692,74 @@ body.has-hero.js .navbar:has(.navbar-collapse.show) {
     .navbar .navbar-nav .menu-panel { transform: translateX(-50%) !important; }
 }
 
+/* --- Panneau déroulant du hero (index.html, « Découvrir l'UECE ») ---
+   Ouverture au clic (Bootstrap, positionnement statique) + au survol sur
+   desktop. Centré sous le bouton, même langage visuel que les menus nav. */
+.dropdown-hero { position: relative; display: inline-block; }
+
+.dropdown-hero .dropdown-menu {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+    margin-top: 8px;
+    border-top: 2px solid var(--gold-500);
+    min-width: min(92vw, 340px);
+    text-align: left;
+}
+
+.panel-action {
+    padding: .6rem 1.1rem .3rem;
+    margin-top: .4rem;
+    border-top: 1px solid var(--line-gold);
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .dropdown-hero .menu-panel {
+        display: none;               /* Bootstrap .show le passe en block */
+        width: 620px;
+        max-width: 92vw;
+        padding: .7rem .4rem;
+    }
+
+    .dropdown-hero .menu-panel.show { display: flex; flex-wrap: wrap; }
+
+    .dropdown-hero .menu-panel > li { width: 50%; }
+
+    .dropdown-hero .menu-panel > li.panel-action { width: 100%; }
+}
+
+@media (min-width: 992px) {
+    /* ouverture au survol/focus en plus du clic, avec le même fondu que la nav */
+    .dropdown-hero .menu-panel {
+        display: flex;
+        flex-wrap: wrap;
+        visibility: hidden;
+        opacity: 0;
+        transform: translate(-50%, 10px);
+        pointer-events: none;
+        transition: opacity .28s ease, transform .28s ease,
+                    visibility 0s linear .28s;
+    }
+
+    .dropdown-hero:hover > .menu-panel,
+    .dropdown-hero:focus-within > .menu-panel,
+    .dropdown-hero .menu-panel.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translate(-50%, 0);
+        pointer-events: auto;
+        transition: opacity .28s ease, transform .28s ease;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 992px) {
+    .dropdown-hero .menu-panel {
+        transition: none;
+        transform: translateX(-50%) !important;
+    }
+}
+
 /* --------------------------------------------------------------------------
    7. FORMULAIRES
    -------------------------------------------------------------------------- */
