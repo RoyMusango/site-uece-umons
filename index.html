@@ -107,14 +107,16 @@
                     <div id="carrouselAffiches" class="carousel slide carousel-fade carrousel-affiches" data-carrousel-auto>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <div class="affiche-cadre" data-tilt>
+                                <div class="affiche-cadre affiche-scene" data-tilt>
+                                    <!-- fond décoratif : la même affiche, floutée (peut être recadrée) -->
+                                    <img class="affiche-fond" src="images/activites-400.webp" alt="" aria-hidden="true">
                                     <picture>
                                         <source type="image/webp"
                                             srcset="images/activites-400.webp 400w, images/activites-800.webp 800w"
-                                            sizes="(max-width: 767px) 80vw, 444px">
+                                            sizes="(max-width: 767px) 80vw, 428px">
                                         <img src="images/activites-800.jpg"
                                             srcset="images/activites-400.jpg 400w, images/activites-800.jpg 800w"
-                                            sizes="(max-width: 767px) 80vw, 444px"
+                                            sizes="(max-width: 767px) 80vw, 428px"
                                             fetchpriority="high"
                                             class="affiche-img"
                                             alt="Affiche d'une soirée réseautage UECE">
@@ -123,14 +125,15 @@
                                 <p class="mt-2 mb-0 caption-light"><small>Échanges interculturels</small></p>
                             </div>
                             <div class="carousel-item">
-                                <div class="affiche-cadre" data-tilt>
+                                <div class="affiche-cadre affiche-scene" data-tilt>
+                                    <img class="affiche-fond" src="images/evenements-400.webp" alt="" aria-hidden="true" loading="lazy">
                                     <picture>
                                         <source type="image/webp"
                                             srcset="images/evenements-400.webp 400w, images/evenements-800.webp 800w"
-                                            sizes="(max-width: 767px) 80vw, 389px">
+                                            sizes="(max-width: 767px) 80vw, 428px">
                                         <img src="images/evenements-800.jpg"
                                             srcset="images/evenements-400.jpg 400w, images/evenements-800.jpg 800w"
-                                            sizes="(max-width: 767px) 80vw, 389px"
+                                            sizes="(max-width: 767px) 80vw, 428px"
                                             loading="lazy"
                                             class="affiche-img"
                                             alt="Affiche du Gala UECE Kings and Queens">

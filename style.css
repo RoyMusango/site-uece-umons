@@ -1966,14 +1966,33 @@ html.motion-on [data-reveal].is-in {
     pointer-events: none;
 }
 
-/* Image entière : hauteur commune (pas de saut entre les diapositives),
-   largeur naturelle selon le format de chaque affiche. */
-.affiche-img {
+/* Scène commune (Phase 6g) : TOUTES les diapositives ont exactement la même
+   taille (ratio 4/5, même cadre). L'affiche s'affiche ENTIÈRE au centre
+   (object-fit: contain — jamais recadrée) sur un fond composé de l'affiche
+   elle-même floutée et assombrie (fond décoratif : recadrage permis). */
+.affiche-scene {
     display: block;
-    max-width: 100%;
-    width: auto;
-    height: auto;
-    max-height: min(72vh, 560px);
+    width: min(100%, 460px);
+    margin: 0 auto;
+    aspect-ratio: 4 / 5;
+}
+
+.affiche-fond {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(16px) brightness(.5) saturate(1.15);
+    transform: scale(1.12);      /* masque les bords translucides du flou */
+}
+
+.affiche-scene .affiche-img {
+    position: absolute;
+    inset: 16px;                 /* l'affiche respire à l'intérieur du filet */
+    width: calc(100% - 32px);
+    height: calc(100% - 32px);
+    object-fit: contain;         /* image ENTIÈRE, jamais recadrée */
 }
 
 html.motion-rich .affiche-cadre { will-change: transform; }

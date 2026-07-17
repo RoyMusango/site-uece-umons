@@ -82,10 +82,13 @@ l'affiche devient le dispositif de cadrage des cartes importantes (billets, "En 
 - Micro-interactions : soulignement or animé sur liens, élévation douce des cartes.
 - Kill-switch global : `@media (prefers-reduced-motion: reduce)` + `gsap.globalTimeline.timeScale(0)`.
 - **Carrousels (règle absolue, tous les carrousels présents et futurs)** : une image de
-  contenu (affiche, photo) n'est **JAMAIS recadrée** — le cadre épouse l'image entière,
-  aucun format n'est imposé, le texte du visuel reste intégralement lisible. Le recadrage
-  (`object-fit: cover`) n'est admis que pour un fond décoratif sous voile + texte HTML.
-  Auto-défilement : 6 s, pause au survol, désactivé en reduced-motion (js/carrousels.js).
+  contenu (affiche, photo) n'est **JAMAIS recadrée** ET toutes les diapositives ont la
+  **même taille de scène** (résolution commune, ratio fixe — pas de cadre qui change de
+  largeur d'une diapositive à l'autre). Motif de référence : `.affiche-scene` (ratio 4/5)
+  = l'image entière en `object-fit: contain` posée sur elle-même floutée/assombrie en
+  fond (`.affiche-fond`, cover permis car décoratif). Texte du visuel intégralement
+  lisible. Auto-défilement : 6 s, pause au survol, désactivé en reduced-motion
+  (js/carrousels.js).
 - **Panneaux au survol** : toujours COLLÉS à leur déclencheur (aucun margin entre les
   deux, sinon le :hover se perd en route) ; et penser aux contextes d'empilement : une
   animation `fill-mode: both` fige un transform → poser le z-index sur l'élément animé.
