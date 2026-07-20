@@ -230,7 +230,7 @@ Le style peut changer, la logique et les identifiants NON :
   culture en rangée col-lg-4. **Images encore manquantes : BAM/Van Gogh,
   Grand Large, portraits des bureaux (actuel + anciens), remplaçantes du
   carrousel mission (accueillir/intégrer/représenter).**
-- ⏳ **Phase 7 (20/07/2026, branche `phase-7-postes-liens`, PAS poussée)** :
+- ✅ **Phase 7 (20/07/2026, validée par Roy sur localhost puis mergée)** :
   (1) Liste des postes du bureau formalisée (fournie par Roy) : Présidence,
   Vice-présidence ×2, Secrétariat général, Trésorerie, Délégation étudiante,
   Départements Communication/Sport/Culture — 9 postes (au lieu de 4).
