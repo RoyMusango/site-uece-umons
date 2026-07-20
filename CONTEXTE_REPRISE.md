@@ -230,6 +230,20 @@ Le style peut changer, la logique et les identifiants NON :
   culture en rangée col-lg-4. **Images encore manquantes : BAM/Van Gogh,
   Grand Large, portraits des bureaux (actuel + anciens), remplaçantes du
   carrousel mission (accueillir/intégrer/représenter).**
+- ✅ **Phase 7 (20/07/2026, validée par Roy sur localhost puis mergée)** :
+  (1) Liste des postes du bureau formalisée (fournie par Roy) : Présidence,
+  Vice-présidence ×2, Secrétariat général, Trésorerie, Délégation étudiante,
+  Départements Communication/Sport/Culture — 9 postes (au lieu de 4).
+  data/bureaux.json (bureauActuel + bureaux[0]) et le repli HTML
+  d'association.html mis à jour en cohérence ; le CMS (admin/config.yml)
+  n'impose aucune liste fixe, donc rien à y changer. (2) annonces.html : les
+  4 liens sources pointaient tous vers des accueils génériques (mons.be,
+  dofi.ibz.be/fr) → remplacés par les pages exactes (vérifiées par
+  WebFetch/WebSearch le 20/07) : Service des Étrangers, Renouvellement carte
+  A étudiant (délai corrigé 45/30j → **15 jours**, source officielle),
+  Moyens de subsistance IBZ (**1 062 €/mois net pour 2026-2027**, chiffre
+  ajouté), Inscription citoyen UE. jsdom 14/14. ⚠ Ces deux contenus restent
+  À VALIDER par le comité (montants/délais changent chaque année académique).
 
 ## 8. ⭐ NOUVELLE DIRECTIVE — ce qui doit changer en Phase 2
 
