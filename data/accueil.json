@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "eyebrow": "Union des Étudiants et Chercheurs Étrangers",
+    "titre": "UECE UMONS",
+    "sousTitre": "Accueillir, Intégrer, Représenter."
+  },
+  "decouvrir": {
+    "bouton": "Découvrir l'UECE",
+    "entrees": [
+      {
+        "titre": "Qui sommes-nous ?",
+        "description": "Accueillir, intégrer, représenter : notre mission"
+      },
+      {
+        "titre": "Le bureau actuel",
+        "description": "L'équipe 2026 – 2027 qui fait vivre l'UECE"
+      },
+      {
+        "titre": "L'historique des bureaux",
+        "description": "Celles et ceux qui ont porté l'association"
+      },
+      {
+        "titre": "Questions fréquentes",
+        "description": "Les réponses avant de nous écrire"
+      }
+    ],
+    "boutonAction": "Plus d'informations"
+  },
+  "affiches": [
+    { "legende": "Échanges interculturels" },
+    { "legende": "Événements étudiants" }
+  ],
+  "bienvenue": {
+    "titre": "Bienvenue à Mons !",
+    "lead": "L'UECE est votre famille loin de chez vous.",
+    "paragraphe1": "Nous sommes là pour vous accompagner dans vos démarches administratives, votre intégration sociale et votre réussite académique.",
+    "paragraphe2": "Que vous soyez étudiant en échange, chercheur ou étudiant régulier, notre cercle étudiant est là pour vous.",
+    "note": "Accompagnement personnalisé"
+  },
+  "prochainEvenement": {
+    "titre": "Prochain événement",
+    "nom": "Gala Annuel 2026",
+    "date": "Samedi 15 Mai",
+    "description": "Une soirée prestigieuse pour célébrer notre diversité culturelle et réunir notre communauté internationale.",
+    "bouton": "Découvrir l'événement",
+    "note": "Places limitées"
+  }
+}

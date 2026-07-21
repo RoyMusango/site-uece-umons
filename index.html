@@ -18,6 +18,10 @@
     <script defer src="js/reveals.js"></script>
     <!-- Carrousel d'affiches du hero (défilement auto, respecte reduced-motion) -->
     <script defer src="js/carrousels.js"></script>
+    <!-- Contenus éditables via le CMS (data/accueil.json). Repli silencieux sur le HTML. -->
+    <script defer src="js/accueil-data.js"></script>
+    <!-- Pied de page global éditable via le CMS (data/global.json) -->
+    <script defer src="js/global-data.js"></script>
 </head>
 <body class="has-hero">
 
@@ -77,23 +81,23 @@
 
     <header class="hero-section">
         <div class="container">
-            <p class="eyebrow">Union des Étudiants et Chercheurs Étrangers</p>
-            <h1 class="display-4 fw-bold">UECE UMONS</h1>
+            <p class="eyebrow" data-edit="hero.eyebrow">Union des Étudiants et Chercheurs Étrangers</p>
+            <h1 class="display-4 fw-bold" data-edit="hero.titre">UECE UMONS</h1>
             <hr class="divider-gold">
-            <p class="hero-sub mb-4">Accueillir, Intégrer, Représenter.</p>
+            <p class="hero-sub mb-4" data-edit="hero.sousTitre">Accueillir, Intégrer, Représenter.</p>
 
             <!-- Porte d'entrée du site : panneau déroulant vers l'association
                  (demande de Roy, 17/07/2026). L'accès Gala reste assuré par la
                  carte « Prochain événement » juste en dessous et par la nav. -->
             <div class="hero-cta mb-5">
                 <div class="dropdown dropdown-hero">
-                    <button class="btn btn-gold btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Découvrir l'UECE</button>
+                    <button class="btn btn-gold btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false" data-edit="decouvrir.bouton">Découvrir l'UECE</button>
                     <ul class="dropdown-menu menu-panel">
-                        <li><a class="dropdown-item" href="association.html"><span class="panel-titre">Qui sommes-nous&nbsp;?</span><small>Accueillir, intégrer, représenter&nbsp;: notre mission</small></a></li>
-                        <li><a class="dropdown-item" href="association.html#bureau-actuel"><span class="panel-titre">Le bureau actuel</span><small>L'équipe 2026 – 2027 qui fait vivre l'UECE</small></a></li>
-                        <li><a class="dropdown-item" href="association.html#bureaux"><span class="panel-titre">L'historique des bureaux</span><small>Celles et ceux qui ont porté l'association</small></a></li>
-                        <li><a class="dropdown-item" href="faq.html"><span class="panel-titre">Questions fréquentes</span><small>Les réponses avant de nous écrire</small></a></li>
-                        <li class="panel-action"><a href="association.html" class="btn btn-gold btn-sm">Plus d'informations <i class="fas fa-arrow-right ms-1"></i></a></li>
+                        <li><a class="dropdown-item" href="association.html"><span class="panel-titre" data-edit="decouvrir.entrees.0.titre">Qui sommes-nous&nbsp;?</span><small data-edit="decouvrir.entrees.0.description">Accueillir, intégrer, représenter&nbsp;: notre mission</small></a></li>
+                        <li><a class="dropdown-item" href="association.html#bureau-actuel"><span class="panel-titre" data-edit="decouvrir.entrees.1.titre">Le bureau actuel</span><small data-edit="decouvrir.entrees.1.description">L'équipe 2026 – 2027 qui fait vivre l'UECE</small></a></li>
+                        <li><a class="dropdown-item" href="association.html#bureaux"><span class="panel-titre" data-edit="decouvrir.entrees.2.titre">L'historique des bureaux</span><small data-edit="decouvrir.entrees.2.description">Celles et ceux qui ont porté l'association</small></a></li>
+                        <li><a class="dropdown-item" href="faq.html"><span class="panel-titre" data-edit="decouvrir.entrees.3.titre">Questions fréquentes</span><small data-edit="decouvrir.entrees.3.description">Les réponses avant de nous écrire</small></a></li>
+                        <li class="panel-action"><a href="association.html" class="btn btn-gold btn-sm"><span data-edit="decouvrir.boutonAction">Plus d'informations</span> <i class="fas fa-arrow-right ms-1"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -122,7 +126,7 @@
                                             alt="Affiche d'une soirée réseautage UECE">
                                     </picture>
                                 </div>
-                                <p class="mt-2 mb-0 caption-light"><small>Échanges interculturels</small></p>
+                                <p class="mt-2 mb-0 caption-light"><small data-edit="affiches.0.legende">Échanges interculturels</small></p>
                             </div>
                             <div class="carousel-item">
                                 <div class="affiche-cadre affiche-scene" data-tilt>
@@ -139,7 +143,7 @@
                                             alt="Affiche du Gala UECE Kings and Queens">
                                     </picture>
                                 </div>
-                                <p class="mt-2 mb-0 caption-light"><small>Événements étudiants</small></p>
+                                <p class="mt-2 mb-0 caption-light"><small data-edit="affiches.1.legende">Événements étudiants</small></p>
                             </div>
                         </div>
                         <div class="carousel-indicators">
@@ -164,17 +168,17 @@
                         <div class="card-body p-5">
                             <h2 class="card-title mb-4 text-navy">
                                 <i class="fas fa-hands-helping me-2 text-gold"></i>
-                                Bienvenue à Mons&nbsp;!
+                                <span data-edit="bienvenue.titre">Bienvenue à Mons&nbsp;!</span>
                             </h2>
                             <div class="card-text">
-                                <p class="lead">L'UECE est votre famille loin de chez vous.</p>
-                                <p>Nous sommes là pour vous accompagner dans vos démarches administratives, votre intégration sociale et votre réussite académique.</p>
-                                <p>Que vous soyez étudiant en échange, chercheur ou étudiant régulier, notre cercle étudiant est là pour vous.</p>
+                                <p class="lead" data-edit="bienvenue.lead">L'UECE est votre famille loin de chez vous.</p>
+                                <p data-edit="bienvenue.paragraphe1">Nous sommes là pour vous accompagner dans vos démarches administratives, votre intégration sociale et votre réussite académique.</p>
+                                <p data-edit="bienvenue.paragraphe2">Que vous soyez étudiant en échange, chercheur ou étudiant régulier, notre cercle étudiant est là pour vous.</p>
                             </div>
                             <div class="mt-4 pt-3 border-top">
                                 <p class="text-soft small mb-0">
                                     <i class="fas fa-check-circle me-1 text-gold"></i>
-                                    Accompagnement personnalisé
+                                    <span data-edit="bienvenue.note">Accompagnement personnalisé</span>
                                 </p>
                             </div>
                         </div>
@@ -188,23 +192,23 @@
                             <div class="mb-4">
                                 <h3 class="h4 card-title mb-3">
                                     <i class="fas fa-calendar-star me-2 text-gold"></i>
-                                    Prochain événement
+                                    <span data-edit="prochainEvenement.titre">Prochain événement</span>
                                 </h3>
                                 <div class="card-highlight p-3 text-center mb-3">
-                                    <h4 class="h5 mb-1 fw-bold">Gala Annuel 2026</h4>
-                                    <p class="small mb-0">Samedi 15 Mai</p>
+                                    <h4 class="h5 mb-1 fw-bold" data-edit="prochainEvenement.nom">Gala Annuel 2026</h4>
+                                    <p class="small mb-0" data-edit="prochainEvenement.date">Samedi 15 Mai</p>
                                 </div>
-                                <p class="mb-4">Une soirée prestigieuse pour célébrer notre diversité culturelle et réunir notre communauté internationale.</p>
+                                <p class="mb-4" data-edit="prochainEvenement.description">Une soirée prestigieuse pour célébrer notre diversité culturelle et réunir notre communauté internationale.</p>
                             </div>
                             
                             <div class="mt-auto">
                                 <a href="gala.html" class="btn btn-gold btn-lg w-100">
                                     <i class="fas fa-arrow-right me-2"></i>
-                                    Découvrir l'événement
+                                    <span data-edit="prochainEvenement.bouton">Découvrir l'événement</span>
                                 </a>
                                 <p class="text-center mt-3 small" style="opacity: 0.8;">
                                     <i class="fas fa-info-circle me-1"></i>
-                                    Places limitées
+                                    <span data-edit="prochainEvenement.note">Places limitées</span>
                                 </p>
                             </div>
                         </div>
@@ -218,25 +222,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <p class="footer-title">Nous contacter</p>
+                    <p class="footer-title" data-global="contact.titre">Nous contacter</p>
                     <p>
-                        <i class="fas fa-map-marker-alt me-2"></i> Place du Parc 20, 7000 Mons<br>
-                        <i class="fas fa-envelope me-2"></i> UECE.UMONS@umons.ac.be<br>
-                        <i class="fas fa-phone me-2"></i> +32 65 00 00 00
+                        <i class="fas fa-map-marker-alt me-2"></i> <span data-global="contact.adresse">Place du Parc 20, 7000 Mons</span><br>
+                        <i class="fas fa-envelope me-2"></i> <span data-global="contact.email">UECE.UMONS@umons.ac.be</span><br>
+                        <i class="fas fa-phone me-2"></i> <span data-global="contact.telephone">+32 65 00 00 00</span>
                     </p>
                 </div>
 
                 <div class="col-md-4 mb-4 text-center">
-                    <p class="footer-title">Suivez-nous</p>
+                    <p class="footer-title" data-global="reseaux.titre">Suivez-nous</p>
                     <div class="mt-3">
-                        <a href="https://www.facebook.com/gerantpg" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/gerantpg" data-global-href="reseaux.facebook" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" data-global-href="reseaux.instagram" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" data-global-href="reseaux.tiktok" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-4 text-end">
-                    <p class="footer-title">Informations</p>
+                    <p class="footer-title" data-global="informations.titre">Informations</p>
                     <ul class="list-unstyled">
                         <li><a href="standard.html">Mentions Légales</a></li>
                         <li><a href="standard.html">Politique de confidentialité</a></li>
@@ -245,7 +249,7 @@
                 </div>
             </div>
             <div class="text-center py-3 border-top border-secondary mt-3">
-                <small>&copy; 2026 UECE UMONS. Tous droits réservés.</small>
+                <small data-global="copyright">&copy; 2026 UECE UMONS. Tous droits réservés.</small>
             </div>
         </div>
     </footer>
