@@ -27,8 +27,16 @@
     "boutonAction": "Plus d'informations"
   },
   "affiches": [
-    { "legende": "Échanges interculturels" },
-    { "legende": "Événements étudiants" }
+    {
+      "image": "images/activites-800.jpg",
+      "alt": "Affiche d'une soirée réseautage UECE",
+      "legende": "Échanges interculturels"
+    },
+    {
+      "image": "images/evenements-800.jpg",
+      "alt": "Affiche du Gala UECE Kings and Queens",
+      "legende": "Événements étudiants"
+    }
   ],
   "bienvenue": {
     "titre": "Bienvenue à Mons !",

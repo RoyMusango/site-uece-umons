@@ -91,13 +91,15 @@ collections:
                   - { label: "Description", name: description, widget: string }
               - { label: "Texte du bouton « Plus d'informations »", name: boutonAction, widget: string }
 
-          - label: "Légendes du carrousel d'affiches"
+          - label: "Carrousel de la page d'accueil"
             name: affiches
             widget: list
             summary: "{{fields.legende}}"
-            hint: "⚠️ Gardez EXACTEMENT 2 légendes (une par affiche du carrousel). Pour changer les images elles-mêmes, remplacez les fichiers dans le dossier images/."
+            hint: "Ajoutez, modifiez, réordonnez (glisser-déposer) ou supprimez les diapositives à volonté — idéal pour mettre en avant un événement selon le moment de l'année. L'ordre d'affichage est celui de la liste."
             fields:
-              - { label: "Légende", name: legende, widget: string }
+              - { label: "Image", name: image, widget: image, hint: "L'image entière est affichée (jamais recadrée), posée sur elle-même floutée en fond. Paysage ou portrait au choix. Conseil : largeur max ~1600 px pour garder la page légère." }
+              - { label: "Texte alternatif (accessibilité)", name: alt, widget: string, required: false, hint: "Décrit l'image pour les personnes malvoyantes et les moteurs de recherche. Ex. « Affiche du Gala 2026 »." }
+              - { label: "Légende (titre de la diapositive)", name: legende, widget: string, required: false, hint: "S'affiche sous l'image et sert de repère sur les puces." }
 
           - label: "Carte « Bienvenue à Mons »"
             name: bienvenue

@@ -54,7 +54,7 @@ pour ne pas effacer l'icône.
 | Découvrir — Texte du bouton | `decouvrir.bouton` | string | |
 | Découvrir — Entrées (liste) | `decouvrir.entrees[]` | list | **exactement 4** ; par entrée : `titre`, `description`. Les liens sont fixes (dans le HTML), seuls les textes s'éditent. |
 | Découvrir — Bouton « Plus d'informations » | `decouvrir.boutonAction` | string | |
-| Légendes du carrousel (liste) | `affiches[]` | list | **exactement 2** ; par affiche : `legende`. Les images se changent dans `images/`. |
+| Carrousel d'accueil (liste) | `affiches[]` | list | **ajout / suppression / réordre libres** ; par diapo : `image` (upload CMS), `alt`, `legende`. Reconstruit entièrement (diapos + puces + ré-init Bootstrap). |
 | Bienvenue — Titre | `bienvenue.titre` | string | |
 | Bienvenue — Accroche (gras) | `bienvenue.lead` | text | |
 | Bienvenue — Paragraphe 1 | `bienvenue.paragraphe1` | text | |
@@ -68,8 +68,8 @@ pour ne pas effacer l'icône.
 | Prochain événement — Mention sous bouton | `prochainEvenement.note` | string | |
 
 **Non éditable ici (volontairement)** : la structure de navigation (liens du panneau
-« Découvrir » et de la nav), le pied de page (contact, réseaux — voir note « pied de
-page global » plus bas), et les images (remplaçables via `images/`).
+« Découvrir » et de la nav) et le pied de page (voir « Pied de page global »).
+Les images **du carrousel** sont, elles, éditables (upload direct dans le CMS).
 
 ---
 
