@@ -1,0 +1,71 @@
+{
+  "entete": {
+    "eyebrow": "Guide de l'étudiant",
+    "titre": "Bienvenue à Mons",
+    "lead": "Culture, lieux utiles et bons plans du quotidien :\nles essentiels pour apprivoiser votre ville d'adoption."
+  },
+  "culture": {
+    "eyebrow": "Traditions & culture",
+    "titre": "Mons, ville de culture",
+    "beffroi": {
+      "eyebrow": "Classé UNESCO",
+      "titre": "Le Beffroi",
+      "texte": "Unique beffroi baroque de Belgique, il veille sur la ville depuis son jardin perché. La montée vaut la récompense : le plus beau panorama sur Mons et ses environs. Et bonne nouvelle : l'entrée est gratuite pour les étudiants."
+    },
+    "doudou": {
+      "titre": "Le Doudou (Ducasse de Mons)",
+      "texte": "L'événement de l'année, inscrit au patrimoine de l'UNESCO : le week-end de la Trinité, toute la ville vibre au rythme de la procession du Car d'Or et du combat dit « Lumeçon » entre saint Georges et le dragon. Une expérience montoise à vivre au moins une fois."
+    },
+    "sainteWaudru": {
+      "titre": "Grand-Place & Sainte-Waudru"
+    },
+    "musees": {
+      "titre": "Musées & art"
+    },
+    "galerieEyebrow": "Patrimoine vivant",
+    "galerieTitre": "Le Doudou en images",
+    "galerieLegendes": [
+      "La braderie du Doudou",
+      "Doudou Sound Party",
+      "Le festival des fanfares",
+      "La braderie du Doudou",
+      "Doudou Sound Party"
+    ]
+  },
+  "lieux": {
+    "eyebrow": "S'installer, étudier, souffler",
+    "titre": "Les lieux clés du quotidien",
+    "administration": {
+      "titre": "Administration"
+    },
+    "campus": {
+      "titre": "Campus UMONS",
+      "texte": "Entre le campus de la Plaine de Nimy et les bâtiments du centre-ville, tout se fait à pied ou en bus. Bibliothèques, restaurants universitaires et services aux étudiants : le guide officiel de l'UMONS complète le nôtre."
+    },
+    "deplacer": {
+      "titre": "Se déplacer, respirer",
+      "texte": "La gare de Mons et le réseau de bus TEC pour rayonner, et le Grand Large — le lac de Mons — pour courir, ramer ou simplement souffler entre deux blocus."
+    }
+  },
+  "marches": {
+    "eyebrow": "Bons plans du panier",
+    "titre": "Les marchés de la semaine",
+    "legendes": [
+      "Le marché du boulevard Dolez",
+      "Le marché aux fleurs",
+      "Le marché de Noël"
+    ],
+    "liste": [
+      { "jour": "Ven.", "nom": "Marché du boulevard Dolez", "detail": "produits frais et locaux, en matinée" },
+      { "jour": "Dim.", "nom": "Marché près de la gare", "detail": "le rendez-vous du dimanche matin" },
+      { "jour": "Hebdo", "nom": "Marché de Jemappes", "detail": "très prisé des étudiants, petits prix" },
+      { "jour": "Hebdo", "nom": "Marché de Nimy", "detail": "à deux pas du campus, l'autre repaire étudiant" }
+    ],
+    "note": "Liste non exhaustive — jours, horaires et emplacements exacts tenus à jour par le comité. Idéal pour manger frais sans exploser le budget étudiant."
+  },
+  "contact": {
+    "eyebrow": "Une question sur la vie à Mons ?",
+    "titre": "L'UECE vous oriente",
+    "texte": "Logement, démarches, bons plans, vie étudiante : écrivez-nous, nous vous indiquerons le bon interlocuteur ou le bon endroit."
+  }
+}

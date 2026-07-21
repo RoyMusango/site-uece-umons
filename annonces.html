@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="js/motion-gate.js"></script>
     <script defer src="js/reveals.js"></script>
+    <!-- Contenus éditables via le CMS (data/annonces.json). Repli silencieux sur le HTML. -->
+    <script defer src="js/annonces-data.js"></script>
+    <!-- Pied de page global éditable via le CMS (data/global.json) -->
+    <script defer src="js/global-data.js"></script>
 </head>
 <body class="has-hero">
 
@@ -75,14 +79,17 @@
 
     <header class="page-header" data-glow>
         <div class="container">
-            <p class="eyebrow">Étudiants &amp; chercheurs internationaux</p>
-            <h1>Infos importantes</h1>
+            <p class="eyebrow" data-edit="entete.eyebrow">Étudiants &amp; chercheurs internationaux</p>
+            <h1 data-edit="entete.titre">Infos importantes</h1>
             <hr class="divider-gold">
-            <p class="lead">Deadlines administratives, décisions communales et démarches essentielles<br>pour les étudiants hors Union européenne (HUE) et de l'Union européenne (UE).</p>
+            <p class="lead" data-edit-lines="entete.lead">Deadlines administratives, décisions communales et démarches essentielles<br>pour les étudiants hors Union européenne (HUE) et de l'Union européenne (UE).</p>
         </div>
     </header>
 
     <main class="container pb-5">
+
+        <!-- Avertissement (déplacé en haut de page à la demande de Roy) -->
+        <p class="text-soft small mb-4"><i class="fas fa-info-circle me-1"></i><span data-edit="disclaimer">Ces informations sont publiées à titre indicatif par l'UECE et ne remplacent pas les communications officielles de la Ville de Mons, de l'Office des Étrangers ou de l'UMONS. Vérifiez toujours la source avant d'agir.</span></p>
 
         <!-- Légende des badges -->
         <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
@@ -98,6 +105,7 @@
              et éditables via le CMS sans toucher au HTML.
              ================================================================ -->
 
+        <div data-edit-annonces>
         <article class="annonce-card" data-reveal>
             <div class="annonce-meta">
                 <span class="badge-annonce badge-tous">Tous</span>
@@ -137,41 +145,40 @@
             <p class="mb-2">Les citoyens de l'Union européenne qui séjournent plus de trois mois en Belgique doivent demander leur attestation d'enregistrement auprès de la commune de résidence. La demande se fait au service Population avec votre carte d'identité et votre attestation d'inscription à l'UMONS.</p>
             <p class="annonce-source mb-0">Source : <a href="https://www.mons.be/fr/vivre-a-mons/etat-civil-population-1/service-etrangers/inscription-dun-citoyen-de-lunion-europeenne-ue" target="_blank" rel="noopener">Ville de Mons — Inscription d'un citoyen de l'UE</a> · Publié le 01/07/2026</p>
         </article>
+        </div>
 
         <!-- Bloc contact / aide -->
         <div class="frame-double p-4 mt-4" style="background: var(--surface);">
-            <p class="eyebrow mb-2">Besoin d'aide&nbsp;?</p>
-            <h2 class="h3 mb-2">L'UECE vous oriente dans vos démarches</h2>
-            <p class="mb-3">Un doute sur une deadline, un document ou une convocation&nbsp;? Écrivez-nous&nbsp;: nous vous indiquerons l'organisme vers lequel vous tourner (administration communale, Office des Étrangers, services de l'UMONS…). L'UECE ne réalise pas les démarches à votre place et ne vous accompagne pas sur place, mais vous ne resterez jamais sans réponse.</p>
+            <p class="eyebrow mb-2" data-edit="aide.eyebrow">Besoin d'aide&nbsp;?</p>
+            <h2 class="h3 mb-2" data-edit="aide.titre">L'UECE vous oriente dans vos démarches</h2>
+            <p class="mb-3" data-edit="aide.texte">Un doute sur une deadline, un document ou une convocation&nbsp;? Écrivez-nous&nbsp;: nous vous indiquerons l'organisme vers lequel vous tourner (administration communale, Office des Étrangers, services de l'UMONS…). L'UECE ne réalise pas les démarches à votre place et ne vous accompagne pas sur place, mais vous ne resterez jamais sans réponse.</p>
             <a href="mailto:UECE.UMONS@umons.ac.be" class="btn btn-gold"><i class="fas fa-envelope me-2"></i>UECE.UMONS@umons.ac.be</a>
         </div>
-
-        <p class="text-soft small mt-4 mb-0"><i class="fas fa-info-circle me-1"></i>Ces informations sont publiées à titre indicatif par l'UECE et ne remplacent pas les communications officielles de la Ville de Mons, de l'Office des Étrangers ou de l'UMONS. Vérifiez toujours la source avant d'agir.</p>
     </main>
 
     <footer data-glow>
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <p class="footer-title">Nous contacter</p>
+                    <p class="footer-title" data-global="contact.titre">Nous contacter</p>
                     <p>
-                        <i class="fas fa-map-marker-alt me-2"></i> Place du Parc 20, 7000 Mons<br>
-                        <i class="fas fa-envelope me-2"></i> UECE.UMONS@umons.ac.be<br>
-                        <i class="fas fa-phone me-2"></i> +32 65 00 00 00
+                        <i class="fas fa-map-marker-alt me-2"></i> <span data-global="contact.adresse">Place du Parc 20, 7000 Mons</span><br>
+                        <i class="fas fa-envelope me-2"></i> <span data-global="contact.email">UECE.UMONS@umons.ac.be</span><br>
+                        <i class="fas fa-phone me-2"></i> <span data-global="contact.telephone">+32 65 00 00 00</span>
                     </p>
                 </div>
 
                 <div class="col-md-4 mb-4 text-center">
-                    <p class="footer-title">Suivez-nous</p>
+                    <p class="footer-title" data-global="reseaux.titre">Suivez-nous</p>
                     <div class="mt-3">
-                        <a href="https://www.facebook.com/gerantpg" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/gerantpg" data-global-href="reseaux.facebook" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" data-global-href="reseaux.instagram" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" data-global-href="reseaux.tiktok" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-4 text-end">
-                    <p class="footer-title">Informations</p>
+                    <p class="footer-title" data-global="informations.titre">Informations</p>
                     <ul class="list-unstyled">
                         <li><a href="standard.html">Mentions Légales</a></li>
                         <li><a href="standard.html">Politique de confidentialité</a></li>
@@ -180,7 +187,7 @@
                 </div>
             </div>
             <div class="text-center py-3 border-top border-secondary mt-3">
-                <small>&copy; 2026 UECE UMONS. Tous droits réservés.</small>
+                <small data-global="copyright">&copy; 2026 UECE UMONS. Tous droits réservés.</small>
             </div>
         </div>
     </footer>

@@ -1,13 +1,41 @@
 {
+  "entete": {
+    "eyebrow": "L'Association",
+    "titre": "C'est quoi l'UECE ?",
+    "lead": "L'Union des Étudiants et Chercheurs Étrangers de l'UMONS :\nune association par et pour les étudiants internationaux, qui fait le pont entre les cultures."
+  },
+  "mission": {
+    "eyebrow": "Notre raison d'être",
+    "titre": "Accueillir, Intégrer, Représenter",
+    "cartes": [
+      {
+        "titre": "Accueillir",
+        "texte": "Événements d'intégration, premiers repères à Mons, conseils entre étudiants : nous facilitons l'arrivée des étudiants et chercheurs internationaux, dès les premiers jours."
+      },
+      {
+        "titre": "Intégrer",
+        "texte": "Rencontres interculturelles, soirées, entraide académique et bons plans du quotidien : nous créons des liens entre les communautés — et avec les étudiants belges."
+      },
+      {
+        "titre": "Représenter",
+        "texte": "Nous portons la voix des étudiants internationaux auprès de l'UMONS et de ses partenaires, et nous relayons leurs préoccupations là où les décisions se prennent."
+      }
+    ]
+  },
   "intro": "Depuis sa création, l'UECE est portée par des équipes d'étudiants bénévoles qui se passent le flambeau. Cette page honore celles et ceux qui ont fait vivre l'association, année après année.",
   "adhesion": {
+    "eyebrow": "Rejoindre l'UECE",
+    "titre": "Devenir membre",
     "conditions": [
       "Être étudiant·e ou chercheur·euse, à l'UMONS ou dans un établissement d'enseignement supérieur montois (à valider par le comité)",
       "Payer la cotisation annuelle (montant à compléter par le comité)",
       "Adhérer aux valeurs de l'association : respect, ouverture et entraide entre les cultures"
-    ]
+    ],
+    "contact": "Écrivez-nous pour plus d'informations : le comité vous guidera pour la suite."
   },
   "bureauActuel": {
+    "eyebrow": "Qui fait vivre l'UECE",
+    "titre": "Le bureau actuel",
     "periode": "2026 – 2027",
     "membres": [
       { "role": "Présidence", "nom": "À compléter", "photo": "", "description": "" },
@@ -20,6 +48,11 @@
       { "role": "Département Sport", "nom": "À compléter", "photo": "", "description": "" },
       { "role": "Département Culture", "nom": "À compléter", "photo": "", "description": "" }
     ]
+  },
+  "histoire": {
+    "eyebrow": "Notre histoire",
+    "titre": "L'historique des bureaux",
+    "note": "Ancien membre d'un bureau ? Aidez-nous à compléter cette page : écrivez-nous vos années et vos noms."
   },
   "bureaux": [
     {

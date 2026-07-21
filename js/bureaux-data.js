@@ -7,6 +7,35 @@
 (function () {
     'use strict';
 
+    // Résout un chemin pointé ("mission.cartes.0.titre"), gère les index de tableau.
+    function lire(data, chemin) {
+        return chemin.split('.').reduce(function (obj, cle) {
+            return (obj && typeof obj === 'object') ? obj[cle] : undefined;
+        }, data);
+    }
+
+    // [data-edit] : remplace le texte. [data-edit-lines] : retours à la ligne → <br>.
+    // Utilisé pour l'en-tête de page, la mission, les titres de sections et les
+    // libellés fixes. Les blocs reconstruits (conditions, bureaux…) ont leurs
+    // propres injecteurs ci-dessous.
+    function injecterTextes(data) {
+        document.querySelectorAll('[data-edit]').forEach(function (el) {
+            var val = lire(data, el.getAttribute('data-edit'));
+            if (typeof val === 'string' && val.trim() !== '') {
+                el.textContent = val;
+            }
+        });
+        document.querySelectorAll('[data-edit-lines]').forEach(function (el) {
+            var val = lire(data, el.getAttribute('data-edit-lines'));
+            if (typeof val !== 'string' || val.trim() === '') { return; }
+            el.textContent = '';
+            val.split('\n').forEach(function (ligne, i) {
+                if (i > 0) { el.appendChild(document.createElement('br')); }
+                el.appendChild(document.createTextNode(ligne));
+            });
+        });
+    }
+
     function injecterIntro(data) {
         var el = document.querySelector('[data-edit-intro-bureaux]');
         if (el && typeof data.intro === 'string' && data.intro.trim() !== '') {
@@ -161,6 +190,7 @@
             return reponse.json();
         })
         .then(function (data) {
+            injecterTextes(data);
             injecterIntro(data);
             injecterConditions(data);
             injecterBureauActuel(data);

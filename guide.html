@@ -18,6 +18,10 @@
     <script defer src="js/reveals.js"></script>
     <!-- Carrousels photos (Doudou, marchés) : défilement auto, reduced-motion géré -->
     <script defer src="js/carrousels.js"></script>
+    <!-- Contenus éditables via le CMS (data/guide.json). Repli silencieux sur le HTML. -->
+    <script defer src="js/guide-data.js"></script>
+    <!-- Pied de page global éditable via le CMS (data/global.json) -->
+    <script defer src="js/global-data.js"></script>
 </head>
 <body class="has-hero">
 
@@ -77,10 +81,10 @@
 
     <header class="page-header" data-glow>
         <div class="container">
-            <p class="eyebrow">Guide de l'étudiant</p>
-            <h1>Bienvenue à Mons</h1>
+            <p class="eyebrow" data-edit="entete.eyebrow">Guide de l'étudiant</p>
+            <h1 data-edit="entete.titre">Bienvenue à Mons</h1>
             <hr class="divider-gold">
-            <p class="lead">Culture, lieux utiles et bons plans du quotidien&nbsp;:<br>les essentiels pour apprivoiser votre ville d'adoption.</p>
+            <p class="lead" data-edit-lines="entete.lead">Culture, lieux utiles et bons plans du quotidien&nbsp;:<br>les essentiels pour apprivoiser votre ville d'adoption.</p>
         </div>
     </header>
 
@@ -94,8 +98,8 @@
 
         <!-- Culture -->
         <section class="mb-5">
-            <p class="eyebrow text-center mb-1">Traditions &amp; culture</p>
-            <h2 class="text-center mb-4">Mons, ville de culture</h2>
+            <p class="eyebrow text-center mb-1" data-edit="culture.eyebrow">Traditions &amp; culture</p>
+            <h2 class="text-center mb-4" data-edit="culture.titre">Mons, ville de culture</h2>
 
             <!-- Carte vedette : le Beffroi, photo portrait ENTIÈRE à gauche
                  (taille naturelle, ni recadrage ni flou — retour Roy 17/07),
@@ -110,9 +114,9 @@
                     </div>
                     <div class="col-md-8 col-lg-9">
                         <div class="card-body p-4 p-lg-5">
-                            <p class="eyebrow mb-2">Classé UNESCO</p>
-                            <h3 class="h4"><i class="fas fa-landmark me-2 text-gold"></i>Le Beffroi</h3>
-                            <p class="mb-0">Unique beffroi baroque de Belgique, il veille sur la ville depuis son jardin perché. La montée vaut la récompense&nbsp;: le plus beau panorama sur Mons et ses environs. Et bonne nouvelle&nbsp;: l'entrée est gratuite pour les étudiants.</p>
+                            <p class="eyebrow mb-2" data-edit="culture.beffroi.eyebrow">Classé UNESCO</p>
+                            <h3 class="h4"><i class="fas fa-landmark me-2 text-gold"></i><span data-edit="culture.beffroi.titre">Le Beffroi</span></h3>
+                            <p class="mb-0" data-edit="culture.beffroi.texte">Unique beffroi baroque de Belgique, il veille sur la ville depuis son jardin perché. La montée vaut la récompense&nbsp;: le plus beau panorama sur Mons et ses environs. Et bonne nouvelle&nbsp;: l'entrée est gratuite pour les étudiants.</p>
                         </div>
                     </div>
                 </div>
@@ -126,8 +130,8 @@
                             <img src="images/doudou-lumecon-800.jpg" srcset="images/doudou-lumecon-400.jpg 400w, images/doudou-lumecon-800.jpg 738w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
                         </picture>
                         <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-dragon me-2 text-gold"></i>Le Doudou (Ducasse de Mons)</h3>
-                            <p class="mb-0">L'événement de l'année, inscrit au patrimoine de l'UNESCO&nbsp;: le week-end de la Trinité, toute la ville vibre au rythme de la procession du Car d'Or et du combat dit «&nbsp;Lumeçon&nbsp;» entre saint Georges et le dragon. Une expérience montoise à vivre au moins une fois.</p>
+                            <h3 class="h4"><i class="fas fa-dragon me-2 text-gold"></i><span data-edit="culture.doudou.titre">Le Doudou (Ducasse de Mons)</span></h3>
+                            <p class="mb-0" data-edit="culture.doudou.texte">L'événement de l'année, inscrit au patrimoine de l'UNESCO&nbsp;: le week-end de la Trinité, toute la ville vibre au rythme de la procession du Car d'Or et du combat dit «&nbsp;Lumeçon&nbsp;» entre saint Georges et le dragon. Une expérience montoise à vivre au moins une fois.</p>
                         </div>
                     </div>
                 </div>
@@ -138,7 +142,7 @@
                             <img src="images/sainte-waudru-800.jpg" srcset="images/sainte-waudru-400.jpg 400w, images/sainte-waudru-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
                         </picture>
                         <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-church me-2 text-gold"></i>Grand-Place &amp; Sainte-Waudru</h3>
+                            <h3 class="h4"><i class="fas fa-church me-2 text-gold"></i><span data-edit="culture.sainteWaudru.titre">Grand-Place &amp; Sainte-Waudru</span></h3>
                             <p class="mb-0">La Grand-Place et son Hôtel de Ville gothique — n'oubliez pas de caresser <em>de la main gauche</em> la tête du petit singe du Grand-Garde, ça porte bonheur — puis la majestueuse collégiale Sainte-Waudru, écrin du Car d'Or.</p>
                         </div>
                     </div>
@@ -170,7 +174,7 @@
                             </div>
                         </div>
                         <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-palette me-2 text-gold"></i>Musées &amp; art</h3>
+                            <h3 class="h4"><i class="fas fa-palette me-2 text-gold"></i><span data-edit="culture.musees.titre">Musées &amp; art</span></h3>
                             <p class="mb-0">Le BAM (Beaux-Arts), la maison Van Gogh à Cuesmes, et les musées du Pôle muséal&nbsp;: Silex's, Artothèque, Mons Memorial Museum, musée du Doudou et Beffroi. <strong>Bon plan&nbsp;:</strong> ces cinq derniers sont <strong>gratuits pour les étudiants</strong>, et tous les musées communaux sont <strong>gratuits pour tout le monde le premier dimanche du mois</strong>.</p>
                         </div>
                     </div>
@@ -179,8 +183,8 @@
 
             <!-- Carrousel Doudou : scène commune paysage, images ENTIÈRES
                  sur fond flouté (règle CLAUDE.md §4.4) -->
-            <p class="eyebrow text-center mb-1 mt-5">Patrimoine vivant</p>
-            <h3 class="text-center mb-4">Le Doudou en images</h3>
+            <p class="eyebrow text-center mb-1 mt-5" data-edit="culture.galerieEyebrow">Patrimoine vivant</p>
+            <h3 class="text-center mb-4" data-edit="culture.galerieTitre">Le Doudou en images</h3>
             <div id="carrouselDoudou" class="carousel slide carousel-fade carrousel-affiches" data-carrousel-auto data-reveal>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -191,7 +195,7 @@
                                 <img src="images/doudou-braderie-1-800.jpg" srcset="images/doudou-braderie-1-400.jpg 400w, images/doudou-braderie-1-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="La braderie du Doudou dans les rues de Mons">
                             </picture>
                         </div>
-                        <p class="mt-2 mb-0 text-center text-soft"><small>La braderie du Doudou</small></p>
+                        <p class="mt-2 mb-0 text-center text-soft"><small data-edit="culture.galerieLegendes.0">La braderie du Doudou</small></p>
                     </div>
                     <div class="carousel-item">
                         <div class="affiche-cadre scene-photo">
@@ -201,7 +205,7 @@
                                 <img src="images/doudou-sound-party-1-800.jpg" srcset="images/doudou-sound-party-1-400.jpg 400w, images/doudou-sound-party-1-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="La foule à la Doudou Sound Party">
                             </picture>
                         </div>
-                        <p class="mt-2 mb-0 text-center text-soft"><small>Doudou Sound Party</small></p>
+                        <p class="mt-2 mb-0 text-center text-soft"><small data-edit="culture.galerieLegendes.1">Doudou Sound Party</small></p>
                     </div>
                     <div class="carousel-item">
                         <div class="affiche-cadre scene-photo">
@@ -211,7 +215,7 @@
                                 <img src="images/doudou-fanfares-800.jpg" srcset="images/doudou-fanfares-400.jpg 400w, images/doudou-fanfares-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Le festival des fanfares pendant la Ducasse">
                             </picture>
                         </div>
-                        <p class="mt-2 mb-0 text-center text-soft"><small>Le festival des fanfares</small></p>
+                        <p class="mt-2 mb-0 text-center text-soft"><small data-edit="culture.galerieLegendes.2">Le festival des fanfares</small></p>
                     </div>
                     <div class="carousel-item">
                         <div class="affiche-cadre scene-photo">
@@ -221,7 +225,7 @@
                                 <img src="images/doudou-braderie-2-800.jpg" srcset="images/doudou-braderie-2-400.jpg 400w, images/doudou-braderie-2-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Ambiance de la braderie du Doudou">
                             </picture>
                         </div>
-                        <p class="mt-2 mb-0 text-center text-soft"><small>La braderie du Doudou</small></p>
+                        <p class="mt-2 mb-0 text-center text-soft"><small data-edit="culture.galerieLegendes.3">La braderie du Doudou</small></p>
                     </div>
                     <div class="carousel-item">
                         <div class="affiche-cadre scene-photo">
@@ -231,7 +235,7 @@
                                 <img src="images/doudou-sound-party-2-800.jpg" srcset="images/doudou-sound-party-2-400.jpg 400w, images/doudou-sound-party-2-800.jpg 673w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Scène de la Doudou Sound Party">
                             </picture>
                         </div>
-                        <p class="mt-2 mb-0 text-center text-soft"><small>Doudou Sound Party</small></p>
+                        <p class="mt-2 mb-0 text-center text-soft"><small data-edit="culture.galerieLegendes.4">Doudou Sound Party</small></p>
                     </div>
                 </div>
                 <div class="carousel-indicators">
@@ -250,8 +254,8 @@
 
         <!-- Lieux clés -->
         <section class="mb-5">
-            <p class="eyebrow text-center mb-1">S'installer, étudier, souffler</p>
-            <h2 class="text-center mb-4">Les lieux clés du quotidien</h2>
+            <p class="eyebrow text-center mb-1" data-edit="lieux.eyebrow">S'installer, étudier, souffler</p>
+            <h2 class="text-center mb-4" data-edit="lieux.titre">Les lieux clés du quotidien</h2>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="card card-lift h-100" data-reveal>
@@ -260,7 +264,7 @@
                             <img src="images/hotel-de-ville-800.jpg" srcset="images/hotel-de-ville-400.jpg 400w, images/hotel-de-ville-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
                         </picture>
                         <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-city me-2 text-gold"></i>Administration</h3>
+                            <h3 class="h4"><i class="fas fa-city me-2 text-gold"></i><span data-edit="lieux.administration.titre">Administration</span></h3>
                             <p class="mb-0">L'Hôtel de Ville (Grand-Place) et le service Population / Étrangers de la Ville de Mons&nbsp;: c'est là que se font déclaration d'arrivée, inscription au registre et titres de séjour. Consultez la page <a href="annonces.html">Infos importantes</a> pour les démarches et délais.</p>
                         </div>
                     </div>
@@ -272,8 +276,8 @@
                             <img src="images/campus-nimy-800.jpg" srcset="images/campus-nimy-400.jpg 400w, images/campus-nimy-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
                         </picture>
                         <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-graduation-cap me-2 text-gold"></i>Campus UMONS</h3>
-                            <p class="mb-0">Entre le campus de la Plaine de Nimy et les bâtiments du centre-ville, tout se fait à pied ou en bus. Bibliothèques, restaurants universitaires et services aux étudiants&nbsp;: le guide officiel de l'UMONS complète le nôtre.</p>
+                            <h3 class="h4"><i class="fas fa-graduation-cap me-2 text-gold"></i><span data-edit="lieux.campus.titre">Campus UMONS</span></h3>
+                            <p class="mb-0" data-edit="lieux.campus.texte">Entre le campus de la Plaine de Nimy et les bâtiments du centre-ville, tout se fait à pied ou en bus. Bibliothèques, restaurants universitaires et services aux étudiants&nbsp;: le guide officiel de l'UMONS complète le nôtre.</p>
                         </div>
                     </div>
                 </div>
@@ -284,8 +288,8 @@
                             <img src="images/gare-mons-800.jpg" srcset="images/gare-mons-400.jpg 400w, images/gare-mons-800.jpg 800w" sizes="(max-width: 767px) 92vw, 420px" class="carte-bandeau" alt="" loading="lazy">
                         </picture>
                         <div class="card-body p-4">
-                            <h3 class="h4"><i class="fas fa-water me-2 text-gold"></i>Se déplacer, respirer</h3>
-                            <p class="mb-0">La gare de Mons et le réseau de bus TEC pour rayonner, et le Grand Large — le lac de Mons — pour courir, ramer ou simplement souffler entre deux blocus.</p>
+                            <h3 class="h4"><i class="fas fa-water me-2 text-gold"></i><span data-edit="lieux.deplacer.titre">Se déplacer, respirer</span></h3>
+                            <p class="mb-0" data-edit="lieux.deplacer.texte">La gare de Mons et le réseau de bus TEC pour rayonner, et le Grand Large — le lac de Mons — pour courir, ramer ou simplement souffler entre deux blocus.</p>
                         </div>
                     </div>
                 </div>
@@ -298,8 +302,8 @@
 
         <!-- Marchés -->
         <section class="mb-5">
-            <p class="eyebrow text-center mb-1">Bons plans du panier</p>
-            <h2 class="text-center mb-4">Les marchés de la semaine</h2>
+            <p class="eyebrow text-center mb-1" data-edit="marches.eyebrow">Bons plans du panier</p>
+            <h2 class="text-center mb-4" data-edit="marches.titre">Les marchés de la semaine</h2>
 
             <div id="carrouselMarches" class="carousel slide carousel-fade carrousel-affiches mb-4" data-carrousel-auto data-reveal>
                 <div class="carousel-inner">
@@ -311,7 +315,7 @@
                                 <img src="images/marche-dolez-800.jpg" srcset="images/marche-dolez-400.jpg 400w, images/marche-dolez-800.jpg 800w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Étals du marché du boulevard Dolez">
                             </picture>
                         </div>
-                        <p class="mt-2 mb-0 text-center text-soft"><small>Le marché du boulevard Dolez</small></p>
+                        <p class="mt-2 mb-0 text-center text-soft"><small data-edit="marches.legendes.0">Le marché du boulevard Dolez</small></p>
                     </div>
                     <div class="carousel-item">
                         <div class="affiche-cadre scene-photo">
@@ -321,7 +325,7 @@
                                 <img src="images/marche-fleurs-800.jpg" srcset="images/marche-fleurs-400.jpg 400w, images/marche-fleurs-800.jpg 800w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Le marché aux fleurs de Mons">
                             </picture>
                         </div>
-                        <p class="mt-2 mb-0 text-center text-soft"><small>Le marché aux fleurs</small></p>
+                        <p class="mt-2 mb-0 text-center text-soft"><small data-edit="marches.legendes.1">Le marché aux fleurs</small></p>
                     </div>
                     <div class="carousel-item">
                         <div class="affiche-cadre scene-photo">
@@ -331,7 +335,7 @@
                                 <img src="images/marche-noel-800.jpg" srcset="images/marche-noel-400.jpg 400w, images/marche-noel-800.jpg 800w" sizes="(max-width: 991px) 92vw, 820px" loading="lazy" class="affiche-img" alt="Chalets du marché de Noël sur la Grand-Place de Mons">
                             </picture>
                         </div>
-                        <p class="mt-2 mb-0 text-center text-soft"><small>Le marché de Noël</small></p>
+                        <p class="mt-2 mb-0 text-center text-soft"><small data-edit="marches.legendes.2">Le marché de Noël</small></p>
                     </div>
                 </div>
                 <div class="carousel-indicators">
@@ -342,13 +346,13 @@
             </div>
 
             <div class="frame-double p-4 mx-auto" style="background: var(--surface); max-width: 760px;" data-reveal>
-                <div class="timeline">
+                <div class="timeline" data-edit-marches>
                     <div class="timeline-item"><span class="timeline-time">Ven.</span> <strong>Marché du boulevard Dolez</strong> — produits frais et locaux, en matinée</div>
                     <div class="timeline-item"><span class="timeline-time">Dim.</span> <strong>Marché près de la gare</strong> — le rendez-vous du dimanche matin</div>
                     <div class="timeline-item"><span class="timeline-time">Hebdo</span> <strong>Marché de Jemappes</strong> — très prisé des étudiants, petits prix</div>
                     <div class="timeline-item"><span class="timeline-time">Hebdo</span> <strong>Marché de Nimy</strong> — à deux pas du campus, l'autre repaire étudiant</div>
                 </div>
-                <p class="text-soft small mb-0 mt-2"><i class="fas fa-info-circle me-1"></i>Liste non exhaustive — jours, horaires et emplacements exacts tenus à jour par le comité. Idéal pour manger frais sans exploser le budget étudiant.</p>
+                <p class="text-soft small mb-0 mt-2"><i class="fas fa-info-circle me-1"></i><span data-edit="marches.note">Liste non exhaustive — jours, horaires et emplacements exacts tenus à jour par le comité. Idéal pour manger frais sans exploser le budget étudiant.</span></p>
             </div>
         </section>
 
@@ -358,9 +362,9 @@
 
         <!-- Contact -->
         <div class="frame-double p-4 mx-auto" style="background: var(--surface); max-width: 760px;" data-reveal>
-            <p class="eyebrow mb-2">Une question sur la vie à Mons&nbsp;?</p>
-            <h2 class="h3 mb-2">L'UECE vous oriente</h2>
-            <p class="mb-3">Logement, démarches, bons plans, vie étudiante&nbsp;: écrivez-nous, nous vous indiquerons le bon interlocuteur ou le bon endroit.</p>
+            <p class="eyebrow mb-2" data-edit="contact.eyebrow">Une question sur la vie à Mons&nbsp;?</p>
+            <h2 class="h3 mb-2" data-edit="contact.titre">L'UECE vous oriente</h2>
+            <p class="mb-3" data-edit="contact.texte">Logement, démarches, bons plans, vie étudiante&nbsp;: écrivez-nous, nous vous indiquerons le bon interlocuteur ou le bon endroit.</p>
             <a href="mailto:UECE.UMONS@umons.ac.be" class="btn btn-gold"><i class="fas fa-envelope me-2"></i>UECE.UMONS@umons.ac.be</a>
         </div>
     </main>
@@ -369,25 +373,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <p class="footer-title">Nous contacter</p>
+                    <p class="footer-title" data-global="contact.titre">Nous contacter</p>
                     <p>
-                        <i class="fas fa-map-marker-alt me-2"></i> Place du Parc 20, 7000 Mons<br>
-                        <i class="fas fa-envelope me-2"></i> UECE.UMONS@umons.ac.be<br>
-                        <i class="fas fa-phone me-2"></i> +32 65 00 00 00
+                        <i class="fas fa-map-marker-alt me-2"></i> <span data-global="contact.adresse">Place du Parc 20, 7000 Mons</span><br>
+                        <i class="fas fa-envelope me-2"></i> <span data-global="contact.email">UECE.UMONS@umons.ac.be</span><br>
+                        <i class="fas fa-phone me-2"></i> <span data-global="contact.telephone">+32 65 00 00 00</span>
                     </p>
                 </div>
 
                 <div class="col-md-4 mb-4 text-center">
-                    <p class="footer-title">Suivez-nous</p>
+                    <p class="footer-title" data-global="reseaux.titre">Suivez-nous</p>
                     <div class="mt-3">
-                        <a href="https://www.facebook.com/gerantpg" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/gerantpg" data-global-href="reseaux.facebook" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" data-global-href="reseaux.instagram" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" data-global-href="reseaux.tiktok" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-4 text-end">
-                    <p class="footer-title">Informations</p>
+                    <p class="footer-title" data-global="informations.titre">Informations</p>
                     <ul class="list-unstyled">
                         <li><a href="standard.html">Mentions Légales</a></li>
                         <li><a href="standard.html">Politique de confidentialité</a></li>
@@ -396,7 +400,7 @@
                 </div>
             </div>
             <div class="text-center py-3 border-top border-secondary mt-3">
-                <small>&copy; 2026 UECE UMONS. Tous droits réservés.</small>
+                <small data-global="copyright">&copy; 2026 UECE UMONS. Tous droits réservés.</small>
             </div>
         </div>
     </footer>

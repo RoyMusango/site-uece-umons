@@ -20,6 +20,8 @@
     <script defer src="js/bureaux-data.js"></script>
     <!-- Carrousel de la mission (défilement auto, respecte reduced-motion) -->
     <script defer src="js/carrousels.js"></script>
+    <!-- Pied de page global éditable via le CMS (data/global.json) -->
+    <script defer src="js/global-data.js"></script>
 </head>
 <body class="has-hero">
 
@@ -79,10 +81,10 @@
 
     <header class="page-header" data-glow>
         <div class="container">
-            <p class="eyebrow">L'Association</p>
-            <h1>C'est quoi l'UECE&nbsp;?</h1>
+            <p class="eyebrow" data-edit="entete.eyebrow">L'Association</p>
+            <h1 data-edit="entete.titre">C'est quoi l'UECE&nbsp;?</h1>
             <hr class="divider-gold">
-            <p class="lead">L'Union des Étudiants et Chercheurs Étrangers de l'UMONS&nbsp;:<br>une association par et pour les étudiants internationaux, qui fait le pont entre les cultures.</p>
+            <p class="lead" data-edit-lines="entete.lead">L'Union des Étudiants et Chercheurs Étrangers de l'UMONS&nbsp;:<br>une association par et pour les étudiants internationaux, qui fait le pont entre les cultures.</p>
         </div>
     </header>
 
@@ -97,8 +99,8 @@
         <!-- Mission : carrousel visuel (défilement auto 6 s, pause au survol,
              pas de défilement auto en reduced-motion — js/carrousels.js) -->
         <section class="mb-5 mt-4">
-            <p class="eyebrow text-center mb-1">Notre raison d'être</p>
-            <h2 class="text-center mb-4">Accueillir, Intégrer, Représenter</h2>
+            <p class="eyebrow text-center mb-1" data-edit="mission.eyebrow">Notre raison d'être</p>
+            <h2 class="text-center mb-4" data-edit="mission.titre">Accueillir, Intégrer, Représenter</h2>
 
             <div id="carrouselMission" class="carousel slide carrousel-mission" data-carrousel-auto data-reveal>
                 <div class="carousel-indicators">
@@ -114,8 +116,8 @@
                         </picture>
                         <div class="carrousel-voile" aria-hidden="true"></div>
                         <div class="carrousel-texte">
-                            <h3><i class="fas fa-hands-helping me-2 text-gold"></i>Accueillir</h3>
-                            <p>Événements d'intégration, premiers repères à Mons, conseils entre étudiants&nbsp;: nous facilitons l'arrivée des étudiants et chercheurs internationaux, dès les premiers jours.</p>
+                            <h3><i class="fas fa-hands-helping me-2 text-gold"></i><span data-edit="mission.cartes.0.titre">Accueillir</span></h3>
+                            <p data-edit="mission.cartes.0.texte">Événements d'intégration, premiers repères à Mons, conseils entre étudiants&nbsp;: nous facilitons l'arrivée des étudiants et chercheurs internationaux, dès les premiers jours.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -125,15 +127,15 @@
                         </picture>
                         <div class="carrousel-voile" aria-hidden="true"></div>
                         <div class="carrousel-texte">
-                            <h3><i class="fas fa-users me-2 text-gold"></i>Intégrer</h3>
-                            <p>Rencontres interculturelles, soirées, entraide académique et bons plans du quotidien&nbsp;: nous créons des liens entre les communautés — et avec les étudiants belges.</p>
+                            <h3><i class="fas fa-users me-2 text-gold"></i><span data-edit="mission.cartes.1.titre">Intégrer</span></h3>
+                            <p data-edit="mission.cartes.1.texte">Rencontres interculturelles, soirées, entraide académique et bons plans du quotidien&nbsp;: nous créons des liens entre les communautés — et avec les étudiants belges.</p>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <div class="carrousel-fond-motif" aria-hidden="true"></div>
                         <div class="carrousel-texte">
-                            <h3><i class="fas fa-bullhorn me-2 text-gold"></i>Représenter</h3>
-                            <p>Nous portons la voix des étudiants internationaux auprès de l'UMONS et de ses partenaires, et nous relayons leurs préoccupations là où les décisions se prennent.</p>
+                            <h3><i class="fas fa-bullhorn me-2 text-gold"></i><span data-edit="mission.cartes.2.titre">Représenter</span></h3>
+                            <p data-edit="mission.cartes.2.texte">Nous portons la voix des étudiants internationaux auprès de l'UMONS et de ses partenaires, et nous relayons leurs préoccupations là où les décisions se prennent.</p>
                         </div>
                     </div>
                 </div>
@@ -160,14 +162,14 @@
         <!-- Devenir membre : conditions d'adhésion À VALIDER par le comité
              (éditables via l'administration : data/bureaux.json → adhesion) -->
         <div class="frame-double p-4 mx-auto mb-5" style="background: var(--surface); max-width: 760px;" data-reveal>
-            <p class="eyebrow mb-2">Rejoindre l'UECE</p>
-            <h2 class="h3 mb-3">Devenir membre</h2>
+            <p class="eyebrow mb-2" data-edit="adhesion.eyebrow">Rejoindre l'UECE</p>
+            <h2 class="h3 mb-3" data-edit="adhesion.titre">Devenir membre</h2>
             <ul class="liste-conditions text-start mx-auto mb-3" data-edit-conditions>
                 <li>Être étudiant·e ou chercheur·euse, à l'UMONS ou dans un établissement d'enseignement supérieur montois (à valider par le comité)</li>
                 <li>Payer la cotisation annuelle (montant à compléter par le comité)</li>
                 <li>Adhérer aux valeurs de l'association&nbsp;: respect, ouverture et entraide entre les cultures</li>
             </ul>
-            <p class="mb-3">Écrivez-nous pour plus d'informations&nbsp;: le comité vous guidera pour la suite.</p>
+            <p class="mb-3" data-edit="adhesion.contact">Écrivez-nous pour plus d'informations&nbsp;: le comité vous guidera pour la suite.</p>
             <a href="mailto:UECE.UMONS@umons.ac.be" class="btn btn-gold"><i class="fas fa-envelope me-2"></i>UECE.UMONS@umons.ac.be</a>
         </div>
 
@@ -177,8 +179,8 @@
 
         <!-- Bureau actuel (photos + mini-bios éditables via l'administration) -->
         <section id="bureau-actuel" class="mb-5">
-            <p class="eyebrow text-center mb-1">Qui fait vivre l'UECE</p>
-            <h2 class="text-center mb-1">Le bureau actuel</h2>
+            <p class="eyebrow text-center mb-1" data-edit="bureauActuel.eyebrow">Qui fait vivre l'UECE</p>
+            <h2 class="text-center mb-1" data-edit="bureauActuel.titre">Le bureau actuel</h2>
             <p class="text-center text-soft mb-4" data-edit-periode-actuel>Mandat 2026 – 2027</p>
             <div class="row g-4 justify-content-center" data-edit-bureau-actuel>
                 <!-- Liste officielle des postes (Roy, 20/07/2026) : présidence,
@@ -257,8 +259,8 @@
 
         <!-- Historique des bureaux -->
         <section id="bureaux" class="mb-5">
-            <p class="eyebrow text-center mb-1">Notre histoire</p>
-            <h2 class="text-center mb-3">L'historique des bureaux</h2>
+            <p class="eyebrow text-center mb-1" data-edit="histoire.eyebrow">Notre histoire</p>
+            <h2 class="text-center mb-3" data-edit="histoire.titre">L'historique des bureaux</h2>
             <p class="text-center mx-auto mb-4" style="max-width: 720px;" data-edit-intro-bureaux>Depuis sa création, l'UECE est portée par des équipes d'étudiants bénévoles qui se passent le flambeau. Cette page honore celles et ceux qui ont fait vivre l'association, année après année.</p>
 
             <div class="row g-4 justify-content-center" data-edit-bureaux>
@@ -318,7 +320,7 @@
                 </div>
             </div>
 
-            <p class="text-center text-soft small mt-4 mb-0"><i class="fas fa-envelope me-1 text-gold"></i>Ancien membre d'un bureau&nbsp;? Aidez-nous à compléter cette page&nbsp;: écrivez-nous vos années et vos noms.</p>
+            <p class="text-center text-soft small mt-4 mb-0"><i class="fas fa-envelope me-1 text-gold"></i><span data-edit="histoire.note">Ancien membre d'un bureau&nbsp;? Aidez-nous à compléter cette page&nbsp;: écrivez-nous vos années et vos noms.</span></p>
         </section>
     </main>
 
@@ -326,25 +328,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <p class="footer-title">Nous contacter</p>
+                    <p class="footer-title" data-global="contact.titre">Nous contacter</p>
                     <p>
-                        <i class="fas fa-map-marker-alt me-2"></i> Place du Parc 20, 7000 Mons<br>
-                        <i class="fas fa-envelope me-2"></i> UECE.UMONS@umons.ac.be<br>
-                        <i class="fas fa-phone me-2"></i> +32 65 00 00 00
+                        <i class="fas fa-map-marker-alt me-2"></i> <span data-global="contact.adresse">Place du Parc 20, 7000 Mons</span><br>
+                        <i class="fas fa-envelope me-2"></i> <span data-global="contact.email">UECE.UMONS@umons.ac.be</span><br>
+                        <i class="fas fa-phone me-2"></i> <span data-global="contact.telephone">+32 65 00 00 00</span>
                     </p>
                 </div>
 
                 <div class="col-md-4 mb-4 text-center">
-                    <p class="footer-title">Suivez-nous</p>
+                    <p class="footer-title" data-global="reseaux.titre">Suivez-nous</p>
                     <div class="mt-3">
-                        <a href="https://www.facebook.com/gerantpg" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/gerantpg" data-global-href="reseaux.facebook" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/uece_umons?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" data-global-href="reseaux.instagram" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@uece_umons?_r=1&_t=ZG-93YsY3fRJzs" data-global-href="reseaux.tiktok" class="social-icon" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
 
                 <div class="col-md-4 mb-4 text-end">
-                    <p class="footer-title">Informations</p>
+                    <p class="footer-title" data-global="informations.titre">Informations</p>
                     <ul class="list-unstyled">
                         <li><a href="standard.html">Mentions Légales</a></li>
                         <li><a href="standard.html">Politique de confidentialité</a></li>
@@ -353,7 +355,7 @@
                 </div>
             </div>
             <div class="text-center py-3 border-top border-secondary mt-3">
-                <small>&copy; 2026 UECE UMONS. Tous droits réservés.</small>
+                <small data-global="copyright">&copy; 2026 UECE UMONS. Tous droits réservés.</small>
             </div>
         </div>
     </footer>

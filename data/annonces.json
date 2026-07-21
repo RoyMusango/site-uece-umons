@@ -1,0 +1,55 @@
+{
+  "entete": {
+    "eyebrow": "Étudiants & chercheurs internationaux",
+    "titre": "Infos importantes",
+    "lead": "Deadlines administratives, décisions communales et démarches essentielles\npour les étudiants hors Union européenne (HUE) et de l'Union européenne (UE)."
+  },
+  "annonces": [
+    {
+      "public": "Tous",
+      "deadline": "Dans les 8 jours ouvrables suivant l'arrivée",
+      "titre": "Déclaration d'arrivée à l'administration communale de Mons",
+      "description": "Tout étudiant étranger qui s'installe à Mons doit se présenter au service Population / Étrangers de la Ville de Mons pour déclarer son arrivée et entamer son inscription au registre. Munissez-vous de votre passeport ou carte d'identité, de votre attestation d'inscription à l'UMONS et d'une preuve de logement.",
+      "sourceLabel": "Ville de Mons — Service des Étrangers (première arrivée)",
+      "sourceUrl": "https://www.mons.be/fr/vivre-a-mons/etat-civil-population-1/service-etrangers",
+      "datePublication": "01/07/2026",
+      "sourceNote": ""
+    },
+    {
+      "public": "HUE",
+      "deadline": "Au plus tard 15 jours avant l'expiration de la carte A",
+      "titre": "Renouvellement du titre de séjour étudiant (carte A)",
+      "description": "La demande de renouvellement doit être introduite auprès de la commune au plus tard 15 jours avant l'expiration de votre titre de séjour actuel. Préparez : passeport valide, attestation d'inscription pour l'année académique suivante, formulaire standard complété par l'établissement (crédits validés) et preuve de moyens de subsistance.",
+      "sourceLabel": "Ville de Mons — Renouvellement carte A (étudiant)",
+      "sourceUrl": "https://www.mons.be/fr/vivre-a-mons/etat-civil-population-1/service-etrangers/inscription-dun-etranger-non-ue/long-sejour-de-plus-de-3-mois/etudiant/renouvellement-de-votre-titre-de-sejour-carte-a",
+      "datePublication": "20/07/2026",
+      "sourceNote": "modalités à vérifier chaque année"
+    },
+    {
+      "public": "HUE",
+      "deadline": "Avant la rentrée 2026-2027",
+      "titre": "Preuve de moyens de subsistance : montant de référence mis à jour",
+      "description": "Le montant mensuel de référence exigé pour prouver vos moyens de subsistance est réévalué chaque année académique : pour 2026-2027, il est fixé à 1 062 € nets par mois. Vérifiez le montant en vigueur avant de constituer votre dossier (prise en charge annexe 32, bourse, compte bloqué ou revenus propres).",
+      "sourceLabel": "Office des Étrangers — Moyens de subsistance suffisants",
+      "sourceUrl": "https://dofi.ibz.be/fr/themes/ressortissants-dun-pays-tiers/etudes/favoris/moyens-de-subsistance-suffisants",
+      "datePublication": "20/07/2026",
+      "sourceNote": ""
+    },
+    {
+      "public": "UE",
+      "deadline": "Dans les 3 mois suivant l'arrivée",
+      "titre": "Demande d'attestation d'enregistrement (annexe 19)",
+      "description": "Les citoyens de l'Union européenne qui séjournent plus de trois mois en Belgique doivent demander leur attestation d'enregistrement auprès de la commune de résidence. La demande se fait au service Population avec votre carte d'identité et votre attestation d'inscription à l'UMONS.",
+      "sourceLabel": "Ville de Mons — Inscription d'un citoyen de l'UE",
+      "sourceUrl": "https://www.mons.be/fr/vivre-a-mons/etat-civil-population-1/service-etrangers/inscription-dun-citoyen-de-lunion-europeenne-ue",
+      "datePublication": "01/07/2026",
+      "sourceNote": ""
+    }
+  ],
+  "aide": {
+    "eyebrow": "Besoin d'aide ?",
+    "titre": "L'UECE vous oriente dans vos démarches",
+    "texte": "Un doute sur une deadline, un document ou une convocation ? Écrivez-nous : nous vous indiquerons l'organisme vers lequel vous tourner (administration communale, Office des Étrangers, services de l'UMONS…). L'UECE ne réalise pas les démarches à votre place et ne vous accompagne pas sur place, mais vous ne resterez jamais sans réponse."
+  },
+  "disclaimer": "Ces informations sont publiées à titre indicatif par l'UECE et ne remplacent pas les communications officielles de la Ville de Mons, de l'Office des Étrangers ou de l'UMONS. Vérifiez toujours la source avant d'agir."
+}
