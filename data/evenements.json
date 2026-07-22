@@ -10,7 +10,14 @@
       "jour": "Samedi 15 mai 2026",
       "heure": "19h00 – 03h00 (portes à 18h30)",
       "lieu": "Salle des Congrès, Grand-Place 22, 7000 Mons",
+      "affiche": "images/evenements-800.jpg",
+      "afficheAlt": "Affiche du Gala UECE Kings and Queens",
       "description": "L'événement de l'année : dîner gastronomique aux saveurs internationales, spectacles culturels, tombola et DJ jusqu'au bout de la nuit. Tenue de soirée, thème Noir & Or.",
+      "payant": true,
+      "tarifs": [
+        { "nom": "Standard", "prix": "15 €" },
+        { "nom": "VIP", "prix": "25 €" }
+      ],
       "lienUrl": "gala.html",
       "lienTexte": "Réserver ma place"
     },
@@ -19,7 +26,11 @@
       "jour": "Date à confirmer",
       "heure": "18h45",
       "lieu": "GA Plisnier, campus de Nimy",
+      "affiche": "",
+      "afficheAlt": "",
       "description": "Interventions, témoignages et networking : rencontrez des professionnels, des chercheurs et des étudiants qui partagent leurs parcours. Collation prévue.",
+      "payant": false,
+      "tarifs": [],
       "lienUrl": "",
       "lienTexte": ""
     },
@@ -28,7 +39,11 @@
       "jour": "Date à confirmer",
       "heure": "À confirmer",
       "lieu": "À confirmer",
+      "affiche": "",
+      "afficheAlt": "",
       "description": "Jeux de société, cartes et jeux du monde entier apportés par les étudiants : la façon la plus simple de rencontrer du monde dans une ambiance détendue.",
+      "payant": false,
+      "tarifs": [],
       "lienUrl": "",
       "lienTexte": ""
     }

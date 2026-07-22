@@ -1584,6 +1584,42 @@ footer .border-top { border-color: var(--line-gold) !important; }
     font-size: .9rem;
 }
 
+/* Affiche / flyer et tarifs d'un événement (Phase 11) — l'affiche s'affiche
+   ENTIÈRE (jamais recadrée), dans le cadre double filet or, taille bornée. */
+.evt-affiche { text-align: center; margin: 0 0 1rem; }
+.evt-affiche .affiche-cadre { max-width: 260px; }
+.evt-affiche .affiche-img { display: block; width: 100%; height: auto; }
+
+.evt-tarifs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 .9rem;
+    padding: 0;
+    list-style: none;
+}
+.evt-tarif {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 4px 12px;
+    border: 1px solid var(--line-gold);
+    border-radius: 999px;
+    background: rgba(212, 175, 55, .06);
+    font-size: .9rem;
+}
+.evt-tarif-nom { color: var(--ink); font-weight: 500; }
+.evt-tarif-prix { color: var(--gold-700); font-weight: 600; }
+.evt-gratuit {
+    display: inline-block;
+    margin: 0 0 .9rem;
+    color: var(--gold-700);
+    font-size: .85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
 /* --- Récap prix + CTA sticky mobile (Phase 3) --- */
 .cta-sticky { display: none; }
 
