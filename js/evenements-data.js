@@ -31,6 +31,53 @@
         return ligne;
     }
 
+    // Vrai si la valeur représente un texte non vide.
+    function rempli(v) { return typeof v === 'string' && v.trim() !== ''; }
+
+    // Affiche / flyer de l'événement : image ENTIÈRE (jamais recadrée) dans le
+    // cadre double filet or. Optionnelle.
+    function creerAffiche(evt) {
+        if (!rempli(evt.affiche)) { return null; }
+        var bloc = document.createElement('div');
+        bloc.className = 'evt-affiche';
+        var cadre = document.createElement('div');
+        cadre.className = 'affiche-cadre';
+        var img = document.createElement('img');
+        img.className = 'affiche-img';
+        img.src = evt.affiche;
+        img.alt = rempli(evt.afficheAlt) ? evt.afficheAlt : ('Affiche : ' + (evt.titre || ''));
+        img.setAttribute('loading', 'lazy');
+        cadre.appendChild(img);
+        bloc.appendChild(cadre);
+        return bloc;
+    }
+
+    // Tarifs d'un événement payant : une pastille « Nom — Prix » par formule.
+    function creerTarifs(evt) {
+        if (!Array.isArray(evt.tarifs) || evt.tarifs.length === 0) { return null; }
+        var liste = document.createElement('ul');
+        liste.className = 'evt-tarifs';
+        evt.tarifs.forEach(function (t) {
+            if (!t || (!rempli(t.nom) && !rempli(t.prix))) { return; }
+            var item = document.createElement('li');
+            item.className = 'evt-tarif';
+            if (rempli(t.nom)) {
+                var nom = document.createElement('span');
+                nom.className = 'evt-tarif-nom';
+                nom.textContent = t.nom;
+                item.appendChild(nom);
+            }
+            if (rempli(t.prix)) {
+                var prix = document.createElement('span');
+                prix.className = 'evt-tarif-prix';
+                prix.textContent = t.prix;
+                item.appendChild(prix);
+            }
+            liste.appendChild(item);
+        });
+        return liste.childNodes.length > 0 ? liste : null;
+    }
+
     function injecterEvenements(data) {
         var section = document.querySelector('[data-edit-evenements]');
         if (!section || !Array.isArray(data.evenements) || data.evenements.length === 0) { return; }
@@ -46,7 +93,7 @@
             titre.className = 'evt-titre';
             titre.textContent = evt.titre;
             summary.appendChild(titre);
-            if (evt.jour && evt.jour.trim() !== '') {
+            if (rempli(evt.jour)) {
                 var quand = document.createElement('small');
                 quand.className = 'evt-quand';
                 quand.textContent = evt.jour;
@@ -57,26 +104,42 @@
             var corps = document.createElement('div');
             corps.className = 'evt-corps';
 
+            // Affiche / flyer (en tête du détail, s'il y en a une).
+            var affiche = creerAffiche(evt);
+            if (affiche) { corps.appendChild(affiche); }
+
             var meta = document.createElement('p');
             meta.className = 'evt-meta';
-            if (evt.jour && evt.jour.trim() !== '') { meta.appendChild(creerMeta('fa-calendar-alt', evt.jour)); }
-            if (evt.heure && evt.heure.trim() !== '') { meta.appendChild(creerMeta('fa-clock', evt.heure)); }
-            if (evt.lieu && evt.lieu.trim() !== '') { meta.appendChild(creerMeta('fa-map-marker-alt', evt.lieu)); }
+            if (rempli(evt.jour)) { meta.appendChild(creerMeta('fa-calendar-alt', evt.jour)); }
+            if (rempli(evt.heure)) { meta.appendChild(creerMeta('fa-clock', evt.heure)); }
+            if (rempli(evt.lieu)) { meta.appendChild(creerMeta('fa-map-marker-alt', evt.lieu)); }
             if (meta.childNodes.length > 0) { corps.appendChild(meta); }
 
-            if (evt.description && evt.description.trim() !== '') {
+            if (rempli(evt.description)) {
                 var texte = document.createElement('p');
                 texte.textContent = evt.description;
                 corps.appendChild(texte);
             }
 
-            if (evt.lienUrl && evt.lienUrl.trim() !== '') {
+            // Événement payant : tarifs (pastilles). Sinon : mention « gratuit ».
+            if (evt.payant) {
+                var tarifs = creerTarifs(evt);
+                if (tarifs) { corps.appendChild(tarifs); }
+            } else {
+                var gratuit = document.createElement('p');
+                gratuit.className = 'evt-gratuit';
+                gratuit.textContent = 'Entrée gratuite';
+                corps.appendChild(gratuit);
+            }
+
+            // Bouton d'action : réservation (payant) ou lien externe éventuel.
+            if (rempli(evt.lienUrl)) {
                 var lien = document.createElement('a');
                 lien.className = 'btn btn-gold btn-sm';
                 lien.href = evt.lienUrl;
-                lien.textContent = evt.lienTexte && evt.lienTexte.trim() !== ''
+                lien.textContent = rempli(evt.lienTexte)
                     ? evt.lienTexte
-                    : 'Plus d’informations';
+                    : (evt.payant ? 'Réserver ma place' : 'Plus d’informations');
                 corps.appendChild(lien);
             }
 

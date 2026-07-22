@@ -132,9 +132,19 @@ Collection CMS : **« Page Événements »**. Injection : `js/evenements-data.js
 | — Jour | `evenements[].jour` | string | |
 | — Heure | `evenements[].heure` | string | optionnel |
 | — Lieu | `evenements[].lieu` | string | optionnel |
+| — Affiche / flyer | `evenements[].affiche` | image | optionnel ; image entière jamais recadrée |
+| — Texte alt de l'affiche | `evenements[].afficheAlt` | string | optionnel (accessibilité) |
 | — Description | `evenements[].description` | text | |
-| — Lien du bouton | `evenements[].lienUrl` | string | optionnel |
+| — Événement payant ? | `evenements[].payant` | boolean | `true` → affiche les tarifs ; `false` → « Entrée gratuite » |
+| — Tarifs (liste) | `evenements[].tarifs[]` | list | si payant ; par formule : `nom`, `prix` (affichage seul pour l'instant) |
+| — Lien du bouton | `evenements[].lienUrl` | string | optionnel ; futur : page de réservation par événement |
 | — Texte du bouton | `evenements[].lienTexte` | string | optionnel |
+
+**Étape suivante (à faire)** : page de paiement **générique par événement** (lira
+`tarifs` + titre de l'événement, se branchera sur PayPal). Touche au flux de
+paiement → chantier séparé avec plan + test de bout en bout. Tant qu'elle n'existe
+pas, `tarifs` est **affiché uniquement** et le bouton de réservation du Gala pointe
+vers `gala.html`.
 
 ---
 

@@ -262,9 +262,21 @@ collections:
               - { label: "Jour", name: jour, widget: string, hint: "Ex. Samedi 15 mai 2026 — ou « Date à confirmer »." }
               - { label: "Heure", name: heure, widget: string, required: false }
               - { label: "Lieu", name: lieu, widget: string, required: false }
+              - { label: "Affiche / flyer (optionnelle)", name: affiche, widget: image, required: false, hint: "L'image s'affiche ENTIÈRE (jamais recadrée). Conseil : largeur max ~1600 px pour garder la page légère." }
+              - { label: "Texte alternatif de l'affiche", name: afficheAlt, widget: string, required: false, hint: "Décrit l'affiche pour l'accessibilité. Ex. « Affiche du Gala 2026 »." }
               - { label: "Description", name: description, widget: text }
-              - { label: "Lien du bouton (optionnel)", name: lienUrl, widget: string, required: false, hint: "Ex. gala.html, ou un lien d'inscription complet." }
-              - { label: "Texte du bouton (optionnel)", name: lienTexte, widget: string, required: false, hint: "Ex. Réserver ma place. Vide = « Plus d'informations »." }
+              - { label: "Événement payant ?", name: payant, widget: boolean, default: false, hint: "Activez pour un événement avec billets. Affiche les tarifs ci-dessous ; un événement non payant affiche « Entrée gratuite »." }
+              - label: "Tarifs (si payant)"
+                name: tarifs
+                widget: list
+                required: false
+                summary: "{{fields.nom}} — {{fields.prix}}"
+                hint: "Une formule par ligne (ex. Standard 15 €, VIP 25 €). Affichage seulement à ce stade ; le paiement en ligne par événement sera branché à l'étape suivante."
+                fields:
+                  - { label: "Nom de la formule", name: nom, widget: string }
+                  - { label: "Prix (ex. 15 €)", name: prix, widget: string }
+              - { label: "Lien du bouton (optionnel)", name: lienUrl, widget: string, required: false, hint: "Ex. gala.html, ou un lien d'inscription complet. Pour un événement payant, ce sera la page de réservation." }
+              - { label: "Texte du bouton (optionnel)", name: lienTexte, widget: string, required: false, hint: "Ex. Réserver ma place. Vide = « Réserver ma place » (payant) ou « Plus d'informations » (gratuit)." }
 
   - name: annonces
     label: "Page Infos (HUE / UE)"
