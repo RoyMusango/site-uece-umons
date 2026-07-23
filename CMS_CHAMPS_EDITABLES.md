@@ -26,6 +26,7 @@
 | `gala.html` | `data/gala.json` | « Page Gala » | ✅ branchée |
 | `faq.html` | `data/faq.json` | « Page FAQ » | ✅ branchée |
 | `evenements.html` | `data/evenements.json` | « Page Événements » | ✅ branchée |
+| `merci.html` | `data/merci.json` | « Page de remerciement » | ✅ branchée |
 | `annonces.html` | `data/annonces.json` | « Page Infos (HUE / UE) » | ✅ branchée |
 | `guide.html` | `data/guide.json` | « Page Guide de l'étudiant » | ✅ branchée |
 | `association.html` | `data/bureaux.json` | « Page Association » | ✅ branchée |
@@ -136,15 +137,33 @@ Collection CMS : **« Page Événements »**. Injection : `js/evenements-data.js
 | — Texte alt de l'affiche | `evenements[].afficheAlt` | string | optionnel (accessibilité) |
 | — Description | `evenements[].description` | text | |
 | — Événement payant ? | `evenements[].payant` | boolean | `true` → affiche les tarifs ; `false` → « Entrée gratuite » |
-| — Tarifs (liste) | `evenements[].tarifs[]` | list | si payant ; par formule : `nom`, `prix` (affichage seul pour l'instant) |
-| — Lien du bouton | `evenements[].lienUrl` | string | optionnel ; futur : page de réservation par événement |
+| — Tarifs (liste) | `evenements[].tarifs[]` | list | si payant ; par formule : `nom`, `prix`, `lien` |
+| — — Lien de paiement (Stripe) | `evenements[].tarifs[].lien` | string | optionnel ; **lien de paiement Stripe** de la formule. Vide → pas de bouton pour cette formule |
+| — Lien du bouton | `evenements[].lienUrl` | string | optionnel ; bouton de repli si aucun `lien` de formule (ex. Gala → `gala.html`) |
 | — Texte du bouton | `evenements[].lienTexte` | string | optionnel |
 
-**Étape suivante (à faire)** : page de paiement **générique par événement** (lira
-`tarifs` + titre de l'événement, se branchera sur PayPal). Touche au flux de
-paiement → chantier séparé avec plan + test de bout en bout. Tant qu'elle n'existe
-pas, `tarifs` est **affiché uniquement** et le bouton de réservation du Gala pointe
-vers `gala.html`.
+**Paiement (voie décidée : Stripe Payment Links)** : Stripe **héberge** la page de
+paiement — il n'y a pas de page maison à construire. Chaque formule payante reçoit
+son **lien de paiement Stripe** (champ `tarifs[].lien`) → un bouton « Réserver — Nom ·
+Prix » apparaît. Tant qu'aucun lien n'est saisi, l'affichage reste identique (pastilles
++ bouton unique vers `gala.html`). Après paiement, Stripe redirige vers **`merci.html`**.
+Reste bloqué sur l'ouverture du compte bancaire UECE (voir Annexe 8).
+
+---
+
+## ✅ Page de remerciement — `data/merci.json`
+
+Collection CMS : **« Page de remerciement »**. Injection : `js/merci-data.js`.
+Page (`merci.html`, `noindex`) affichée après un paiement réussi — cible de
+redirection de Stripe. Le pied de page vient du contenu global.
+
+| Champ (label CMS) | Chemin JSON | Widget | Notes |
+|---|---|---|---|
+| En-tête — Sur-titre / Titre / Sous-titre | `entete.eyebrow/titre/lead` | object | |
+| Corps — Titre | `corps.titre` | string | |
+| Corps — Message principal | `corps.message` | text | |
+| Corps — Astuce (spam / images) | `corps.astuce` | text | |
+| Corps — Ligne de contact | `corps.contact` | text | |
 
 ---
 

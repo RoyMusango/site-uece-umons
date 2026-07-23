@@ -78,6 +78,27 @@
         return liste.childNodes.length > 0 ? liste : null;
     }
 
+    // Boutons de réservation par formule : un bouton par tarif qui possède un
+    // lien de paiement (Stripe Payment Link). Reste vide tant qu'aucun lien
+    // n'est renseigné dans le CMS (capacité dormante d'ici la bascule Stripe).
+    function creerReservations(evt) {
+        if (!Array.isArray(evt.tarifs)) { return null; }
+        var bloc = document.createElement('div');
+        bloc.className = 'evt-reservations';
+        evt.tarifs.forEach(function (t) {
+            if (!t || !rempli(t.lien)) { return; }
+            var a = document.createElement('a');
+            a.className = 'btn btn-gold btn-sm';
+            a.href = t.lien;
+            var libelle = 'Réserver';
+            if (rempli(t.nom)) { libelle += ' — ' + t.nom; }
+            if (rempli(t.prix)) { libelle += ' · ' + t.prix; }
+            a.textContent = libelle;
+            bloc.appendChild(a);
+        });
+        return bloc.childNodes.length > 0 ? bloc : null;
+    }
+
     function injecterEvenements(data) {
         var section = document.querySelector('[data-edit-evenements]');
         if (!section || !Array.isArray(data.evenements) || data.evenements.length === 0) { return; }
@@ -121,10 +142,17 @@
                 corps.appendChild(texte);
             }
 
-            // Événement payant : tarifs (pastilles). Sinon : mention « gratuit ».
+            // Un ou plusieurs liens de paiement par formule sont-ils renseignés ?
+            var liensFormule = evt.payant && Array.isArray(evt.tarifs)
+                && evt.tarifs.some(function (t) { return t && rempli(t.lien); });
+
+            // Événement payant : tarifs (pastilles) + boutons de réservation par
+            // formule s'ils existent. Sinon : mention « gratuit ».
             if (evt.payant) {
                 var tarifs = creerTarifs(evt);
                 if (tarifs) { corps.appendChild(tarifs); }
+                var reservations = creerReservations(evt);
+                if (reservations) { corps.appendChild(reservations); }
             } else {
                 var gratuit = document.createElement('p');
                 gratuit.className = 'evt-gratuit';
@@ -132,8 +160,10 @@
                 corps.appendChild(gratuit);
             }
 
-            // Bouton d'action : réservation (payant) ou lien externe éventuel.
-            if (rempli(evt.lienUrl)) {
+            // Bouton unique de repli : seulement si aucun lien de paiement par
+            // formule n'est renseigné (ex. le Gala pointe vers gala.html tant que
+            // ses liens Stripe n'existent pas). Sert aussi aux liens externes.
+            if (rempli(evt.lienUrl) && !liensFormule) {
                 var lien = document.createElement('a');
                 lien.className = 'btn btn-gold btn-sm';
                 lien.href = evt.lienUrl;

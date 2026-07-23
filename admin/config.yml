@@ -275,8 +275,33 @@ collections:
                 fields:
                   - { label: "Nom de la formule", name: nom, widget: string }
                   - { label: "Prix (ex. 15 €)", name: prix, widget: string }
+                  - { label: "Lien de paiement (Stripe) — optionnel", name: lien, widget: string, required: false, hint: "Collez ici le lien de paiement Stripe de cette formule. Tant qu'il est vide, aucun bouton n'apparaît pour cette formule (le bouton général « Réserver » ci-dessous prend le relais)." }
               - { label: "Lien du bouton (optionnel)", name: lienUrl, widget: string, required: false, hint: "Ex. gala.html, ou un lien d'inscription complet. Pour un événement payant, ce sera la page de réservation." }
               - { label: "Texte du bouton (optionnel)", name: lienTexte, widget: string, required: false, hint: "Ex. Réserver ma place. Vide = « Réserver ma place » (payant) ou « Plus d'informations » (gratuit)." }
+
+  - name: merci
+    label: "Page de remerciement"
+    description: "Page affichée après un paiement réussi (merci.html) — celle vers laquelle Stripe redirigera l'acheteur."
+    files:
+      - name: contenus
+        label: "Merci — textes de la page"
+        file: data/merci.json
+        fields:
+          - label: "En-tête"
+            name: entete
+            widget: object
+            fields:
+              - { label: "Sur-titre", name: eyebrow, widget: string }
+              - { label: "Titre", name: titre, widget: string }
+              - { label: "Sous-titre", name: lead, widget: text }
+          - label: "Corps de la page"
+            name: corps
+            widget: object
+            fields:
+              - { label: "Titre", name: titre, widget: string }
+              - { label: "Message principal", name: message, widget: text }
+              - { label: "Astuce (spam / afficher les images)", name: astuce, widget: text }
+              - { label: "Ligne de contact", name: contact, widget: text }
 
   - name: annonces
     label: "Page Infos (HUE / UE)"
