@@ -1,0 +1,13 @@
+{
+  "entete": {
+    "eyebrow": "Paiement confirmé",
+    "titre": "Merci pour votre réservation !",
+    "lead": "Votre paiement a bien été reçu. Il ne vous reste rien à faire."
+  },
+  "corps": {
+    "titre": "Votre billet arrive par e-mail",
+    "message": "Vous allez recevoir sous quelques minutes un e-mail contenant votre billet avec un QR code. C'est ce QR code qui fait office de billet à l'entrée — présentez-le sur votre téléphone ou imprimé.",
+    "astuce": "Vous ne le voyez pas ? Vérifiez vos courriers indésirables (spam) et cliquez sur « Afficher les images » dans votre boîte mail : le QR code est une image.",
+    "contact": "Un souci avec votre billet ? Écrivez-nous en indiquant le nom et l'e-mail utilisés lors de l'achat."
+  }
+}

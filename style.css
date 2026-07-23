@@ -1610,6 +1610,14 @@ footer .border-top { border-color: var(--line-gold) !important; }
 }
 .evt-tarif-nom { color: var(--ink); font-weight: 500; }
 .evt-tarif-prix { color: var(--gold-700); font-weight: 600; }
+
+/* Boutons de réservation par formule (un lien de paiement par tarif) */
+.evt-reservations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 .9rem;
+}
 .evt-gratuit {
     display: inline-block;
     margin: 0 0 .9rem;
