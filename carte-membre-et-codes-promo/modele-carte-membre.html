@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carte de membre UECE — gabarit</title>
+<style id="pagesize">@page { size: 85.6mm 54mm; margin: 0; }</style>
+<style>
+/* ==========================================================================
+   CARTE DE MEMBRE UECE — gabarit d'impression
+   Format ISO CR80 (carte bancaire) : 85,6 x 54 mm, coins arrondis r = 3,18 mm.
+   Direction artistique : identique au site (CLAUDE.md §4) — marine + or,
+   Cormorant Garamond en capitales espacées, cadre double filet de l'affiche.
+   ========================================================================== */
+
+/* --- Polices auto-hébergées (aucune connexion internet nécessaire) -------- */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;src:url('ressources/polices/CormorantGaramond-600-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212,U+FEFF,U+FFFD;}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:600;src:url('ressources/polices/CormorantGaramond-600-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;src:url('ressources/polices/CormorantGaramond-700-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212,U+FEFF,U+FFFD;}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;src:url('ressources/polices/CormorantGaramond-700-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300;src:url('ressources/polices/Outfit-300-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212,U+FEFF,U+FFFD;}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300;src:url('ressources/polices/Outfit-300-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;src:url('ressources/polices/Outfit-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212,U+FEFF,U+FFFD;}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;src:url('ressources/polices/Outfit-500-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+2C60-2C7F,U+A720-A7FF;}
+
+:root{
+  --navy-950:#050F1E; --navy-900:#001730; --navy-800:#002147; --navy-700:#0E3160;
+  --gold-300:#EBD48B; --gold-400:#DFC15F; --gold-500:#D4AF37; --gold-700:#8C6D1F;
+  --paper:#F7F2E8;
+  --trim-w:85.6mm; --trim-h:54mm;
+  --bleed:0mm;                 /* 3mm en mode BAT imprimeur */
+  --marge:5mm;                 /* zone de securite depuis la coupe */
+  --rayon:3.18mm;              /* coins arrondis norme CR80 */
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:#2a2f39;}
+body{font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;}
+
+/* --------------------------------------------------------------------------
+   LA PAGE IMPRIMEE = fond perdu compris
+   -------------------------------------------------------------------------- */
+.page{
+  position:relative;
+  width:calc(var(--trim-w) + 2*var(--bleed));
+  height:calc(var(--trim-h) + 2*var(--bleed));
+  overflow:hidden;
+  break-after:page;
+}
+.page:last-of-type{break-after:auto;}
+
+/* Fond : il deborde jusqu'aux bords du fond perdu */
+.fond{position:absolute;inset:0;background:
+    radial-gradient(120% 140% at 12% 8%, #0E3160 0%, #002147 38%, #001730 68%, #050F1E 100%);}
+.fond--verso{background:
+    radial-gradient(120% 150% at 88% 92%, #002147 0%, #001730 45%, #050F1E 100%);}
+
+/* Voile de matiere : trame tres fine, evite le fond "plat" a l'impression */
+.grain{position:absolute;inset:0;opacity:.5;
+  background-image:repeating-linear-gradient(135deg, rgba(212,175,55,.035) 0 .35mm, transparent .35mm .9mm);}
+
+/* Filigrane : le cercle de mains du logo, trace or tres discret.
+   Volontairement debordant : seul l'anneau de mains reste dans la carte,
+   la couronne de texte du logo sort du cadre. */
+.filigrane{position:absolute;width:74mm;height:74mm;opacity:.15;
+  background:url('ressources/cercle-mains-filigrane.svg') center/contain no-repeat;}
+.filigrane--recto{right:-20mm;top:-10mm;}
+.filigrane--verso{left:-20mm;top:-10mm;opacity:.12;}
+
+/* --------------------------------------------------------------------------
+   LA ZONE DE COUPE (85,6 x 54) : tout le contenu vit a l'interieur
+   -------------------------------------------------------------------------- */
+.coupe{position:absolute;top:var(--bleed);left:var(--bleed);
+  width:var(--trim-w);height:var(--trim-h);}
+
+/* Cadre double filet — repris de l'affiche "Kings & Queens" */
+.cadre{position:absolute;inset:2.6mm;border:.28mm solid rgba(212,175,55,.62);border-radius:1.4mm;}
+.cadre::after{content:"";position:absolute;inset:.85mm;border:.14mm solid rgba(212,175,55,.34);
+  border-radius:.8mm;}
+
+.contenu{position:absolute;inset:var(--marge);display:flex;flex-direction:column;}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHIE
+   -------------------------------------------------------------------------- */
+.eyebrow{font-family:'Outfit';font-weight:500;font-size:3.9pt;letter-spacing:.19em;
+  text-transform:uppercase;color:#D4AF37;line-height:1.2;}
+.label{font-family:'Outfit';font-weight:500;font-size:3.5pt;letter-spacing:.17em;
+  text-transform:uppercase;color:rgba(235,212,139,.72);line-height:1.25;}
+.valeur{font-family:'Outfit';font-weight:300;font-size:5.6pt;letter-spacing:.012em;
+  color:#F7F2E8;line-height:1.25;}
+.filet{height:.2mm;background:linear-gradient(90deg,
+   rgba(212,175,55,.85) 0%, rgba(212,175,55,.45) 55%, rgba(212,175,55,.06) 100%);}
+.filet--discret{height:.12mm;background:linear-gradient(90deg,
+   rgba(212,175,55,.5) 0%, rgba(212,175,55,.22) 60%, rgba(212,175,55,.04) 100%);}
+
+/* --- En-tete ------------------------------------------------------------- */
+.entete{display:flex;align-items:center;justify-content:space-between;gap:3mm;}
+.marque{display:flex;align-items:center;gap:2.1mm;}
+.marque img{width:9.6mm;height:9.6mm;display:block;}
+.sigle{font-family:'Cormorant Garamond';font-weight:700;font-size:10.5pt;
+  letter-spacing:.2em;color:#EBD48B;line-height:1;margin-bottom:.5mm;}
+.sous-sigle{font-family:'Outfit';font-weight:300;font-size:3.35pt;letter-spacing:.085em;
+  text-transform:uppercase;color:rgba(247,242,232,.62);line-height:1.25;}
+.mention{text-align:right;}
+.mention .annee{font-family:'Cormorant Garamond';font-weight:600;font-size:7.6pt;
+  letter-spacing:.1em;color:#F7F2E8;line-height:1.15;margin-top:.5mm;}
+
+/* --- Corps --------------------------------------------------------------- */
+.corps{flex:1;display:flex;align-items:center;gap:4.4mm;padding-top:1.6mm;}
+
+.photo{position:relative;width:18.4mm;height:23.6mm;flex:none;
+  border:.22mm solid rgba(212,175,55,.65);border-radius:.6mm;
+  background:rgba(5,15,30,.55);overflow:hidden;}
+.photo::after{content:"";position:absolute;inset:.5mm;border:.1mm solid rgba(212,175,55,.3);
+  border-radius:.3mm;pointer-events:none;}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo img[hidden]{display:none;}
+.photo-vide{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1mm;}
+.photo-vide svg{width:7.5mm;height:7.5mm;opacity:.42;}
+.photo-vide span{font-family:'Outfit';font-weight:500;font-size:3.1pt;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(212,175,55,.55);}
+
+.identite{flex:1;min-width:0;}
+.nom{font-family:'Cormorant Garamond';font-weight:700;font-size:14.5pt;letter-spacing:.045em;
+  text-transform:uppercase;color:#EBD48B;line-height:1.02;overflow-wrap:anywhere;}
+.prenoms{font-family:'Cormorant Garamond';font-weight:600;font-size:9.4pt;letter-spacing:.03em;
+  color:#F7F2E8;line-height:1.18;margin-top:.5mm;}
+.qualite{margin-top:1.1mm;display:inline-block;padding:.5mm 1.5mm;
+  border:.12mm solid rgba(212,175,55,.5);border-radius:.4mm;
+  font-family:'Outfit';font-weight:500;font-size:3.4pt;letter-spacing:.18em;
+  text-transform:uppercase;color:#DFC15F;}
+.champs{margin-top:2.3mm;display:flex;gap:4.5mm;}
+.champ{min-width:0;flex:1;}
+.champ .valeur{margin-top:.35mm;line-height:1.2;}
+.numero{font-variant-numeric:tabular-nums;letter-spacing:.07em;white-space:nowrap;}
+.pied sup{font-size:.72em;vertical-align:super;}
+.pied .numero{letter-spacing:.1em;}
+
+/* --- Pied --------------------------------------------------------------- */
+.pied{display:flex;align-items:flex-end;justify-content:space-between;gap:3mm;padding-top:1.3mm;}
+.pied .label{white-space:nowrap;}
+.pied .label{color:rgba(247,242,232,.5);}
+
+/* --------------------------------------------------------------------------
+   VERSO : le QR de verification, et rien d'autre
+   -------------------------------------------------------------------------- */
+.verso .contenu{justify-content:space-between;}
+.verif{flex:1;display:flex;align-items:center;gap:5mm;padding-top:1.8mm;}
+
+/* La vignette du QR : modules marine sur fond clair — indispensable pour que
+   n'importe quel telephone le lise du premier coup. */
+.qr{position:relative;width:23mm;height:23mm;flex:none;padding:1mm;
+  background:#F7F2E8;border-radius:.6mm;
+  box-shadow:0 0 0 .22mm rgba(212,175,55,.75);}
+.qr svg{display:block;width:100%;height:100%;}
+.qr-absent{display:flex;align-items:center;justify-content:center;height:100%;
+  text-align:center;font-family:'Outfit';font-weight:500;font-size:3.1pt;
+  letter-spacing:.14em;text-transform:uppercase;color:#8C6D1F;line-height:1.5;}
+
+.infos{flex:1;min-width:0;}
+.infos .ligne{margin-bottom:1.9mm;}
+.infos .ligne:last-child{margin-bottom:0;}
+.infos .valeur{margin-top:.3mm;}
+.titulaire-nom{font-family:'Cormorant Garamond';font-weight:600;font-size:8.6pt;
+  letter-spacing:.03em;color:#EBD48B;line-height:1.1;margin-top:.4mm;}
+.avantage{font-family:'Outfit';font-weight:500;font-size:5.4pt;letter-spacing:.15em;
+  color:#F7F2E8;margin-top:.3mm;font-variant-numeric:tabular-nums;}
+
+.contact{text-align:right;font-family:'Outfit';font-weight:300;font-size:3.4pt;
+  letter-spacing:.04em;color:rgba(247,242,232,.6);line-height:1.55;}
+
+/* --------------------------------------------------------------------------
+   TRAITS DE COUPE (mode BAT imprimeur uniquement)
+   -------------------------------------------------------------------------- */
+.traits{display:none;}
+body.bat .traits{display:block;position:absolute;inset:0;}
+body.bat .traits i{position:absolute;background:#9AA0A6;}
+
+/* --------------------------------------------------------------------------
+   ECRAN : previsualisation + panneau de saisie (jamais imprime)
+   -------------------------------------------------------------------------- */
+@media screen{
+  body{padding:28px 20px 60px;display:flex;flex-direction:column;align-items:center;gap:26px;}
+  .page{box-shadow:0 18px 50px rgba(0,0,0,.55);border-radius:var(--rayon);}
+  .panneau{width:min(760px,100%);background:#11151d;border:1px solid rgba(212,175,55,.25);
+    border-radius:10px;padding:20px 22px;color:#E8E3D8;font-size:13px;}
+  .panneau h2{font-family:'Cormorant Garamond';font-weight:700;font-size:19px;
+    letter-spacing:.1em;text-transform:uppercase;color:#EBD48B;margin-bottom:4px;}
+  .panneau p{color:#9aa3b2;font-size:12px;line-height:1.6;margin-bottom:14px;}
+  .grille{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 14px;}
+  .panneau label{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:#8d97a8;margin-bottom:4px;}
+  .panneau input{width:100%;background:#080b11;border:1px solid #2a3140;border-radius:5px;
+    padding:7px 9px;color:#E8E3D8;font-family:'Outfit';font-size:13px;}
+  .panneau input:focus{outline:2px solid #D4AF37;outline-offset:1px;border-color:#D4AF37;}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+  .panneau button{background:#D4AF37;color:#001730;border:0;border-radius:5px;
+    padding:9px 16px;font-family:'Outfit';font-weight:500;font-size:13px;cursor:pointer;
+    letter-spacing:.04em;}
+  .panneau button.secondaire{background:transparent;color:#EBD48B;border:1px solid rgba(212,175,55,.5);}
+  .panneau button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+  .note-ecran{width:min(760px,100%);color:#7d8698;font-size:11px;line-height:1.7;}
+  .note-ecran code{color:#c9b06a;}
+}
+@media print{ .panneau,.note-ecran{display:none !important;} body{padding:0;background:#fff;} }
+</style>
+</head>
+<body>
+
+<!-- ======================= RECTO ======================= -->
+<section class="page recto" aria-label="Recto de la carte de membre">
+  <div class="fond"></div>
+  <div class="grain"></div>
+  <div class="filigrane filigrane--recto"></div>
+
+  <div class="coupe">
+    <div class="cadre"></div>
+    <div class="contenu">
+
+      <header class="entete">
+        <div class="marque">
+          <img src="ressources/logo-uece.png" alt="">
+          <div>
+            <div class="sigle">UECE</div>
+            <div class="sous-sigle">Union des Étudiants<br>et Chercheurs Étrangers &middot; UMONS</div>
+          </div>
+        </div>
+        <div class="mention">
+          <div class="eyebrow">Carte de membre</div>
+          <div class="annee" data-champ="annee">2025 — 2026</div>
+        </div>
+      </header>
+
+      <div class="filet" style="margin-top:1.5mm"></div>
+
+      <div class="corps">
+        <div class="photo">
+          <img data-champ="photo" alt="" hidden>
+          <div class="photo-vide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width=".9">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+            </svg>
+            <span>Photo</span>
+          </div>
+        </div>
+
+        <div class="identite">
+          <div class="nom" data-champ="nom">Ebwelle</div>
+          <div class="prenoms" data-champ="prenoms">Roy</div>
+          <div class="qualite" data-champ="qualite">Membre adhérent</div>
+          <div class="champs">
+            <div class="champ">
+              <div class="label">Faculté</div>
+              <div class="valeur" data-champ="faculte">Faculté Polytechnique</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filet" style="transform:scaleX(-1)"></div>
+      <footer class="pied">
+        <div class="label">N<sup>o</sup> de membre <span class="numero" data-champ="numero">UECE-2026-0001</span></div>
+        <div class="label">Valable jusqu'au <span data-champ="validite">30 septembre 2026</span></div>
+      </footer>
+
+    </div>
+  </div>
+  <div class="traits"></div>
+</section>
+
+<!-- ======================= VERSO ======================= -->
+<section class="page verso" aria-label="Verso de la carte de membre">
+  <div class="fond fond--verso"></div>
+  <div class="grain"></div>
+  <div class="filigrane filigrane--verso"></div>
+
+  <div class="coupe">
+    <div class="cadre"></div>
+    <div class="contenu">
+
+      <div class="eyebrow">Vérification de l'adhésion</div>
+
+      <div class="verif">
+        <div class="qr" id="qr">
+          <div class="qr-absent">QR<br>à générer</div>
+        </div>
+
+        <div class="infos">
+          <div class="ligne">
+            <div class="label">Titulaire</div>
+            <div class="titulaire-nom"><span data-champ="prenoms">Roy</span>
+              <span data-champ="nom">Ebwelle</span></div>
+          </div>
+          <div class="ligne">
+            <div class="label">N<sup>o</sup> de membre</div>
+            <div class="valeur numero" data-champ="numero">UECE-2026-0001</div>
+          </div>
+          <div class="ligne" data-bloc="code">
+            <div class="label">Code avantage personnel</div>
+            <div class="avantage" data-champ="code">UECE26-K7Q4M</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="filet filet--discret" style="margin-bottom:1.6mm"></div>
+        <div class="pied">
+          <div class="label">Carte personnelle et incessible</div>
+          <div class="contact">UECE.UMONS@umons.ac.be<br>uece-umons.netlify.app</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="traits"></div>
+</section>
+
+<!-- ============ Panneau de saisie — écran seulement ============ -->
+<div class="panneau">
+  <h2>Générer une carte</h2>
+  <p>Remplissez les champs : la carte se met à jour en direct. Puis « Imprimer / PDF » →
+     destination <em>Enregistrer au format PDF</em>, marges <em>Aucune</em>,
+     et « Graphiques d'arrière-plan » coché.</p>
+  <div class="grille">
+    <div><label for="f-nom">Nom de famille</label><input id="f-nom" data-saisie="nom" value="Ebwelle"></div>
+    <div><label for="f-prenoms">Prénom(s)</label><input id="f-prenoms" data-saisie="prenoms" value="Roy"></div>
+    <div><label for="f-faculte">Faculté</label><input id="f-faculte" data-saisie="faculte" value="Faculté Polytechnique"></div>
+    <div><label for="f-qualite">Qualité</label><input id="f-qualite" data-saisie="qualite" value="Membre adhérent"></div>
+    <div><label for="f-numero">N° de membre</label><input id="f-numero" data-saisie="numero" value="UECE-2026-0001"></div>
+    <div><label for="f-annee">Année académique</label><input id="f-annee" data-saisie="annee" value="2025 — 2026"></div>
+    <div><label for="f-validite">Valable jusqu'au</label><input id="f-validite" data-saisie="validite" value="30 septembre 2026"></div>
+    <div><label for="f-jeton">Jeton de vérification</label><input id="f-jeton" data-saisie="jeton" value="H7QM4X"></div>
+    <div><label for="f-code">Code avantage (facultatif)</label><input id="f-code" data-saisie="code" value="UECE26-K7Q4M"></div>
+    <div><label for="f-photo">Photo (chemin ou URL)</label><input id="f-photo" data-saisie="photo" placeholder="photos/ebwelle-roy.jpg"></div>
+  </div>
+  <div class="actions">
+    <button type="button" onclick="window.print()">Imprimer / PDF</button>
+    <button type="button" class="secondaire" onclick="basculerBat()">Fonds perdus + traits de coupe (imprimeur)</button>
+    <button type="button" class="secondaire" onclick="copierLien()">Copier le lien de cette carte</button>
+  </div>
+</div>
+<p class="note-ecran">Format ISO CR80 : 85,6 × 54 mm, coins arrondis 3,18 mm. Mode imprimeur =
+   91,6 × 60 mm (3 mm de fond perdu) avec traits de coupe. Les champs peuvent aussi être passés
+   dans l'adresse :
+   <code>modele-carte-membre.html?nom=Ebwelle&amp;prenoms=Roy&amp;numero=UECE-2026-0001&amp;jeton=H7QM4X</code><br>
+   Le QR du verso pointe vers la page de vérification en ligne ; pour l'essayer en local,
+   ajoutez <code>&amp;base=http://127.0.0.1:8000/verifier.html</code>.</p>
+
+<script src="ressources/qrcode-generator.js"></script>
+<script>
+/* -------------------------------------------------------------------------
+   Remplissage des champs : paramètres d'URL d'abord, puis saisie en direct.
+   ------------------------------------------------------------------------- */
+/* Adresse de la page de verification en ligne. A changer ici (une seule fois)
+   si le site demenage, ou a surcharger dans l'adresse avec &base=... */
+var BASE_VERIFICATION = 'https://uece-umons.netlify.app/verifier.html';
+var etat = { numero: '', jeton: '', base: BASE_VERIFICATION };
+
+/* -------------------------------------------------------------------------
+   Le QR du verso. Il encode : <page de verification>#<numero>-<jeton>
+   Le numero et le jeton passent dans le FRAGMENT (#) : ils ne quittent jamais
+   le telephone qui scanne, aucun serveur ne les voit passer.
+   ------------------------------------------------------------------------- */
+function dessinerQR(){
+  var boite = document.getElementById('qr');
+  if (!boite) return;
+  var numero = (etat.numero || '').trim();
+  var jeton  = (etat.jeton  || '').trim();
+
+  if (!numero || !jeton || typeof qrcode !== 'function'){
+    boite.innerHTML = '<div class="qr-absent">QR<br>à générer</div>';
+    boite.removeAttribute('data-charge');
+    return;
+  }
+  var charge = (etat.base || BASE_VERIFICATION) + '#' + numero + '-' + jeton;
+  var qr = qrcode(0, 'M');              /* version auto, correction d'erreur moyenne */
+  qr.addData(charge);
+  qr.make();
+  boite.innerHTML = qr.createSvgTag({ cellSize: 2, margin: 8, scalable: true })
+                      .replace('fill="white"', 'fill="#F7F2E8"')
+                      .replace('fill="black"', 'fill="#001730"');
+  boite.setAttribute('data-charge', charge);
+}
+
+function appliquer(champ, valeur){
+  /* champs qui ne s'impriment pas mais qui alimentent le QR */
+  if (champ === 'jeton' || champ === 'base'){
+    etat[champ] = valeur;
+    dessinerQR();
+    return;
+  }
+  if (champ === 'numero'){ etat.numero = valeur; dessinerQR(); }
+
+  /* le code avantage est facultatif : vide, sa ligne disparait du verso */
+  if (champ === 'code'){
+    document.querySelectorAll('[data-bloc="code"]').forEach(function(bloc){
+      bloc.style.display = valeur && valeur.trim() ? '' : 'none';
+    });
+  }
+
+  if (champ === 'photo'){
+    document.querySelectorAll('[data-champ="photo"]').forEach(function(img){
+      var vide = img.parentNode.querySelector('.photo-vide');
+      img.onerror = function(){                 /* fichier absent : on ne montre pas d'icone cassee */
+        img.hidden = true;
+        if (vide) vide.style.display = '';
+      };
+      if (valeur){ img.src = valeur; img.hidden = false; if (vide) vide.style.display = 'none'; }
+      else { img.removeAttribute('src'); img.hidden = true; if (vide) vide.style.display = ''; }
+    });
+    return;
+  }
+  document.querySelectorAll('[data-champ="' + champ + '"]').forEach(function(el){
+    el.textContent = valeur;
+  });
+}
+
+function taillePage(){
+  var bat = document.body.classList.contains('bat');
+  document.documentElement.style.setProperty('--bleed', bat ? '3mm' : '0mm');
+  var l = bat ? 91.6 : 85.6, h = bat ? 60 : 54;
+  document.getElementById('pagesize').textContent =
+    '@page { size: ' + l + 'mm ' + h + 'mm; margin: 0; }';
+  document.querySelectorAll('.traits').forEach(function(zone){
+    zone.innerHTML = '';
+    if (!bat) return;
+    /* 8 traits de coupe posés dans le fond perdu, hors de la zone imprimée */
+    var traits = ['top:0;left:3mm;width:.1mm;height:1.8mm',
+                  'top:0;right:3mm;width:.1mm;height:1.8mm',
+                  'bottom:0;left:3mm;width:.1mm;height:1.8mm',
+                  'bottom:0;right:3mm;width:.1mm;height:1.8mm',
+                  'left:0;top:3mm;height:.1mm;width:1.8mm',
+                  'left:0;bottom:3mm;height:.1mm;width:1.8mm',
+                  'right:0;top:3mm;height:.1mm;width:1.8mm',
+                  'right:0;bottom:3mm;height:.1mm;width:1.8mm'];
+    traits.forEach(function(style){
+      zone.insertAdjacentHTML('beforeend', '<i style="' + style + '"></i>');
+    });
+  });
+}
+function basculerBat(){ document.body.classList.toggle('bat'); taillePage(); }
+
+function copierLien(){
+  var p = new URLSearchParams();
+  document.querySelectorAll('[data-saisie]').forEach(function(i){
+    if (i.value) p.set(i.dataset.saisie, i.value);
+  });
+  var url = location.origin + location.pathname + '?' + p.toString();
+  navigator.clipboard.writeText(url).then(
+    function(){ alert('Lien copié :\n' + url); },
+    function(){ prompt('Copiez ce lien :', url); }
+  );
+}
+
+(function init(){
+  var params = new URLSearchParams(location.search);
+  params.forEach(function(valeur, champ){
+    if (champ === 'bat'){ document.body.classList.add('bat'); return; }
+    appliquer(champ, valeur);
+    var input = document.querySelector('[data-saisie="' + champ + '"]');
+    if (input) input.value = valeur;
+  });
+  document.querySelectorAll('[data-saisie]').forEach(function(input){
+    input.addEventListener('input', function(){ appliquer(input.dataset.saisie, input.value); });
+  });
+
+  /* valeurs de depart (celles du panneau) pour les champs qui nourrissent le QR */
+  ['numero', 'jeton', 'base'].forEach(function(champ){
+    if (params.has(champ)) return;                 /* deja applique plus haut */
+    var input = document.querySelector('[data-saisie="' + champ + '"]');
+    if (input && input.value) etat[champ] = input.value;
+  });
+  if (!etat.numero){
+    var cellule = document.querySelector('[data-champ="numero"]');
+    if (cellule) etat.numero = cellule.textContent.trim();
+  }
+  dessinerQR();
+  appliquer('code', (document.querySelector('[data-saisie="code"]') || {}).value || '');
+
+  taillePage();
+  document.documentElement.classList.add('pret');
+})();
+</script>
+</body>
+</html>

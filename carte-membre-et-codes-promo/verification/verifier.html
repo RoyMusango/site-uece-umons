@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Vérification d'adhésion — UECE UMONS</title>
+<style>
+/* ==========================================================================
+   Page de verification d'une carte de membre UECE.
+   Elle se lit au telephone, a l'entree d'un evenement, en trois secondes.
+
+   100 % statique : elle compare une empreinte au fichier adhesions.json publie
+   par le comite. Aucun serveur, aucune base de donnees.
+
+   Deux modes :
+     - lecture simple : on arrive par le QR, la page affiche le verdict ;
+     - MODE CONTROLE  : la camera enchaine les cartes, la liste est gardee
+       hors ligne, et une carte deja passee est signalee.
+   ========================================================================== */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;font-display:swap;
+  src:url('fonts/CormorantGaramond-700-latin.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300;font-display:swap;
+  src:url('fonts/Outfit-300-latin.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;font-display:swap;
+  src:url('fonts/Outfit-500-latin.woff2') format('woff2');}
+
+:root{
+  --navy-950:#050F1E; --navy-900:#001730; --navy-800:#002147;
+  --gold-300:#EBD48B; --gold-500:#D4AF37;
+  --paper:#F7F2E8;
+  --vert:#1F7A4D; --vert-clair:#54C08A;
+  --rouge:#B3261E; --rouge-clair:#FF8A80;
+  --ambre:#8C6D1F; --ambre-clair:#E8C468;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  min-height:100vh;background:
+    radial-gradient(120% 100% at 50% 0%, var(--navy-800) 0%, var(--navy-900) 45%, var(--navy-950) 100%);
+  color:var(--paper);font-family:'Outfit',system-ui,sans-serif;font-weight:300;
+  display:flex;flex-direction:column;align-items:center;
+  padding:24px 16px 40px;gap:18px;-webkit-font-smoothing:antialiased;
+}
+header{text-align:center;}
+.sigle{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:26px;
+  letter-spacing:.22em;color:var(--gold-300);line-height:1;}
+.sous-sigle{font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(247,242,232,.55);margin-top:6px;}
+
+.bloc{width:min(420px,100%);}
+
+/* --- Bandeau hors ligne -------------------------------------------------- */
+.hors-ligne{display:none;border:1px solid rgba(232,196,104,.45);border-radius:10px;
+  background:rgba(232,196,104,.08);padding:10px 14px;font-size:12.5px;line-height:1.5;
+  color:var(--ambre-clair);}
+.hors-ligne.visible{display:block;}
+
+/* --- Carte de resultat --------------------------------------------------- */
+.carte{border:1px solid rgba(212,175,55,.3);border-radius:14px;
+  background:rgba(255,255,255,.035);padding:24px 22px;text-align:center;}
+.pastille{width:70px;height:70px;margin:0 auto 14px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;border:2px solid currentColor;}
+.pastille svg{width:36px;height:36px;stroke:currentColor;stroke-width:2.4;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;}
+.verdict{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:26px;
+  letter-spacing:.03em;line-height:1.15;}
+.explication{font-size:14px;line-height:1.6;color:rgba(247,242,232,.8);margin-top:10px;}
+
+.etat-ok    .pastille,.etat-ok    .verdict{color:var(--vert-clair);}
+.etat-ko    .pastille,.etat-ko    .verdict{color:var(--rouge-clair);}
+.etat-doute .pastille,.etat-doute .verdict{color:var(--ambre-clair);}
+
+.details{margin-top:18px;border-top:1px solid rgba(212,175,55,.22);padding-top:15px;
+  display:grid;gap:11px;text-align:left;}
+.details div{display:flex;justify-content:space-between;gap:14px;align-items:baseline;}
+.etiquette{font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(235,212,139,.7);}
+.donnee{font-size:14px;color:var(--paper);text-align:right;
+  font-variant-numeric:tabular-nums;letter-spacing:.04em;}
+
+/* --- Mode controle ------------------------------------------------------- */
+.controle{border:1px solid rgba(212,175,55,.22);border-radius:12px;padding:14px 16px;}
+.controle-tete{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.controle-titre{font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(235,212,139,.7);}
+.compteur{font-size:12.5px;color:rgba(247,242,232,.65);margin-top:8px;line-height:1.6;}
+.compteur strong{font-weight:500;color:var(--paper);}
+
+.boutons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+button{font-family:'Outfit';font-size:14px;font-weight:500;border-radius:8px;
+  padding:11px 16px;cursor:pointer;border:0;letter-spacing:.02em;}
+button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+.b-or{background:var(--gold-500);color:var(--navy-900);}
+.b-vide{background:transparent;color:var(--gold-300);border:1px solid rgba(212,175,55,.45);}
+.b-vide[aria-pressed="true"]{background:rgba(212,175,55,.16);color:var(--paper);}
+.b-discret{background:transparent;color:rgba(247,242,232,.55);
+  border:1px solid rgba(247,242,232,.2);font-weight:300;padding:9px 13px;font-size:12.5px;}
+
+.camera{display:none;margin-top:12px;position:relative;border-radius:10px;overflow:hidden;
+  background:#000;aspect-ratio:4/3;}
+.camera.visible{display:block;}
+.camera video{width:100%;height:100%;object-fit:cover;display:block;}
+.mire{position:absolute;inset:14%;border:2px solid rgba(235,212,139,.75);border-radius:10px;
+  box-shadow:0 0 0 100vmax rgba(5,15,30,.35);}
+.camera-aide{font-size:12px;color:rgba(247,242,232,.6);margin-top:9px;line-height:1.5;}
+
+/* --- Consigne, saisie manuelle, pied ------------------------------------- */
+.consigne{border:1px solid rgba(212,175,55,.22);border-radius:12px;
+  padding:14px 16px;font-size:12.5px;line-height:1.65;color:rgba(247,242,232,.68);}
+.consigne strong{font-weight:500;color:var(--paper);}
+.consigne ol{margin:8px 0 0 18px;display:grid;gap:5px;}
+
+.manuel label{display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(247,242,232,.55);margin-bottom:7px;}
+.manuel .rangee{display:flex;gap:8px;}
+.manuel input{flex:1;min-width:0;background:rgba(5,15,30,.6);color:var(--paper);
+  border:1px solid rgba(212,175,55,.3);border-radius:8px;padding:11px 12px;
+  font-family:'Outfit';font-size:15px;letter-spacing:.05em;}
+.manuel input:focus{outline:2px solid var(--gold-500);outline-offset:1px;}
+
+footer{font-size:11px;color:rgba(247,242,232,.42);text-align:center;line-height:1.7;}
+footer a{color:rgba(235,212,139,.75);}
+
+@media (prefers-reduced-motion: no-preference){
+  .carte{animation:apparait .3s ease-out both;}
+  @keyframes apparait{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="sigle">UECE</div>
+  <div class="sous-sigle">Vérification d'une carte de membre</div>
+</header>
+
+<div class="bloc hors-ligne" id="horsLigne" role="status"></div>
+
+<section class="bloc carte etat-doute" id="resultat" aria-live="polite">
+  <div class="pastille">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><path d="M12 16.5v.01"/></svg>
+  </div>
+  <p class="verdict" id="verdict">Lecture en cours…</p>
+  <p class="explication" id="explication">Un instant.</p>
+  <dl class="details" id="details" hidden></dl>
+</section>
+
+<section class="bloc controle">
+  <div class="controle-tete">
+    <span class="controle-titre">Mode contrôle</span>
+    <button type="button" class="b-vide" id="bModeControle" aria-pressed="false">Activer</button>
+  </div>
+  <p class="compteur" id="compteur">
+    Pour une soirée : la caméra enchaîne les cartes, la liste reste disponible sans
+    réseau, et une carte déjà passée est signalée.
+  </p>
+  <div class="boutons" id="boutonsControle" hidden>
+    <button type="button" class="b-or" id="bScanner">Scanner les cartes</button>
+    <button type="button" class="b-discret" id="bReinit">Nouvelle soirée</button>
+  </div>
+  <div class="camera" id="camera">
+    <video id="video" playsinline muted></video>
+    <div class="mire" aria-hidden="true"></div>
+  </div>
+  <p class="camera-aide" id="cameraAide" hidden></p>
+</section>
+
+<section class="bloc consigne">
+  <strong>À l'entrée, trois vérifications :</strong>
+  <ol>
+    <li>Le bandeau ci-dessus est <strong>vert</strong>.</li>
+    <li>Le numéro affiché est bien celui <strong>imprimé sur la carte</strong>.</li>
+    <li>La <strong>photo de la carte</strong> est bien celle de la personne devant vous.</li>
+  </ol>
+</section>
+
+<section class="bloc manuel">
+  <label for="saisie">QR illisible ? Saisir le numéro et le jeton de la carte</label>
+  <div class="rangee">
+    <input id="saisie" placeholder="UECE-2026-0001-H7QM4X" autocomplete="off" spellcheck="false">
+    <button type="button" class="b-or" id="bValider">Vérifier</button>
+  </div>
+</section>
+
+<footer>
+  Liste mise à jour le <span id="maj">—</span>.<br>
+  Un doute ? <a href="mailto:UECE.UMONS@umons.ac.be">UECE.UMONS@umons.ac.be</a>
+</footer>
+
+<script>
+/* ==========================================================================
+   Comment ca marche, en une phrase :
+   le QR contient "<numero>-<jeton>" ; la page en calcule l'empreinte SHA-256
+   et regarde si cette empreinte figure dans adhesions.json.
+
+   Pourquoi des empreintes et pas la liste des membres :
+   le fichier est public (le site est statique). En ne publiant que des
+   empreintes, on ne divulgue ni les noms, ni les numeros, ni le nombre exact
+   d'adherents — et on ne peut pas fabriquer une fausse carte sans connaitre
+   un couple numero + jeton valide, qui lui n'est imprime que sur la carte.
+   ========================================================================== */
+
+var FICHIER    = 'adhesions.json';
+var SCRIPT_QR  = 'js/jsQR.min.js';
+var CLE_LISTE  = 'uece.adhesions';     /* copie hors ligne de la liste        */
+var CLE_SCANS  = 'uece.scans';         /* journal des cartes deja passees     */
+var CLE_MODE   = 'uece.controle';      /* mode controle actif ou non          */
+
+var base = null, horsLigne = false, modeControle = false;
+var flux = null, dernierCode = null, dernierInstant = 0;
+
+var el = function(id){ return document.getElementById(id); };
+var elResultat = el('resultat'), elVerdict = el('verdict'),
+    elExplication = el('explication'), elDetails = el('details');
+
+var ICONES = {
+  ok:    '<circle cx="12" cy="12" r="9"/><path d="M8 12.4l2.6 2.6L16 9.6"/>',
+  ko:    '<circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6"/><path d="M9 9l6 6"/>',
+  doute: '<circle cx="12" cy="12" r="9"/><path d="M12 7v6"/><path d="M12 16.5v.01"/>'
+};
+var VIBRATIONS = { ok: [45], doute: [40, 90, 40], ko: [220] };
+
+/* -------------------------------------------------------------------------
+   Petits utilitaires
+   ------------------------------------------------------------------------- */
+function lireStock(cle, defaut){
+  try { var v = localStorage.getItem(cle); return v ? JSON.parse(v) : defaut; }
+  catch (e) { return defaut; }
+}
+function ecrireStock(cle, valeur){
+  try { localStorage.setItem(cle, JSON.stringify(valeur)); } catch (e) {}
+}
+function joliJour(iso){
+  if (!iso) return '—';
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  return m ? m[3] + '/' + m[2] + '/' + m[1] : iso;
+}
+function joliHeure(horodatage){
+  var d = new Date(horodatage);
+  return ('0' + d.getHours()).slice(-2) + 'h' + ('0' + d.getMinutes()).slice(-2);
+}
+
+function afficher(etat, verdict, explication, details){
+  elResultat.className = 'bloc carte etat-' + etat;
+  elResultat.querySelector('.pastille svg').innerHTML = ICONES[etat];
+  elVerdict.textContent = verdict;
+  elExplication.textContent = explication;
+
+  elDetails.innerHTML = '';
+  if (details && details.length){
+    details.forEach(function(paire){
+      var bloc = document.createElement('div');
+      bloc.innerHTML = '<dt class="etiquette"></dt><dd class="donnee"></dd>';
+      bloc.querySelector('dt').textContent = paire[0];
+      bloc.querySelector('dd').textContent = paire[1];
+      elDetails.appendChild(bloc);
+    });
+    elDetails.hidden = false;
+  } else {
+    elDetails.hidden = true;
+  }
+  if (navigator.vibrate && VIBRATIONS[etat]) { try { navigator.vibrate(VIBRATIONS[etat]); } catch (e) {} }
+}
+
+/* SHA-256 tronque a 16 caracteres hexadecimaux. */
+function empreinte(texte){
+  if (!(window.crypto && window.crypto.subtle)){
+    return Promise.reject(new Error('crypto indisponible'));
+  }
+  var octets = new TextEncoder().encode(texte);
+  return window.crypto.subtle.digest('SHA-256', octets).then(function(tampon){
+    return Array.prototype.map.call(new Uint8Array(tampon), function(o){
+      return ('0' + o.toString(16)).slice(-2);
+    }).join('').slice(0, 16);
+  });
+}
+
+/* "UECE-2026-0001-H7QM4X" -> { numero, jeton, complet } */
+function decouper(brut){
+  var propre = (brut || '').trim().replace(/^.*#/, '').toUpperCase();
+  var separateur = propre.lastIndexOf('-');
+  if (separateur < 1) return null;
+  var numero = propre.slice(0, separateur), jeton = propre.slice(separateur + 1);
+  if (!numero || !jeton) return null;
+  return { numero: numero, jeton: jeton, complet: propre };
+}
+
+/* -------------------------------------------------------------------------
+   La liste des adhesions : reseau d'abord, copie locale en secours
+   ------------------------------------------------------------------------- */
+function majBandeauHorsLigne(){
+  var bandeau = el('horsLigne');
+  if (horsLigne && base){
+    bandeau.textContent = 'Réseau indisponible : vérification faite sur la copie locale ' +
+                          'de la liste (' + joliJour(base.genere_le) + ').';
+    bandeau.classList.add('visible');
+  } else {
+    bandeau.classList.remove('visible');
+  }
+}
+
+function chargerBase(){
+  if (base && !horsLigne) return Promise.resolve(base);
+  return fetch(FICHIER, { cache: 'no-store' })
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(j){
+      base = j; horsLigne = false;
+      ecrireStock(CLE_LISTE, j);                 /* on garde une copie pour ce soir */
+      majBandeauHorsLigne();
+      return j;
+    })
+    .catch(function(){
+      var copie = lireStock(CLE_LISTE, null);
+      if (!copie) throw new Error('liste');
+      base = copie; horsLigne = true;
+      majBandeauHorsLigne();
+      return copie;
+    });
+}
+
+/* -------------------------------------------------------------------------
+   Mode controle : journal des cartes deja passees
+   ------------------------------------------------------------------------- */
+function majCompteur(){
+  var journal = lireStock(CLE_SCANS, {});
+  var total = Object.keys(journal).length;
+  el('compteur').innerHTML = modeControle
+    ? 'Contrôle en cours : <strong>' + total + '</strong> carte' + (total > 1 ? 's' : '') +
+      ' validée' + (total > 1 ? 's' : '') + ' ce soir. Une carte déjà passée sera signalée.'
+    : 'Pour une soirée : la caméra enchaîne les cartes, la liste reste disponible sans ' +
+      'réseau, et une carte déjà passée est signalée.';
+}
+
+function basculerMode(actif){
+  modeControle = actif;
+  ecrireStock(CLE_MODE, actif);
+  el('bModeControle').setAttribute('aria-pressed', actif ? 'true' : 'false');
+  el('bModeControle').textContent = actif ? 'Désactiver' : 'Activer';
+  el('boutonsControle').hidden = !actif;
+  if (!actif) arreterCamera();
+  majCompteur();
+}
+
+/* -------------------------------------------------------------------------
+   La verification elle-meme
+   ------------------------------------------------------------------------- */
+function verifier(brut){
+  var carte = decouper(brut);
+  if (!carte){
+    afficher('doute', 'Code non reconnu',
+      'Vérifiez la saisie : le format attendu est UECE-2026-0001-H7QM4X.');
+    return;
+  }
+  el('saisie').value = carte.complet;
+  afficher('doute', 'Vérification…', 'Consultation de la liste des adhésions.');
+
+  chargerBase().then(function(donnees){
+    el('maj').textContent = joliJour(donnees.genere_le);
+    return empreinte(carte.complet).then(function(clef){
+      var fiche = donnees.empreintes && donnees.empreintes[clef];
+
+      if (!fiche){
+        afficher('ko', 'Carte non valide',
+          'Cette carte ne figure pas dans la liste des adhésions en cours. ' +
+          'Elle a pu être remplacée, annulée, ou la cotisation n’est pas à jour.',
+          [['Numéro lu', carte.numero]]);
+        return;
+      }
+
+      var aujourdhui = new Date().toISOString().slice(0, 10);
+      if (fiche.e && fiche.e < aujourdhui){
+        afficher('ko', 'Adhésion expirée',
+          'Cette carte était valable jusqu’au ' + joliJour(fiche.e) +
+          '. La cotisation doit être renouvelée.',
+          [['Numéro', carte.numero], ['Expirée le', joliJour(fiche.e)]]);
+        return;
+      }
+
+      /* --- carte valide : le mode controle regarde si elle est deja passee --- */
+      if (modeControle){
+        var journal = lireStock(CLE_SCANS, {});
+        if (journal[clef]){
+          afficher('doute', 'Déjà scanné',
+            'Cette carte est valide, mais elle a déjà été présentée à ' +
+            joliHeure(journal[clef]) + '. Vérifiez la photo avant de laisser entrer.',
+            [['Numéro', carte.numero], ['Premier passage', joliHeure(journal[clef])]]);
+          return;
+        }
+        journal[clef] = Date.now();
+        ecrireStock(CLE_SCANS, journal);
+        majCompteur();
+      }
+
+      var lignes = [['Numéro', carte.numero], ['Valable jusqu’au', joliJour(fiche.e)]];
+      if (donnees.annee) lignes.push(['Année', donnees.annee]);
+      if (fiche.q) lignes.push(['Qualité', fiche.q]);
+      afficher('ok', 'Membre en règle',
+        'Cotisation à jour. Comparez le numéro et la photo avec la carte présentée.',
+        lignes);
+    });
+  }).catch(function(err){
+    if (String(err.message).indexOf('crypto') !== -1){
+      afficher('doute', 'Vérification impossible ici',
+        'Ouvrez cette page en HTTPS (adresse commençant par https://) : ' +
+        'le navigateur refuse de calculer l’empreinte autrement.');
+    } else {
+      afficher('doute', 'Liste indisponible',
+        'Impossible de charger la liste des adhésions, et aucune copie locale n’est ' +
+        'disponible. Connectez-vous une fois au réseau, puis réessayez.');
+    }
+  });
+}
+
+/* -------------------------------------------------------------------------
+   La camera
+   ------------------------------------------------------------------------- */
+function chargerScriptQR(){
+  if (window.jsQR) return Promise.resolve();
+  return new Promise(function(resoudre, rejeter){
+    var s = document.createElement('script');
+    s.src = SCRIPT_QR;
+    s.onload = resoudre;
+    s.onerror = function(){ rejeter(new Error('script')); };
+    document.head.appendChild(s);
+  });
+}
+
+function aide(texte){
+  var p = el('cameraAide');
+  p.textContent = texte || '';
+  p.hidden = !texte;
+}
+
+function demarrerCamera(){
+  if (flux) { arreterCamera(); return; }
+  aide('Démarrage de la caméra…');
+
+  chargerScriptQR().then(function(){
+    return navigator.mediaDevices.getUserMedia({
+      video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 } }
+    });
+  }).then(function(media){
+    flux = media;
+    var video = el('video');
+    video.srcObject = media;
+    video.setAttribute('playsinline', '');
+    /* On n'attend PAS la promesse de play() : sur iOS elle peut ne jamais se
+       resoudre. La boucle patiente d'elle-meme jusqu'a la premiere image. */
+    var lance = video.play();
+    if (lance && lance.catch) lance.catch(function(){});
+
+    el('camera').classList.add('visible');
+    el('bScanner').textContent = 'Arrêter le scan';
+    aide('Présentez le QR du dos de la carte dans le cadre.');
+    boucle();
+  }).catch(function(err){
+    arreterCamera();
+    if (err && err.message === 'script'){
+      aide('Le lecteur de QR n’a pas pu être chargé. Connectez-vous une fois au ' +
+           'réseau depuis cette page, puis réessayez.');
+    } else if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+      aide('Ce navigateur ne donne pas accès à la caméra. Utilisez l’appareil photo ' +
+           'du téléphone pour scanner, ou saisissez le numéro à la main.');
+    } else {
+      aide('Accès à la caméra refusé. Autorisez-le dans les réglages du navigateur, ' +
+           'ou saisissez le numéro à la main.');
+    }
+  });
+}
+
+function arreterCamera(){
+  if (flux){ flux.getTracks().forEach(function(p){ p.stop(); }); flux = null; }
+  el('camera').classList.remove('visible');
+  el('bScanner').textContent = 'Scanner les cartes';
+  dernierCode = null;
+}
+
+var toile = null, pinceau = null;
+function boucle(){
+  if (!flux) return;
+  var video = el('video');
+  var maintenant = Date.now();
+
+  /* On n'analyse que ~7 images par seconde : inutile d'epuiser la batterie. */
+  if (video.readyState === video.HAVE_ENOUGH_DATA && maintenant - dernierInstant > 140){
+    dernierInstant = maintenant;
+    if (!toile){ toile = document.createElement('canvas'); pinceau = toile.getContext('2d', { willReadFrequently: true }); }
+
+    var largeur = 480;
+    var echelle = largeur / video.videoWidth;
+    toile.width = largeur;
+    toile.height = Math.round(video.videoHeight * echelle);
+    pinceau.drawImage(video, 0, 0, toile.width, toile.height);
+
+    try {
+      var image = pinceau.getImageData(0, 0, toile.width, toile.height);
+      var trouve = window.jsQR(image.data, toile.width, toile.height,
+                               { inversionAttempts: 'dontInvert' });
+      if (trouve && trouve.data && trouve.data !== dernierCode){
+        dernierCode = trouve.data;
+        verifier(trouve.data);
+        /* meme carte re-cadree : on ignore pendant 3 s pour ne pas clignoter */
+        setTimeout(function(){ dernierCode = null; }, 3000);
+      }
+    } catch (e) { /* image pas encore prete */ }
+  }
+  requestAnimationFrame(boucle);
+}
+
+/* -------------------------------------------------------------------------
+   Entree par QR (fragment de l'adresse) ou a la main
+   ------------------------------------------------------------------------- */
+function depuisAdresse(){
+  var fragment = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim();
+  if (fragment){
+    verifier(fragment);
+  } else {
+    afficher('doute', 'Scannez une carte',
+      'Scannez le QR au dos d’une carte de membre, ou saisissez son numéro ci-dessous.');
+    chargerBase().then(function(d){ el('maj').textContent = joliJour(d.genere_le); })
+                 .catch(function(){});
+  }
+}
+
+el('bValider').addEventListener('click', function(){ verifier(el('saisie').value); });
+el('saisie').addEventListener('keydown', function(e){ if (e.key === 'Enter') verifier(this.value); });
+el('bModeControle').addEventListener('click', function(){ basculerMode(!modeControle); });
+el('bScanner').addEventListener('click', demarrerCamera);
+el('bReinit').addEventListener('click', function(){
+  if (!confirm('Effacer la liste des cartes déjà scannées ce soir ?')) return;
+  ecrireStock(CLE_SCANS, {});
+  majCompteur();
+});
+window.addEventListener('hashchange', depuisAdresse);
+document.addEventListener('visibilitychange', function(){
+  if (document.hidden) arreterCamera();       /* economie de batterie */
+});
+
+basculerMode(lireStock(CLE_MODE, false) === true);
+depuisAdresse();
+
+/* Le lecteur de QR est mis en cache des l'ouverture : s'il faut scanner plus
+   tard alors que le reseau est tombe, il sera deja la. */
+if (modeControle){
+  var pre = document.createElement('link');
+  pre.rel = 'prefetch'; pre.href = SCRIPT_QR;
+  document.head.appendChild(pre);
+}
+</script>
+</body>
+</html>
