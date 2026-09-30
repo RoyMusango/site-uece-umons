@@ -2,6 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <!-- Page interne : styleguide vivant du design system (CLAUDE.md §7).
+     Volontairement absente du menu et des moteurs de recherche. -->
+    <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="fonts/Outfit-400-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/CormorantGaramond-700-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -18,6 +21,7 @@
     <script defer src="js/reveals.js"></script>
     <!-- Pied de page global éditable via le CMS (data/global.json) -->
     <script defer src="js/global-data.js"></script>
+    <script defer src="js/recherche.js"></script>
 </head>
 <body>
 
@@ -42,7 +46,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item"><a class="nav-link" href="standard.html">Nos cercles membres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gala.html">Gala 2026</a></li>
                     
                     <li class="nav-item"><a class="nav-link" href="standard.html">Test&nbsp;: Quel cercle&nbsp;?</a></li>
 
@@ -54,24 +58,15 @@
                             <li><a class="dropdown-item" href="annonces.html"><span class="panel-titre">Infos HUE&nbsp;/&nbsp;UE</span><small>Les démarches essentielles</small></a></li>
                             <li><a class="dropdown-item" href="guide.html"><span class="panel-titre">Guide de l'étudiant</span><small>Vivre à Mons au quotidien</small></a></li>
                             <li><a class="dropdown-item" href="faq.html"><span class="panel-titre">FAQ</span><small>Les réponses à vos questions</small></a></li>
-                            <li><a class="dropdown-item" href="standard.html"><span class="panel-titre">Logement</span><small>Se loger à Mons</small></a></li>
                         </ul>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Espace Membre</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="standard.html">Mes cotisations</a></li>
-                            <li><a class="dropdown-item" href="standard.html">Documents administratifs</a></li>
-                        </ul>
-                    </li>
                 </ul>
 
                 <div class="d-flex align-items-center">
                     <form class="d-flex" role="search">
                         <input class="form-control search-box" type="search" placeholder="Rechercher..." aria-label="Search">
                     </form>
-                    <a href="standard.html" class="btn-connexion">Se Connecter</a>
                 </div>
             </div>
         </div>
@@ -201,8 +196,7 @@
                     <p class="footer-title" data-global="contact.titre">Nous contacter</p>
                     <p>
                         <i class="fas fa-map-marker-alt me-2"></i> <span data-global="contact.adresse">Place du Parc 20, 7000 Mons</span><br>
-                        <i class="fas fa-envelope me-2"></i> <span data-global="contact.email">UECE.UMONS@umons.ac.be</span><br>
-                        <i class="fas fa-phone me-2"></i> <span data-global="contact.telephone">+32 65 00 00 00</span>
+                        <i class="fas fa-envelope me-2"></i> <span data-global="contact.email">UECE.UMONS@umons.ac.be</span>
                     </p>
                 </div>
 
@@ -218,9 +212,10 @@
                 <div class="col-md-4 mb-4 text-end">
                     <p class="footer-title" data-global="informations.titre">Informations</p>
                     <ul class="list-unstyled">
-                        <li><a href="standard.html">Mentions Légales</a></li>
-                        <li><a href="standard.html">Politique de confidentialité</a></li>
-                        <li><a href="standard.html">Statuts de l'association</a></li>
+                        <li><a href="faq.html">Questions fréquentes</a></li>
+                        <li><a href="guide.html">Guide de l'étudiant</a></li>
+                        <li><a href="evenements.html">Nos événements</a></li>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
                     </ul>
                 </div>
             </div>

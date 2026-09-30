@@ -1,0 +1,7 @@
+# Donnees personnelles : jamais dans Git
+cartes/
+photos/
+membres.csv
+membres-avec-codes.csv
+*.sauvegarde
+__pycache__/

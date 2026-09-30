@@ -1,0 +1,6 @@
+﻿numero,nom,prenoms,email,faculte,qualite,annee,echeance,statut_cotisation,date_adhesion,photo,jeton_verif,code,code_stripe_id,statut_code,date_utilisation,commande_stripe,consentement_rgpd
+UECE-2026-0001,Ebwelle,Roy,ebwelle.roy@example.org,Faculté Polytechnique,Membre adhérent,2025 — 2026,2026-09-30,payée,2025-10-02,photos/UECE-2026-0001.jpg,H7QM4X,UECE26-K7Q4M,promo_1QxxxxxxxxxxxxxA,actif,,,oui
+UECE-2026-0043,Ben Salah,Yasmine,yasmine.bensalah@example.org,Faculté de Médecine et de Pharmacie,Membre adhérent,2025 — 2026,2026-09-30,payée,2025-10-04,photos/UECE-2026-0043.jpg,R3WT9C,UECE26-R3WT9,promo_1QxxxxxxxxxxxxxB,utilisé,2026-02-11,cs_live_xxxxxxxxxxxx,oui
+UECE-2026-0044,Nguyen,Minh Anh,minhanh.nguyen@example.org,Faculté Warocqué d'Économie et de Gestion,Membre du bureau,2025 — 2026,2026-09-30,payée,2025-10-05,photos/UECE-2026-0044.jpg,B8ZM2P,UECE26-B8ZM2,promo_1QxxxxxxxxxxxxxC,actif,,,oui
+UECE-2026-0045,Mbala Kanza,Joseph Aimé,joseph.mbala@example.org,Faculté des Sciences,Membre adhérent,2025 — 2026,2026-09-30,en attente,2025-10-07,,,,,à créer,,,oui
+UECE-2026-0046,Haddad,Léa,lea.haddad@example.org,Faculté de Psychologie et des Sciences de l'Éducation,Membre adhérent,2025 — 2026,2026-09-30,payée,2025-10-09,photos/UECE-2026-0046.jpg,P5NX7K,UECE26-P5NX7,promo_1QxxxxxxxxxxxxxD,actif,,,oui
