@@ -44,7 +44,7 @@
     },
     "deplacer": {
       "titre": "Se déplacer, respirer",
-      "texte": "La gare de Mons et le réseau de bus TEC pour rayonner, et le Grand Large — le lac de Mons — pour courir, ramer ou simplement souffler entre deux blocus."
+      "texte": "La gare de Mons et le réseau de bus TEC pour rayonner, et le Grand Large, le lac de Mons, pour courir, ramer ou simplement souffler entre deux blocus."
     }
   },
   "marches": {
@@ -61,7 +61,7 @@
       { "jour": "Hebdo", "nom": "Marché de Jemappes", "detail": "très prisé des étudiants, petits prix" },
       { "jour": "Hebdo", "nom": "Marché de Nimy", "detail": "à deux pas du campus, l'autre repaire étudiant" }
     ],
-    "note": "Liste non exhaustive — jours, horaires et emplacements exacts tenus à jour par le comité. Idéal pour manger frais sans exploser le budget étudiant."
+    "note": "Liste non exhaustive : jours, horaires et emplacements exacts tenus à jour par le comité. Idéal pour manger frais sans exploser le budget étudiant."
   },
   "contact": {
     "eyebrow": "Une question sur la vie à Mons ?",

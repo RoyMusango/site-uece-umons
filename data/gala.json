@@ -9,10 +9,10 @@
     "accroche": "Rejoignez-nous pour une nuit mémorable où les cultures du monde entier se rencontrent dans l'élégance et la convivialité.",
     "paragraphe": "Le Gala annuel de l'UECE est bien plus qu'une simple soirée. C'est un moment de partage, de découverte et de célébration de la richesse de notre communauté internationale.",
     "annonceProgramme": "Cette année, nous vous préparons un programme exceptionnel :",
-    "note": "Photographe professionnel toute la soirée — horaires indicatifs, à confirmer par le comité."
+    "note": "Photographe professionnel toute la soirée. Horaires indicatifs, à confirmer par le comité."
   },
   "programme": [
-    { "heure": "18h30", "titre": "Ouverture des portes", "detail": "— accueil en musique" },
+    { "heure": "18h30", "titre": "Ouverture des portes", "detail": "accueil en musique" },
     { "heure": "19h30", "titre": "Dîner gastronomique", "detail": "aux saveurs internationales" },
     { "heure": "21h30", "titre": "Spectacles culturels", "detail": "par nos étudiants" },
     { "heure": "22h30", "titre": "Tombola", "detail": "avec des lots prestigieux" },
@@ -48,7 +48,7 @@
     },
     {
       "question": "Le billet est-il remboursable ?",
-      "reponse": "Les billets ne sont ni remboursables ni échangeables, sauf en cas d'annulation de l'événement. En cas d'empêchement, contactez-nous à UECE.UMONS@umons.ac.be — nous ferons de notre mieux."
+      "reponse": "Les billets ne sont ni remboursables ni échangeables, sauf en cas d'annulation de l'événement. En cas d'empêchement, contactez-nous à UECE.UMONS@umons.ac.be, nous ferons de notre mieux."
     },
     {
       "question": "Quel est le dress code ?",

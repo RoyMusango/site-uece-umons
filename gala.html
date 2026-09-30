@@ -13,12 +13,12 @@
     <meta property="og:site_name" content="UECE UMONS">
     <meta property="og:locale" content="fr_BE">
     <meta property="og:url" content="https://uece-umons.netlify.app/gala.html">
-    <meta property="og:title" content="Gala de Prestige UECE 2026 — Billetterie">
+    <meta property="og:title" content="Gala de Prestige UECE 2026 - Billetterie">
     <meta property="og:description" content="Dîner gastronomique, spectacles culturels et DJ le samedi 15 mai 2026 à Mons. Réservez votre place : billet Standard 15 €, VIP 25 €.">
     <meta property="og:image" content="https://uece-umons.netlify.app/images/partage-uece.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Logo de l'UECE — Union des Étudiants et Chercheurs Étrangers de l'UMONS">
+    <meta property="og:image:alt" content="Logo de l'UECE, Union des Étudiants et Chercheurs Étrangers de l'UMONS">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://uece-umons.netlify.app/gala.html">
 
@@ -98,13 +98,13 @@
                         <p data-edit="intro.paragraphe">Le Gala annuel de l'UECE est bien plus qu'une simple soirée. C'est un moment de partage, de découverte et de célébration de la richesse de notre communauté internationale.</p>
                         <p data-edit="intro.annonceProgramme">Cette année, nous vous préparons un programme exceptionnel&nbsp;:</p>
                         <div class="timeline mt-3" data-edit-programme>
-                            <div class="timeline-item"><span class="timeline-time">18h30</span> <strong>Ouverture des portes</strong> — accueil en musique</div>
+                            <div class="timeline-item"><span class="timeline-time">18h30</span> <strong>Ouverture des portes</strong> accueil en musique</div>
                             <div class="timeline-item"><span class="timeline-time">19h30</span> <strong>Dîner gastronomique</strong> aux saveurs internationales</div>
                             <div class="timeline-item"><span class="timeline-time">21h30</span> <strong>Spectacles culturels</strong> par nos étudiants</div>
                             <div class="timeline-item"><span class="timeline-time">22h30</span> <strong>Tombola</strong> avec des lots prestigieux</div>
                             <div class="timeline-item"><span class="timeline-time">23h00</span> <strong>DJ international</strong> et piste de danse jusqu'au bout de la nuit</div>
                         </div>
-                        <p class="text-soft small mt-3 mb-0"><i class="fas fa-camera me-1 text-gold"></i><span data-edit="intro.note">Photographe professionnel toute la soirée — <em>horaires indicatifs, à confirmer par le comité</em>.</span></p>
+                        <p class="text-soft small mt-3 mb-0"><i class="fas fa-camera me-1 text-gold"></i><span data-edit="intro.note">Photographe professionnel toute la soirée. <em>Horaires indicatifs, à confirmer par le comité.</em></span></p>
                     </div>
                 </div>
             </div>
@@ -310,7 +310,7 @@
             </details>
             <details>
                 <summary>Le billet est-il remboursable&nbsp;?</summary>
-                <p>Les billets ne sont ni remboursables ni échangeables, sauf en cas d'annulation de l'événement. En cas d'empêchement, contactez-nous à UECE.UMONS@umons.ac.be — nous ferons de notre mieux.</p>
+                <p>Les billets ne sont ni remboursables ni échangeables, sauf en cas d'annulation de l'événement. En cas d'empêchement, contactez-nous à UECE.UMONS@umons.ac.be, nous ferons de notre mieux.</p>
             </details>
             <details>
                 <summary>Quel est le dress code&nbsp;?</summary>
@@ -496,7 +496,7 @@
                 doc.line(20, 62, 54, 62);
                 doc.setFont("times", "normal");
                 doc.setFontSize(9);
-                doc.text("Samedi 15 mai 2026 — 19h00", 37, 69, { align: "center" });
+                doc.text("Samedi 15 mai 2026, 19h00", 37, 69, { align: "center" });
                 doc.text("Salle des Congrès", 37, 74, { align: "center" });
                 doc.text("Grand-Place 22, 7000 Mons", 37, 79, { align: "center" });
 
@@ -515,7 +515,7 @@
 
                 const lignes = [
                     ["Invité(e)", transactionData.nom],
-                    ["Formule", "Ticket " + transactionData.type + " — " + transactionData.prix + " EUR"],
+                    ["Formule", "Ticket " + transactionData.type + ", " + transactionData.prix + " EUR"],
                     ["Référence de paiement", String(transactionData.id)],
                     ["Achat du", transactionData.date]
                 ];
@@ -535,7 +535,7 @@
                 doc.setFont("helvetica", "normal");
                 doc.setFontSize(7.5);
                 doc.setTextColor(muted[0], muted[1], muted[2]);
-                doc.text("Présentez ce billet (imprimé ou sur téléphone) à l'entrée — ouverture des portes à 18h30.", 140, 87, { align: "center" });
+                doc.text("Présentez ce billet (imprimé ou sur téléphone) à l'entrée. Ouverture des portes à 18h30.", 140, 87, { align: "center" });
                 doc.text("Tenue de soirée (Noir & Or)", 140, 91, { align: "center" });
 
                 doc.save("Billet_UECE_" + transactionData.id + ".pdf");
