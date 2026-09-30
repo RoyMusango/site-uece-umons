@@ -9,20 +9,20 @@ les réponses peuvent mettre deux à trois semaines à arriver.
 
 ---
 
-## 1. À l'UMONS — référencement du site et hébergement
+## 1. À l'UMONS : référencement du site et hébergement
 
 **À qui l'envoyer.** Par ordre de pertinence :
 1. le service qui gère les cercles et la vie étudiante (celui qui vous a
-   reconnus comme cercle — c'est votre interlocuteur naturel) ;
+   reconnus comme cercle, c'est votre interlocuteur naturel) ;
 2. le service communication de l'UMONS, qui tient les pages du site
    universitaire ;
 3. le service d'accueil des étudiants internationaux, qui a le plus à gagner
    à connaître nos pages.
 
 Si vous ne savez pas à qui écrire, envoyez-le au premier et demandez en fin de
-message d'être orienté vers la bonne personne — c'est fait dans le texte.
+message d'être orienté vers la bonne personne : c'est fait dans le texte.
 
-**Objet :** `UECE — site d'information pour les étudiants internationaux : demande de référencement`
+**Objet :** `UECE : site d'information pour les étudiants internationaux, demande de référencement`
 
 ---
 
@@ -45,20 +45,20 @@ simplement et en français accessible :
   banque.
 
 Ce sont exactement les questions qui reviennent aux services de l'université à
-chaque rentrée. Notre site ne les remplace pas — il renvoie systématiquement
-vers les sources officielles — mais il peut absorber une partie de ces demandes
+chaque rentrée. Notre site ne les remplace pas, il renvoie systématiquement
+vers les sources officielles, mais il peut absorber une partie de ces demandes
 et faire gagner du temps à tout le monde.
 
 **Deux demandes, si vous le jugez opportun :**
 
-1. **Un lien vers notre site depuis les pages de l'UMONS** — par exemple depuis
+1. **Un lien vers notre site depuis les pages de l'UMONS**, par exemple depuis
    la liste des cercles étudiants, ou depuis les pages d'accueil des étudiants
    internationaux. C'est ce qui permettrait aux étudiants de nous trouver au
    moment où ils en ont besoin, et non par hasard.
 
 2. **Une question sur l'hébergement.** Notre site est aujourd'hui hébergé chez
-   un prestataire externe gratuit. C'est un site entièrement statique — de
-   simples pages, sans base de données ni application — donc très léger à
+   un prestataire externe gratuit. C'est un site entièrement statique, de
+   simples pages, sans base de données ni application, donc très léger à
    héberger. **L'UMONS dispose-t-elle d'une solution d'hébergement pour les
    cercles reconnus**, ou de la possibilité de nous attribuer une adresse du
    type `uece.umons.ac.be` ? Une adresse universitaire donnerait au site une
@@ -76,13 +76,13 @@ Je vous remercie de votre attention et vous prie d'agréer, Madame, Monsieur,
 l'expression de mes salutations distinguées.
 
 [Prénom Nom]
-Président de l'UECE — Union des Étudiants et Chercheurs Étrangers
+Président de l'UECE (Union des Étudiants et Chercheurs Étrangers)
 UECE.UMONS@umons.ac.be
 [numéro de téléphone, facultatif]
 
 ---
 
-## 2. Au Cercle Magellan — hébergement web
+## 2. Au Cercle Magellan : hébergement web
 
 **À qui l'envoyer.** Le Cercle Magellan est le cercle informatique de la Faculté
 Polytechnique. Utilisez le formulaire « Contactez-nous » de leur site, ou
@@ -90,7 +90,7 @@ l'adresse de contact qui y figure. Ils tiennent un local (Local 500, Cité
 Houzeau) : proposer de passer sur place est souvent plus efficace qu'un long
 échange de courriels.
 
-**Objet :** `UECE — hébergement d'un site statique : quelques questions`
+**Objet :** `UECE : hébergement d'un site statique, quelques questions`
 
 ---
 
@@ -145,7 +145,7 @@ disposition des étudiants.
 Bien à vous,
 
 [Prénom Nom]
-Président de l'UECE — Union des Étudiants et Chercheurs Étrangers
+Président de l'UECE (Union des Étudiants et Chercheurs Étrangers)
 UECE.UMONS@umons.ac.be
 
 ---
@@ -158,13 +158,13 @@ Google. Il faudra alors créer une nouvelle propriété Search Console (Annexe 9
 §B.3) et rediriger l'ancienne adresse.
 
 **Si Magellan propose un hébergement** : à examiner sur les points 2 et 3
-ci-dessus. **Sans HTTPS, ce n'est pas envisageable** — la vérification des
+ci-dessus. **Sans HTTPS, ce n'est pas envisageable** : la vérification des
 cartes de membre cesserait de fonctionner. Sans déploiement automatique depuis
 GitHub, c'est faisable mais chaque mise à jour redevient une manipulation
 manuelle, ce qui complique la passation.
 
 **Si les deux échouent** : Netlify reste parfaitement adapté. Ce n'est pas un
-pis-aller — c'est ce que nous utilisons aujourd'hui et le site est rapide et
+pis-aller : c'est ce que nous utilisons aujourd'hui, et le site est rapide et
 fiable. Dans ce cas, le seul vrai gain disponible reste le **nom de domaine
 propre** (~15 €/an), qui rend l'adresse indépendante de l'hébergeur.
 

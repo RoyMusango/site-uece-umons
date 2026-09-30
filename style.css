@@ -1758,12 +1758,11 @@ footer .border-top { border-color: var(--line-gold) !important; }
 
 .annonce-source a:hover { text-decoration-color: var(--gold-500); }
 
-/* Avertissement en haut de la page Infos : sur un grand ecran, le paragraphe
-   s'etirait sur toute la largeur et laissait un mot seul en derniere ligne.
-   Une mesure limitee le rend lisible, et text-wrap:pretty evite l'orphelin
-   sur les navigateurs qui le connaissent. */
+/* Avertissement en haut de la page Infos : il doit tenir sur UNE ligne sur un
+   ecran large. Le texte a ete raccourci pour cela. text-wrap:pretty reste en
+   filet de securite : sur un ecran plus etroit, ou il devra forcement passer
+   a la ligne, il evite qu'un mot se retrouve seul en derniere ligne. */
 .avertissement {
-    max-width: 78ch;
     text-wrap: pretty;
 }
 
@@ -2093,6 +2092,47 @@ html.motion-rich .affiche-cadre { will-change: transform; }
     object-fit: cover;
     border-bottom: 1px solid var(--line-gold);
     border-radius: calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0;
+}
+
+/* Bandeau-adresse : quand aucune photo juste n'est disponible, on affiche
+   l'adresse plutot qu'une image trompeuse. Meme format 3/2 que les bandeaux
+   photo, pour que la rangee de cartes garde son alignement.
+   A remplacer par une vraie photo du batiment des qu'on en aura une. */
+.carte-adresse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .35rem;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border-bottom: 1px solid var(--line-gold);
+    border-radius: calc(var(--radius-sm) - 1px) calc(var(--radius-sm) - 1px) 0 0;
+    background:
+        radial-gradient(120% 140% at 20% 15%, var(--navy-700) 0%, var(--navy-800) 40%, var(--navy-900) 100%);
+    text-align: center;
+    padding: 1rem;
+}
+
+.carte-adresse__label {
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold-500);
+}
+
+.carte-adresse__rue {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.4rem, 3vw, 1.75rem);
+    line-height: 1.1;
+    color: var(--gold-300);
+}
+
+.carte-adresse__ville {
+    font-size: .95rem;
+    color: rgba(247, 242, 232, .8);
 }
 
 /* Bandeau-scène : pour les photos qu'un recadrage mutilerait (monuments
