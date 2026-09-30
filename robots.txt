@@ -1,0 +1,14 @@
+# Site UECE UMONS — https://uece-umons.netlify.app
+# Tout est ouvert à l'indexation, sauf les pages de service.
+
+User-agent: *
+Allow: /
+
+# Page de vérification des cartes de membre : on y arrive par un QR, pas par Google.
+Disallow: /verifier.html
+# Styleguide interne du design system.
+Disallow: /standard.html
+# Administration du contenu.
+Disallow: /admin/
+
+Sitemap: https://uece-umons.netlify.app/sitemap.xml

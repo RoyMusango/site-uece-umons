@@ -44,7 +44,6 @@ collections:
               - { label: "Titre de la colonne", name: titre, widget: string }
               - { label: "Adresse", name: adresse, widget: string }
               - { label: "E-mail", name: email, widget: string }
-              - { label: "Téléphone", name: telephone, widget: string }
           - label: "Colonne « Suivez-nous » (réseaux sociaux)"
             name: reseaux
             widget: object
