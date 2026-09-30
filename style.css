@@ -1709,8 +1709,21 @@ footer .border-top { border-color: var(--line-gold) !important; }
 }
 
 .annonce-card h2 {
-    font-size: var(--fs-h4);
-    margin-bottom: .35rem;
+    /* Cormorant a une petite hauteur d'x : a taille egale il parait plus petit
+       qu'Outfit. D'ou un titre nettement plus grand, et en 700, pour que la
+       hierarchie titre / corps / source se voie vraiment. */
+    font-size: clamp(1.5rem, 2.7vw, 1.95rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: .55rem;
+}
+
+/* Corps de l'annonce : un cran au-dessus du texte courant, pour qu'il ne se
+   confonde pas avec la ligne de source. */
+.annonce-card > p:not(.annonce-source) {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin-bottom: .9rem;
 }
 
 .annonce-meta {
@@ -1731,8 +1744,9 @@ footer .border-top { border-color: var(--line-gold) !important; }
 }
 
 .annonce-source {
-    font-size: .85rem;
+    font-size: .9rem;              /* identique a .annonce-deadline */
     color: var(--muted);
+    margin-top: .1rem;
 }
 
 .annonce-source a {
@@ -1743,6 +1757,15 @@ footer .border-top { border-color: var(--line-gold) !important; }
 }
 
 .annonce-source a:hover { text-decoration-color: var(--gold-500); }
+
+/* Avertissement en haut de la page Infos : sur un grand ecran, le paragraphe
+   s'etirait sur toute la largeur et laissait un mot seul en derniere ligne.
+   Une mesure limitee le rend lisible, et text-wrap:pretty evite l'orphelin
+   sur les navigateurs qui le connaissent. */
+.avertissement {
+    max-width: 78ch;
+    text-wrap: pretty;
+}
 
 /* Badges de public concerné — contrastes AA vérifiés */
 .badge-annonce {
