@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Page de verification d'une carte de membre UECE.
+   Elle se lit au telephone, a l'entree d'un evenement, en trois secondes.
+
+   100 % statique : elle compare une empreinte au fichier adhesions.json publie
+   par le comite. Aucun serveur, aucune base de donnees.
+
+   Deux modes :
+     - lecture simple : on arrive par le QR, la page affiche le verdict ;
+     - MODE CONTROLE  : la camera enchaine les cartes, la liste est gardee
+       hors ligne, et une carte deja passee est signalee.
+   ========================================================================== */
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:700;font-display:swap;
+  src:url('/fonts/CormorantGaramond-700-latin.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300;font-display:swap;
+  src:url('/fonts/Outfit-300-latin.woff2') format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;font-display:swap;
+  src:url('/fonts/Outfit-500-latin.woff2') format('woff2');}
+
+:root{
+  --navy-950:#050F1E; --navy-900:#001730; --navy-800:#002147;
+  --gold-300:#EBD48B; --gold-500:#D4AF37;
+  --paper:#F7F2E8;
+  --vert:#1F7A4D; --vert-clair:#54C08A;
+  --rouge:#B3261E; --rouge-clair:#FF8A80;
+  --ambre:#8C6D1F; --ambre-clair:#E8C468;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  min-height:100vh;background:
+    radial-gradient(120% 100% at 50% 0%, var(--navy-800) 0%, var(--navy-900) 45%, var(--navy-950) 100%);
+  color:var(--paper);font-family:'Outfit',system-ui,sans-serif;font-weight:300;
+  display:flex;flex-direction:column;align-items:center;
+  padding:24px 16px 40px;gap:18px;-webkit-font-smoothing:antialiased;
+}
+header{text-align:center;}
+.sigle{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:26px;
+  letter-spacing:.22em;color:var(--gold-300);line-height:1;}
+.sous-sigle{font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(247,242,232,.55);margin-top:6px;}
+
+.bloc{width:min(420px,100%);}
+
+/* --- Bandeau hors ligne -------------------------------------------------- */
+.hors-ligne{display:none;border:1px solid rgba(232,196,104,.45);border-radius:10px;
+  background:rgba(232,196,104,.08);padding:10px 14px;font-size:12.5px;line-height:1.5;
+  color:var(--ambre-clair);}
+.hors-ligne.visible{display:block;}
+
+/* --- Carte de resultat --------------------------------------------------- */
+.carte{border:1px solid rgba(212,175,55,.3);border-radius:14px;
+  background:rgba(255,255,255,.035);padding:24px 22px;text-align:center;}
+.pastille{width:70px;height:70px;margin:0 auto 14px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;border:2px solid currentColor;}
+.pastille svg{width:36px;height:36px;stroke:currentColor;stroke-width:2.4;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;}
+.verdict{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;font-size:26px;
+  letter-spacing:.03em;line-height:1.15;}
+.explication{font-size:14px;line-height:1.6;color:rgba(247,242,232,.8);margin-top:10px;}
+
+.etat-ok    .pastille,.etat-ok    .verdict{color:var(--vert-clair);}
+.etat-ko    .pastille,.etat-ko    .verdict{color:var(--rouge-clair);}
+.etat-doute .pastille,.etat-doute .verdict{color:var(--ambre-clair);}
+
+.details{margin-top:18px;border-top:1px solid rgba(212,175,55,.22);padding-top:15px;
+  display:grid;gap:11px;text-align:left;}
+.details div{display:flex;justify-content:space-between;gap:14px;align-items:baseline;}
+.etiquette{font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(235,212,139,.7);}
+.donnee{font-size:14px;color:var(--paper);text-align:right;
+  font-variant-numeric:tabular-nums;letter-spacing:.04em;}
+
+/* --- Mode controle ------------------------------------------------------- */
+.controle{border:1px solid rgba(212,175,55,.22);border-radius:12px;padding:14px 16px;}
+.controle-tete{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.controle-titre{font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(235,212,139,.7);}
+.compteur{font-size:12.5px;color:rgba(247,242,232,.65);margin-top:8px;line-height:1.6;}
+.compteur strong{font-weight:500;color:var(--paper);}
+
+.boutons{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+button{font-family:'Outfit';font-size:14px;font-weight:500;border-radius:8px;
+  padding:11px 16px;cursor:pointer;border:0;letter-spacing:.02em;}
+button:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+.b-or{background:var(--gold-500);color:var(--navy-900);}
+.b-vide{background:transparent;color:var(--gold-300);border:1px solid rgba(212,175,55,.45);}
+.b-vide[aria-pressed="true"]{background:rgba(212,175,55,.16);color:var(--paper);}
+.b-discret{background:transparent;color:rgba(247,242,232,.55);
+  border:1px solid rgba(247,242,232,.2);font-weight:300;padding:9px 13px;font-size:12.5px;}
+
+.camera{display:none;margin-top:12px;position:relative;border-radius:10px;overflow:hidden;
+  background:#000;aspect-ratio:4/3;}
+.camera.visible{display:block;}
+.camera video{width:100%;height:100%;object-fit:cover;display:block;}
+.mire{position:absolute;inset:14%;border:2px solid rgba(235,212,139,.75);border-radius:10px;
+  box-shadow:0 0 0 100vmax rgba(5,15,30,.35);}
+.camera-aide{font-size:12px;color:rgba(247,242,232,.6);margin-top:9px;line-height:1.5;}
+
+/* --- Consigne, saisie manuelle, pied ------------------------------------- */
+.consigne{border:1px solid rgba(212,175,55,.22);border-radius:12px;
+  padding:14px 16px;font-size:12.5px;line-height:1.65;color:rgba(247,242,232,.68);}
+.consigne strong{font-weight:500;color:var(--paper);}
+.consigne ol{margin:8px 0 0 18px;display:grid;gap:5px;}
+
+.manuel label{display:block;font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(247,242,232,.55);margin-bottom:7px;}
+.manuel .rangee{display:flex;gap:8px;}
+.manuel input{flex:1;min-width:0;background:rgba(5,15,30,.6);color:var(--paper);
+  border:1px solid rgba(212,175,55,.3);border-radius:8px;padding:11px 12px;
+  font-family:'Outfit';font-size:15px;letter-spacing:.05em;}
+.manuel input:focus{outline:2px solid var(--gold-500);outline-offset:1px;}
+
+footer{font-size:11px;color:rgba(247,242,232,.42);text-align:center;line-height:1.7;}
+footer a{color:rgba(235,212,139,.75);}
+
+@media (prefers-reduced-motion: no-preference){
+  .carte{animation:apparait .3s ease-out both;}
+  @keyframes apparait{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+}
