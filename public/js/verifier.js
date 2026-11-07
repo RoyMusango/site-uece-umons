@@ -1,16 +1,17 @@
 /* ==========================================================================
    Comment ca marche, en une phrase :
    le QR contient "<numero>-<jeton>" ; la page en calcule l'empreinte SHA-256
-   et regarde si cette empreinte figure dans adhesions.json.
+   et regarde si cette empreinte figure dans la liste servie par
+   /api/adhesions (lue en direct dans le registre Supabase).
 
    Pourquoi des empreintes et pas la liste des membres :
-   le fichier est public (le site est statique). En ne publiant que des
+   la liste est publique (et gardee hors ligne). En ne publiant que des
    empreintes, on ne divulgue ni les noms, ni les numeros, ni le nombre exact
    d'adherents, et on ne peut pas fabriquer une fausse carte sans connaitre
    un couple numero + jeton valide, qui lui n'est imprime que sur la carte.
    ========================================================================== */
 
-var FICHIER    = 'adhesions.json';
+var FICHIER    = '/api/adhesions';
 var SCRIPT_QR  = 'js/jsQR.min.js';
 var CLE_LISTE  = 'uece.adhesions';     /* copie hors ligne de la liste        */
 var CLE_SCANS  = 'uece.scans';         /* journal des cartes deja passees     */
@@ -202,7 +203,7 @@ function verifier(brut){
       }
 
       var lignes = [['Numéro', carte.numero], ['Valable jusqu’au', joliJour(fiche.e)]];
-      if (donnees.annee) lignes.push(['Année', donnees.annee]);
+      if (fiche.a || donnees.annee) lignes.push(['Année', fiche.a || donnees.annee]);
       if (fiche.q) lignes.push(['Qualité', fiche.q]);
       afficher('ok', 'Membre en règle',
         'Cotisation à jour. Comparez le numéro et la photo avec la carte présentée.',

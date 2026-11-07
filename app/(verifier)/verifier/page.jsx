@@ -2,7 +2,7 @@ import Script from 'next/script';
 
 // Vérification d'une carte de membre : le QR de la carte ouvre
 // /verifier#<numero>-<jeton>. Toute la logique (empreinte SHA-256 comparée à
-// public/adhesions.json, mode contrôle caméra) est dans public/js/verifier.js,
+// la liste de /api/adhesions, lue dans Supabase ; mode contrôle caméra) est dans public/js/verifier.js,
 // reprise telle quelle de l'ancienne page statique.
 export default function Verifier() {
     return (
